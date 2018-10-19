@@ -28,7 +28,7 @@
 
         <EditText
             style="@style/editText_style"
-            android:hint="usuario"
+            android:hint="usuario1"
 
             android:id="@+id/editText2"
             android:inputType="textPersonName" />

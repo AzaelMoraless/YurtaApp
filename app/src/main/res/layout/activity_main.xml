@@ -44,7 +44,7 @@
             android:id="@+id/btn_start"
             style="@style/button_style"
             android:onClick="clickStart"
-            android:text="Log in " />
+            android:text="Log in" />
 
 
         <TextView

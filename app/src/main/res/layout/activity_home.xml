@@ -22,11 +22,6 @@
         app:headerLayout="@layout/nav_header_home"
         app:menu="@menu/activity_home_drawer" >
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="97dp"
-            android:layout_height="85dp"
-            app:srcCompat="@drawable/imgl" />
     </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

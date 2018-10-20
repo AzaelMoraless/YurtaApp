@@ -13,7 +13,7 @@ import android.view.MenuItem;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,14 +74,18 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
         FragmentManager fragmentManager=getSupportFragmentManager();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_obras) {
             fragmentManager.beginTransaction().replace(R.id.contenedor, new ObrasFragment()).commit();
-        } else if (id == R.id.nav_gallery) {
+            getSupportActionBar().setTitle("Obras");
+        } else if (id == R.id.nav_almacen) {
             fragmentManager.beginTransaction().replace(R.id.contenedor, new AlmacenFragment()).commit();
-        } else if (id == R.id.nav_slideshow) {
+            getSupportActionBar().setTitle("Almacen");
+        } else if (id == R.id.nav_empleado) {
             fragmentManager.beginTransaction().replace(R.id.contenedor, new EmpleadosFragment()).commit();
-        } else if (id == R.id.nav_manage) {
+            getSupportActionBar().setTitle("Empleados");
+        } else if (id == R.id.nav_ayuda) {
             fragmentManager.beginTransaction().replace(R.id.contenedor, new AyudaFragment()).commit();
+            getSupportActionBar().setTitle("Ayuda");
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

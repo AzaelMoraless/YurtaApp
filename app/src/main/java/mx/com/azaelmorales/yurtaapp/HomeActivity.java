@@ -37,11 +37,13 @@ public class HomeActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
+        int count = getFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
             super.onBackPressed();
+            getFragmentManager().popBackStack();
+        } else {
+            getFragmentManager().popBackStack();//No se porqué puse lo mismo O.o
         }
     }
 
@@ -75,16 +77,16 @@ public class HomeActivity extends AppCompatActivity
         FragmentManager fragmentManager=getSupportFragmentManager();
 
         if (id == R.id.nav_obras) {
-            fragmentManager.beginTransaction().replace(R.id.contenedor, new ObrasFragment()).commit();
+            fragmentManager.beginTransaction().replace(R.id.contenedor, new ObrasFragment()).addToBackStack(null).commit();
             getSupportActionBar().setTitle("Obras");
         } else if (id == R.id.nav_almacen) {
-            fragmentManager.beginTransaction().replace(R.id.contenedor, new AlmacenFragment()).commit();
+            fragmentManager.beginTransaction().replace(R.id.contenedor, new AlmacenFragment()).addToBackStack(null).commit();
             getSupportActionBar().setTitle("Almacen");
         } else if (id == R.id.nav_empleado) {
-            fragmentManager.beginTransaction().replace(R.id.contenedor, new EmpleadosFragment()).commit();
+            fragmentManager.beginTransaction().replace(R.id.contenedor, new EmpleadosFragment()).addToBackStack(null).commit();
             getSupportActionBar().setTitle("Empleados");
         } else if (id == R.id.nav_ayuda) {
-            fragmentManager.beginTransaction().replace(R.id.contenedor, new AyudaFragment()).commit();
+            fragmentManager.beginTransaction().replace(R.id.contenedor, new AyudaFragment()).addToBackStack(null).commit();
             getSupportActionBar().setTitle("Ayuda");
         } else if (id == R.id.nav_share) {
 

@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
         btnLogin = (Button) findViewById(R.id.btn_start);
         setRequestedOrientation(SCREEN_ORIENTATION_PORTRAIT);
     }
-
     public void clickStart(View v){
         Intent home_activity = new Intent(getApplicationContext(),HomeActivity.class);
         finish();

@@ -34,8 +34,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\YurtaApp\app\src\main\res\drawable\icono_email.png" />
-                                      <entry key="outputName" value="ic_email" />
+                                      <entry key="imageAsset" value="C:\YurtaApp\app\src\main\res\drawable\icono_fecha.png" />
+                                      <entry key="outputName" value="ic_fecha_nacimiento" />
                                     </map>
                                   </option>
                                 </PersistentState>

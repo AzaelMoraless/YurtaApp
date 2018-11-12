@@ -38,6 +38,8 @@ public class EmpleadosFragment extends Fragment {
                 }else if(id==R.id.agregar_empleado){
 
                     fragmentManager.beginTransaction().replace(R.id.contenedor, new EmpleadosAgregarFragment()).addToBackStack(null).commit();
+                    //txt_empleados.setText("agregar empleado");
+                   // fragmentManager.beginTransaction().replace(R.id.contenedor, new EmpleadosAgregarFragment()).addToBackStack(null).commit();
                     //getSupportActionBar().setTitle("Obras");
                 }
                 return false;

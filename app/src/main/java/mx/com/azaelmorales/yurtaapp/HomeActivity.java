@@ -10,14 +10,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private Toolbar toolbar;
+    private TextView txt_correo_panel;
+    public static final String correo = "correos";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -31,8 +35,11 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        FragmentManager fragmentManager=getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.contenedor, new ObrasFragment()).commit();
+        FragmentManager fragmentManager=getSupportFragmentManager();  //fragment que inicia
+        fragmentManager.beginTransaction().replace(R.id.contenedor, new InicioFragment()).addToBackStack(null).commit();
+        getSupportActionBar().setTitle("Inicio");
+
+
     }
 
     @Override
@@ -50,7 +57,13 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+
+
         getMenuInflater().inflate(R.menu.home, menu);
+
+        txt_correo_panel= (TextView)findViewById(R.id.txt_panel_correo);
+        String correo_empleado = getIntent().getStringExtra("correos");
+        txt_correo_panel.setText(correo_empleado);
         return true;
     }
 

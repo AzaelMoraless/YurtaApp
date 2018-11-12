@@ -20,7 +20,8 @@ public class EmpleadosAgregarFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_empleados_agregar, container, false);
-
+        //getSupportActionBar().setTitle("Obras");
+        
         return view;
     }
 }

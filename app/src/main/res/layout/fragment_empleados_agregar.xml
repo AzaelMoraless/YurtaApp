@@ -20,20 +20,37 @@
                 android:paddingBottom="@dimen/activity_vertical_margin"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingTop="@dimen/fragment_horizontal_margin"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 tools:context="com.herprogramacion.etiquetasflotantes.ActividadPrincipal"
                 >
 
 
+                <LinearLayout
+                    android:id="@+id/title"
+                    android:layout_marginBottom="@dimen/line_height"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:orientation="horizontal">
 
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:textSize="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Datos del empleado"/>
+
+
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/area_rfc"
                     android:layout_marginBottom="@dimen/line_height"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
+                    android:layout_below="@+id/title"
                     android:orientation="horizontal">
 
 
@@ -46,7 +63,7 @@
 
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/add_rfc_empleado"
-                        android:background="@color/colorSecondaryDark"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp">
@@ -78,7 +95,6 @@
                         android:id="@+id/til_telefono"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorSecondaryDark"
                         android:layout_marginLeft="32dp">
                         <EditText
                             android:layout_width="match_parent"
@@ -101,7 +117,6 @@
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorSecondaryDark"
                         android:layout_marginLeft="56dp">
                         <EditText
                             android:layout_width="match_parent"
@@ -121,7 +136,6 @@
                     android:orientation="horizontal">
 
                     <android.support.design.widget.TextInputLayout
-                        android:background="@color/colorSecondaryDark"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="56dp">
@@ -151,11 +165,11 @@
                         android:src="@drawable/ic_fecha_nacimiento" />
 
                     <android.support.design.widget.TextInputLayout
-                        android:background="@color/colorSecondaryDark"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp">
                         <EditText
+                            android:id="@+id/txt_empleado_date"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="fecha de nacimiento"
@@ -180,7 +194,6 @@
                         android:src="@drawable/ic_telefono"/>
 
                     <android.support.design.widget.TextInputLayout
-                        android:background="@color/colorSecondaryDark"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp">
@@ -209,7 +222,6 @@
                         android:src="@drawable/ic_email"/>
 
                     <android.support.design.widget.TextInputLayout
-                        android:background="@color/colorSecondaryDark"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp">
@@ -224,35 +236,36 @@
 
                 <LinearLayout
                     android:id="@+id/area_contraseña"
-                    android:layout_marginBottom="@dimen/line_height"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/area_correo"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginBottom="@dimen/fragment_horizontal_margin"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/ic_password"/>
+                        android:src="@drawable/ic_password" />
 
                     <android.support.design.widget.TextInputLayout
-                        android:background="@color/colorSecondaryDark"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp">
+
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="contraseña"
                             android:ems="10"
+                            android:hint="contraseña"
                             android:inputType="textPassword" />
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/area_puesto"
-                    android:layout_marginBottom="@dimen/line_height"
+                    android:layout_marginBottom="@dimen/fragment_horizontal_margin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/area_contraseña"
@@ -260,22 +273,28 @@
 
 
 
-                    <android.support.design.widget.TextInputLayout
-                        android:background="@color/colorSecondaryDark"
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="56dp">
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="puesto"
-                            android:ems="10"
-                            android:inputType="phone" />
-                    </android.support.design.widget.TextInputLayout>
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_puesto" />
+                    <TextView
+                        android:layout_marginLeft="35dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Puesto"/>
+
+                    <android.support.v7.widget.AppCompatSpinner
+
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginBottom="50dp"
+                    android:layout_marginBottom="100dp"
                     android:id="@+id/area_sexo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -287,18 +306,21 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:src="@drawable/ic_genero" />
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="32dp">
+                        <TextView
+                            android:layout_marginLeft="35dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sexo"/>
 
                         <android.support.v7.widget.AppCompatSpinner
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
 
-                        </android.support.v7.widget.AppCompatSpinner>
-                    </android.support.design.widget.TextInputLayout>
+                            android:id="@+id/spinner_sexo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            />
+
+
                 </LinearLayout>
 
 

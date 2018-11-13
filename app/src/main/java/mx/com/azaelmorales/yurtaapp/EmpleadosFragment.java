@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +20,7 @@ public class EmpleadosFragment extends Fragment {
     private TextView txt_empleados;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_empleados, container, false);
@@ -38,6 +39,8 @@ public class EmpleadosFragment extends Fragment {
                 }else if(id==R.id.agregar_empleado){
 
                     fragmentManager.beginTransaction().replace(R.id.contenedor, new EmpleadosAgregarFragment()).addToBackStack(null).commit();
+                    ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Agregar empleado");
+                    //getSupportActionBar()
                     //txt_empleados.setText("agregar empleado");
                    // fragmentManager.beginTransaction().replace(R.id.contenedor, new EmpleadosAgregarFragment()).addToBackStack(null).commit();
                     //getSupportActionBar().setTitle("Obras");

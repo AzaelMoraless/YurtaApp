@@ -11,4 +11,14 @@
         android:title="agregar"
         android:icon="@drawable/ic_add_person"
         />
+    <item
+        android:id="@+id/editar_empleado"
+        android:title="editar"
+        android:icon="@drawable/ic_editar"
+        />
+    <item
+        android:id="@+id/elimnar_empleado"
+        android:title="eliminar"
+        android:icon="@drawable/ic_eliminar"
+        />
 </menu>

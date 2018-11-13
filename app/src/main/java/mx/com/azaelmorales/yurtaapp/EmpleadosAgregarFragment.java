@@ -26,9 +26,10 @@ import java.util.List;
 
 public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickListener{
     private EditText txt_empleado_date;
-    private AppCompatSpinner spinner_sexo;
-    List<String> listaGeneros;
-    ArrayAdapter<String> adapterSpinner;
+    private AppCompatSpinner spinner_sexo,spinner_puesto;
+
+    List<String> listaGeneros,listaPuestos;
+    ArrayAdapter<String> adapterSpinner,adapterSpinnerPuestos;
     private int dia,mes,anio;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,17 +37,23 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
 
         View view = inflater.inflate(R.layout.fragment_empleados_agregar, container, false);
 
-        spinner_sexo = (AppCompatSpinner)view.findViewById(R.id.spinner_sexo);
+        spinner_sexo = (AppCompatSpinner)view.findViewById(R.id.spn_add_empleado_sexo);
+        spinner_puesto = (AppCompatSpinner)view.findViewById(R.id.spn_add_empleado_puesto);
         listaGeneros = new ArrayList<>();
+        listaPuestos = new ArrayList<>();
         String[] generos = {"Masculino","Femenino"};
+        String[] puestos = {"Administrador","Jefe de obra"};
         Collections.addAll(listaGeneros, generos);
+        Collections.addAll(listaPuestos,puestos);
 
         adapterSpinner = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, listaGeneros);
-
+        adapterSpinnerPuestos = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item, listaPuestos);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
+        adapterSpinnerPuestos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_sexo.setAdapter(adapterSpinner);
+        spinner_puesto.setAdapter(adapterSpinnerPuestos);
         spinner_sexo.setSelection(0);
+        spinner_puesto.setSelection(0);
 
 
 

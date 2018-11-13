@@ -22,7 +22,6 @@
                 android:paddingRight="30dp"
                 android:paddingTop="@dimen/fragment_horizontal_margin"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:context="com.herprogramacion.etiquetasflotantes.ActividadPrincipal"
                 >
 
 
@@ -62,14 +61,14 @@
                         android:src="@drawable/ic_rfc_person" />
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/add_rfc_empleado"
+                        android:id="@+id/add_empleado_rfc"
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp">
 
                         <EditText
-                            android:id="@+id/campo_nombre"
+                            android:id="@+id/txt_add_empleado_rfc"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -97,10 +96,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp">
                         <EditText
+                            android:id="@+id/add_empleado_nombre"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="nombre"
-
                             android:ems="10"
                             android:inputType="phone" />
                     </android.support.design.widget.TextInputLayout>
@@ -119,6 +118,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="56dp">
                         <EditText
+                            android:id="@+id/add_empleado_ap"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="apellido paterno"
@@ -140,6 +140,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="56dp">
                         <EditText
+                            android:id="@+id/add_empleado_am"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="apellido materno"
@@ -198,6 +199,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp">
                         <EditText
+                            android:id="@+id/add_empleado_tel"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="teléfono"
@@ -226,6 +228,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp">
                         <EditText
+                            android:id="@+id/add_empleado_correo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="correo"
@@ -255,6 +258,7 @@
                         android:layout_marginLeft="32dp">
 
                         <EditText
+                            android:id="@+id/add_empleado_pass"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -286,7 +290,7 @@
 
                     <android.support.v7.widget.AppCompatSpinner
 
-
+                        android:id="@+id/spn_add_empleado_puesto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 
@@ -313,8 +317,8 @@
                             android:text="Sexo"/>
 
                         <android.support.v7.widget.AppCompatSpinner
-
-                            android:id="@+id/spinner_sexo"
+                            android:layout_marginLeft="15dp"
+                            android:id="@+id/spn_add_empleado_sexo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -333,20 +337,22 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/boton_cancelar"
-                        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="cancelar" />
-
-                    <Button
-                        android:id="@+id/boton_aceptar"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:backgroundTint="@color/colorAccent"
-                        android:text="aceptar"
+                        android:text="CANCELAR"
+                        style="@style/button_style"
+                        android:textColor="@android:color/white"  />
+
+                    <Button
+                        android:id="@+id/btn_add_empleado_aceptar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorAccent"
+                        android:text="ACEPTAR"
+                        style="@style/button_style"
                         android:textColor="@android:color/white" />
                 </LinearLayout>
             </RelativeLayout>

@@ -35,12 +35,12 @@
 
 
                     <android.support.v7.widget.AppCompatTextView
-                        android:textAlignment="center"
-                        android:gravity="center"
-                        android:textSize="15dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Datos del empleado"/>
+                        android:gravity="center"
+                        android:text="Datos del empleado"
+                        android:textAlignment="center"
+                        android:textSize="17dp" />
 
 
 

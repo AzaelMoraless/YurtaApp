@@ -2,27 +2,19 @@ package mx.com.azaelmorales.yurtaapp;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.AppCompatSpinner;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -47,7 +39,7 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
             txt_empleado_tel,txt_empleado_correo,txt_empleado_password;
     private TextInputLayout tilNombre,tilRfc,tilAp,tilAm,tilCorreo,tilTelefono,tilDate;
     private String rfc,nombre,fecha_nacimiento,telefono,correo,password;
-
+    private boolean a,b,c,d,e,f,g;
     private AppCompatSpinner spinner_sexo,spinner_puesto;
     private Button btnCancelar,btnAceptar;
 
@@ -111,13 +103,13 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
         implemetarTextWatcher();
 
 
-
+        //objeto RequestQueue
         rq = Volley.newRequestQueue(getActivity());
         return view;
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(View view) { //boton agregar epleado, cancelar y desplegar el calendario en el campo fecha
         if(view==txt_empleado_date){
             final Calendar calendar = Calendar.getInstance();
             dia = calendar.get(Calendar.DAY_OF_MONTH);
@@ -133,25 +125,29 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
             datePickerDialog.show();
         }else if(view==btnAceptar){
             iniciarValores();
-            registrarEmpleado();
-            limpiarCampos();
+            if(validaEntradas()){
+                registrarEmpleado();
+                limpiarCampos();
+            }else{
+                Toast.makeText(getActivity(),"Algunos campos son incorrectos" ,Toast.LENGTH_LONG).show();
+            }
+
         }else if(view==btnCancelar){
              limpiarCampos();
         }
     }
 
     @Override
-    public void onErrorResponse(VolleyError error) {
+    public void onErrorResponse(VolleyError error) { //en caso de ocurrir un error en l aoperacion
         Toast.makeText(getActivity(),"Error al agregar usuario" ,Toast.LENGTH_LONG).show();
     }
 
     @Override
-    public void onResponse(JSONObject response) {
+    public void onResponse(JSONObject response) {//en caso de que la operacion se lleve con exito
         Toast.makeText(getActivity(),"Empleado registrado",Toast.LENGTH_LONG).show();
     }
 
-    private void registrarEmpleado(){
-
+    private void registrarEmpleado(){ //se ejecuta la solicitud al web service alojado en el servidor
         String url ="http://10.0.0.7/login/registrar_empleado.php?rfc=" +rfc +
                 "&nombre="+nombre+"&f_nacimiento="+ fecha_nacimiento+
                 "&telefono="+telefono+"&correo="+correo+"&passw="+password +
@@ -163,7 +159,7 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
     }
 
 
-    public void iniciarValores(){
+    public void iniciarValores(){ //incialza los valores
         rfc = txt_empleado_rfc.getText().toString();
         nombre = txt_empleado_nombre.getText().toString() + " " + txt_empleado_ap.getText().toString() + " " +txt_empleado_am.getText().toString();
         telefono = txt_empleado_tel.getText().toString();
@@ -172,7 +168,7 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
     }
 
 
-    public void limpiarCampos(){
+    public void limpiarCampos(){//setea los campos
         txt_empleado_rfc.setText("");
         txt_empleado_nombre.setText("");
         txt_empleado_ap.setText("");
@@ -188,14 +184,14 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
 
 
 
-    public void implemetarTextWatcher(){
+    public void implemetarTextWatcher(){ //implementa un escuchador para la validacion de los datos en las cajas de texto
         txt_empleado_rfc.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Validar.rfc(String.valueOf(s),tilRfc);
+                a = Validar.rfc(String.valueOf(s),tilRfc);
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -209,7 +205,7 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Validar.nombre(String.valueOf(s),tilNombre);
+                b = Validar.nombre(String.valueOf(s),tilNombre);
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -223,7 +219,7 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Validar.nombre(String.valueOf(s),tilAp);
+                c = Validar.nombre(String.valueOf(s),tilAp);
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -237,7 +233,7 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Validar.nombre(String.valueOf(s),tilAm);
+                d = Validar.nombre(String.valueOf(s),tilAm);
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -251,7 +247,7 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Validar.nombre(String.valueOf(s),tilTelefono);
+                e = Validar.nombre(String.valueOf(s),tilTelefono);
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -264,7 +260,7 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Validar.correo(String.valueOf(s),tilCorreo);
+                f = Validar.correo(String.valueOf(s),tilCorreo);
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -278,7 +274,7 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Validar.fecha_nac(String.valueOf(s),tilDate);
+                g = Validar.fecha_nac(String.valueOf(s),tilDate);
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -286,5 +282,11 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
             }
         });
 
+    }
+
+    public boolean validaEntradas(){
+        if(a&&b&&c&&d&&e&&f&&g)
+            return true;
+        return false;
     }
 }

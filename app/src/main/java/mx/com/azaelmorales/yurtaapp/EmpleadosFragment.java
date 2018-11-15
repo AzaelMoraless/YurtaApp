@@ -31,19 +31,13 @@ public class EmpleadosFragment extends Fragment {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 FragmentManager fragmentManager= getActivity().getSupportFragmentManager();
-
                 int id = item.getItemId();
-                if(id==R.id.buscar_empleado){
-                    txt_empleados.setText("Buscar empleado");
-
+                if(id==R.id.consultar_empleado){
+                    fragmentManager.beginTransaction().replace(R.id.contenedor, new EmpleadosConsultarFragment()).addToBackStack(null).commit();
+                    ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Consultar empleado");
                 }else if(id==R.id.agregar_empleado){
-
                     fragmentManager.beginTransaction().replace(R.id.contenedor, new EmpleadosAgregarFragment()).addToBackStack(null).commit();
                     ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Agregar empleado");
-                    //getSupportActionBar()
-                    //txt_empleados.setText("agregar empleado");
-                   // fragmentManager.beginTransaction().replace(R.id.contenedor, new EmpleadosAgregarFragment()).addToBackStack(null).commit();
-                    //getSupportActionBar().setTitle("Obras");
                 }
                 return false;
             }

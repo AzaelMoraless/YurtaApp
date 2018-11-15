@@ -4,7 +4,7 @@ import android.support.design.widget.TextInputLayout;
 import android.util.Patterns;
 
 import java.util.regex.Pattern;
-
+//Clase para validar datos de entrada
 public class Validar {
 
     public  static boolean rfc(String rfc,TextInputLayout textInputLayout){

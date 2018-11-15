@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:desing="http://schemas.android.com/apk/res-auto"
+    tools:context=".EmpleadosFragment">
+
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Consultar empleado"
+        android:gravity="center"
+        android:textSize="40dp"/>
+
+
+
+        <android.support.design.widget.BottomNavigationView
+            android:background="@android:color/white"
+            android:id="@+id/bottom_navigation_empleados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            desing:menu="@menu/menu_navigation_empleados"
+            android:layout_gravity="bottom"/>
+
+
+
+
+</android.support.design.widget.CoordinatorLayout >

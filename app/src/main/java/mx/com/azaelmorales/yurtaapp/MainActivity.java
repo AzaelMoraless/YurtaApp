@@ -67,11 +67,11 @@ public class MainActivity extends AppCompatActivity implements  Response.Listene
     }
 
     public void clickStart(View v){
-        iniciarSesion();
+        //iniciarSesion();
 
-        /*Intent home_activity = new Intent(getApplicationContext(),HomeActivity.class);
+        Intent home_activity = new Intent(getApplicationContext(),HomeActivity.class);
         finish();
-        startActivity(home_activity);*/
+        startActivity(home_activity);
     }
 
     @Override

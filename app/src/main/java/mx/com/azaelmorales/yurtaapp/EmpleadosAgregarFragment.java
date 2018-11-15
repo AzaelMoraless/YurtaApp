@@ -4,9 +4,12 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.AppCompatSpinner;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,11 +38,14 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
+import mx.com.azaelmorales.yurtaapp.utilerias.Validar;
+
 
 public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickListener,
-        Response.Listener<JSONObject>,Response.ErrorListener{
+        Response.Listener<JSONObject>,Response.ErrorListener {
     private EditText txt_empleado_rfc,txt_empleado_nombre,txt_empleado_ap,txt_empleado_am,txt_empleado_date,
             txt_empleado_tel,txt_empleado_correo,txt_empleado_password;
+    private TextInputLayout tilNombre,tilRfc,tilAp,tilAm,tilCorreo,tilTelefono,tilDate;
     private String rfc,nombre,fecha_nacimiento,telefono,correo,password;
 
     private AppCompatSpinner spinner_sexo,spinner_puesto;
@@ -84,12 +90,27 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
         txt_empleado_correo = (EditText)view.findViewById(R.id.txt_add_empleado_correo);
         txt_empleado_password = (EditText)view.findViewById(R.id.txt_add_empleado_pass);
 
+        tilRfc = (TextInputLayout)view.findViewById(R.id.til_add_empleado_rfc);
+        tilNombre = (TextInputLayout)view.findViewById(R.id.til_add_empleado_nombre);
+        tilAp = (TextInputLayout)view.findViewById(R.id.til_add_empleado_ap);
+        tilAm = (TextInputLayout)view.findViewById(R.id.til_add_empleado_am);
+        tilDate = (TextInputLayout)view.findViewById(R.id.til_add_empleado_date);
+        tilTelefono = (TextInputLayout)view.findViewById(R.id.til_add_empleado_tel);
+        tilCorreo = (TextInputLayout)view.findViewById(R.id.til_add_empleado_correo);
+
+
+
+
         btnAceptar = (Button)view.findViewById(R.id.btn_add_empleado_aceptar);
         btnCancelar =(Button)view.findViewById(R.id.btn_add_empleado_cancelar);
 
         btnAceptar.setOnClickListener(this);
         btnCancelar.setOnClickListener(this);
         txt_empleado_date.setOnClickListener(this);
+
+        implemetarTextWatcher();
+
+
 
         rq = Volley.newRequestQueue(getActivity());
         return view;
@@ -116,7 +137,6 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
             limpiarCampos();
         }else if(view==btnCancelar){
              limpiarCampos();
-            //iniciarValores();
         }
     }
 
@@ -166,4 +186,105 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
     }
 
 
+
+
+    public void implemetarTextWatcher(){
+        txt_empleado_rfc.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Validar.rfc(String.valueOf(s),tilRfc);
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        txt_empleado_nombre.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Validar.nombre(String.valueOf(s),tilNombre);
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        txt_empleado_ap.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Validar.nombre(String.valueOf(s),tilAp);
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        txt_empleado_am.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Validar.nombre(String.valueOf(s),tilAm);
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        txt_empleado_tel.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Validar.nombre(String.valueOf(s),tilTelefono);
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        txt_empleado_correo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Validar.correo(String.valueOf(s),tilCorreo);
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        txt_empleado_date.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Validar.fecha_nac(String.valueOf(s),tilDate);
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+    }
 }

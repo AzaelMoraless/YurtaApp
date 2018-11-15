@@ -35,6 +35,8 @@
 
 
                     <android.support.v7.widget.AppCompatTextView
+                        android:textAlignment="center"
+                        android:gravity="center"
                         android:textSize="15dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -96,12 +98,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp">
                         <EditText
-                            android:id="@+id/add_empleado_nombre"
+                            android:id="@+id/txt_add_empleado_nombre"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="nombre"
                             android:ems="10"
-                            android:inputType="phone" />
+                            android:inputType="text" />
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
 
@@ -118,12 +120,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="56dp">
                         <EditText
-                            android:id="@+id/add_empleado_ap"
+                            android:id="@+id/txt_add_empleado_ap"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="apellido paterno"
                             android:ems="10"
-                            android:inputType="phone" />
+                            android:inputType="text" />
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
 
@@ -140,12 +142,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="56dp">
                         <EditText
-                            android:id="@+id/add_empleado_am"
+                            android:id="@+id/txt_add_empleado_am"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="apellido materno"
                             android:ems="10"
-                            android:inputType="phone" />
+                            android:inputType="text" />
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
 
@@ -175,7 +177,7 @@
                             android:layout_height="wrap_content"
                             android:hint="fecha de nacimiento"
                             android:ems="10"
-                            android:inputType="phone" />
+                            android:inputType="text" />
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
 
@@ -199,7 +201,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp">
                         <EditText
-                            android:id="@+id/add_empleado_tel"
+                            android:id="@+id/txt_add_empleado_tel"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="teléfono"
@@ -228,12 +230,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp">
                         <EditText
-                            android:id="@+id/add_empleado_correo"
+                            android:id="@+id/txt_add_empleado_correo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="correo"
                             android:ems="10"
-                            android:inputType="phone" />
+                            android:inputType="text" />
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
 
@@ -255,10 +257,12 @@
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="32dp">
+                        android:layout_marginLeft="32dp"
+                        app:errorEnabled="true"
+                        app:passwordToggleEnabled="true">
 
                         <EditText
-                            android:id="@+id/add_empleado_pass"
+                            android:id="@+id/txt_add_empleado_pass"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -337,6 +341,7 @@
                     android:orientation="horizontal">
 
                     <Button
+                        android:id="@+id/btn_add_empleado_cancelar"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

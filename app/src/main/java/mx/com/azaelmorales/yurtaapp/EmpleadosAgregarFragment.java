@@ -164,4 +164,6 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
         spinner_sexo.setSelection(0);
         spinner_puesto.setSelection(0);
     }
+
+
 }

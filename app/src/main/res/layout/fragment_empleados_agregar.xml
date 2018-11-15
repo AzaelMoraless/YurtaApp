@@ -63,8 +63,7 @@
                         android:src="@drawable/ic_rfc_person" />
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/add_empleado_rfc"
-
+                        android:id="@+id/til_add_empleado_rfc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp">
@@ -93,7 +92,7 @@
                         android:layout_gravity="center_vertical"
                         android:src="@drawable/ic_person" />
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/til_telefono"
+                        android:id="@+id/til_add_empleado_nombre"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp">
@@ -116,6 +115,7 @@
                     android:orientation="horizontal">
 
                     <android.support.design.widget.TextInputLayout
+                        android:id="@+id/til_add_empleado_ap"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="56dp">
@@ -138,6 +138,7 @@
                     android:orientation="horizontal">
 
                     <android.support.design.widget.TextInputLayout
+                        android:id="@+id/til_add_empleado_am"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="56dp">
@@ -168,6 +169,7 @@
                         android:src="@drawable/ic_fecha_nacimiento" />
 
                     <android.support.design.widget.TextInputLayout
+                        android:id="@+id/til_add_empleado_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp">
@@ -197,6 +199,7 @@
                         android:src="@drawable/ic_telefono"/>
 
                     <android.support.design.widget.TextInputLayout
+                        android:id="@+id/til_add_empleado_tel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp">
@@ -226,6 +229,7 @@
                         android:src="@drawable/ic_email"/>
 
                     <android.support.design.widget.TextInputLayout
+                        android:id="@+id/til_add_empleado_correo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp">
@@ -255,6 +259,7 @@
                         android:src="@drawable/ic_password" />
 
                     <android.support.design.widget.TextInputLayout
+                       
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp"

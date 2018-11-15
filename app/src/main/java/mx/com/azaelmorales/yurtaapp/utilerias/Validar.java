@@ -36,7 +36,6 @@ public class Validar {
         } else {
             textInputLayout.setError(null);
         }
-
         return true;
     }
 

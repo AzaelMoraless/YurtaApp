@@ -133,7 +133,7 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
             }
 
         }else if(view==btnCancelar){
-             limpiarCampos();
+            limpiarCampos();
         }
     }
 

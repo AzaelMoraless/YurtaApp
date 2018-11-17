@@ -1,6 +1,9 @@
 package mx.com.azaelmorales.yurtaapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +17,7 @@ import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private BottomNavigationView bottomNavigationView;
     private Toolbar toolbar;
     private TextView txt_correo_panel;
     public static final String correo = "correos";
@@ -35,9 +39,12 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        FragmentManager fragmentManager=getSupportFragmentManager();  //fragment que inicia
+       /* FragmentManager fragmentManager=getSupportFragmentManager();  //fragment que inicia
         fragmentManager.beginTransaction().replace(R.id.contenedor, new InicioFragment()).addToBackStack(null).commit();
-        getSupportActionBar().setTitle("Inicio");
+        getSupportActionBar().setTitle("Inicio");*/
+
+
+
 
 
     }
@@ -90,17 +97,15 @@ public class HomeActivity extends AppCompatActivity
         FragmentManager fragmentManager=getSupportFragmentManager();
 
         if (id == R.id.nav_obras) {
-            fragmentManager.beginTransaction().replace(R.id.contenedor, new ObrasFragment()).addToBackStack(null).commit();
-            getSupportActionBar().setTitle("Obras");
+
         } else if (id == R.id.nav_almacen) {
-            fragmentManager.beginTransaction().replace(R.id.contenedor, new AlmacenFragment()).addToBackStack(null).commit();
-            getSupportActionBar().setTitle("Almacen");
+          //  fragmentManager.beginTransaction().replace(R.id.contenedor, new AlmacenFragment()).addToBackStack(null).commit();
+            //getSupportActionBar().setTitle("Almacen");
         } else if (id == R.id.nav_empleado) {
-            fragmentManager.beginTransaction().replace(R.id.contenedor, new EmpleadosFragment()).addToBackStack(null).commit();
-            getSupportActionBar().setTitle("Empleados");
+            Intent empleados_activity = new Intent(getApplicationContext(),EmpleadosActivity.class);
+            startActivity(empleados_activity);
         } else if (id == R.id.nav_ayuda) {
-            fragmentManager.beginTransaction().replace(R.id.contenedor, new AyudaFragment()).addToBackStack(null).commit();
-            getSupportActionBar().setTitle("Ayuda");
+
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

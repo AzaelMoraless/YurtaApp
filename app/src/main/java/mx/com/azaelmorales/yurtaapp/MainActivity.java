@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements  Response.Listene
 
     public void clickStart(View v){
         //iniciarSesion();
-
         Intent home_activity = new Intent(getApplicationContext(),HomeActivity.class);
         finish();
         startActivity(home_activity);

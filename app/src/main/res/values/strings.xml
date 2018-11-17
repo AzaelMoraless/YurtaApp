@@ -10,5 +10,15 @@
     <string name="text_subrayado"><u>olvide mi contraseña</u></string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Obras</string>
+    <string name="name">Obras</string>
+    <string name="title_activity_empleados2">Empleados2Activity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_em">ActivityEm</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_empleados">EmpleadosActivity</string>
+    <string name="title_toolbar">Toolbar</string>
 </resources>

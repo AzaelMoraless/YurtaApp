@@ -26,9 +26,9 @@ public class Adaptador extends BaseAdapter {
         TextView textViewCorreo = vista.findViewById(R.id.textViewcorreo);
         TextView textViewRfc = vista.findViewById(R.id.textViewRfc);
 
-        textViewNombre.setText("Nombre: " + datos[i][0]);
-        textViewRfc.setText("RFC:" + datos[i][1]);
-        textViewCorreo.setText("Correo:" + datos[i][2]);
+        textViewNombre.setText("Nombre: " + datos[i][5]);
+        textViewRfc.setText("RFC:" + datos[i][0]);
+        textViewCorreo.setText("Correo:" + datos[i][6]);
         return vista;
     }
     @Override

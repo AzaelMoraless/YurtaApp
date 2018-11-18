@@ -44,7 +44,7 @@
             android:label="@string/title_activity_about"
             android:parentActivityName=".HomeActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".DetalleEmpleadoActivity"></activity>
+        <activity android:name=".EmpleadoDetalleActivity"></activity>
     </application>
 
 </manifest>

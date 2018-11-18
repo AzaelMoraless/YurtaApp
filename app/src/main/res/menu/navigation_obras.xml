@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_lista_obras"
+        android:icon="@drawable/ic_lista_empleados"
+        android:title="Obras" />
+
+    <item
+        android:id="@+id/navigation_agregar_obra"
+        android:icon="@drawable/ic_agregar"
+        android:title="Agregar" />
+
+    <item
+        android:id="@+id/navigation_modificar_obra"
+        android:icon="@drawable/ic_editar"
+        android:title="Modificar" />
+
+</menu>

@@ -97,19 +97,19 @@ public class HomeActivity extends AppCompatActivity
         FragmentManager fragmentManager=getSupportFragmentManager();
 
         if (id == R.id.nav_obras) {
-
+            Intent activity = new Intent(getApplicationContext(),ObrasActivity.class);
+            startActivity(activity);
         } else if (id == R.id.nav_almacen) {
           //  fragmentManager.beginTransaction().replace(R.id.contenedor, new AlmacenFragment()).addToBackStack(null).commit();
             //getSupportActionBar().setTitle("Almacen");
         } else if (id == R.id.nav_empleado) {
             Intent empleados_activity = new Intent(getApplicationContext(),EmpleadosActivity.class);
             startActivity(empleados_activity);
-        } else if (id == R.id.nav_ayuda) {
+        } else if (id == R.id.nav_manual) {
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_acerca ){
+          Intent activity = new Intent(getApplicationContext(),AboutActivity.class);
+          startActivity(activity);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

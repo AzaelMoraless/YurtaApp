@@ -34,8 +34,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\YurtaApp\app\src\main\res\drawable\lista.png" />
-                                      <entry key="outputName" value="ic_lista_empleados" />
+                                      <entry key="imageAsset" value="C:\YurtaApp\app\src\main\res\drawable\agregar_obra.png" />
+                                      <entry key="outputName" value="ic_agregar" />
                                     </map>
                                   </option>
                                 </PersistentState>

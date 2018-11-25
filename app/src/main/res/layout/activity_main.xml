@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="correo"
-                android:drawableLeft="@drawable/ic_usuario"
+                android:drawableLeft="@drawable/ic_empleado"
                 android:inputType="textEmailAddress"/>
         </android.support.design.widget.TextInputLayout>
 

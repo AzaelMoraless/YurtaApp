@@ -68,23 +68,12 @@ public class EmpleadosViewFragment extends Fragment{
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast toast1 =
-                        Toast.makeText(getContext(),
-                                "Entra", Toast.LENGTH_SHORT);
-
-                toast1.show();
                 response = response.replace("][",",");
                 try {
                     JSONArray jsonArray = new JSONArray(response);
                     cargarListView(jsonArray);
                 } catch (JSONException e) {
                     e.printStackTrace();
-
-                    toast1 =
-                            Toast.makeText(getContext(),
-                                    "Error" + e.getMessage(), Toast.LENGTH_SHORT);
-
-                    toast1.show();
                 }
             }
         }, new Response.ErrorListener() {
@@ -92,7 +81,7 @@ public class EmpleadosViewFragment extends Fragment{
             public void onErrorResponse(VolleyError error) {
                 Toast toast1 =
                         Toast.makeText(getContext(),
-                                "Error"+ error.getMessage(), Toast.LENGTH_LONG);
+                                "Error al cargar los datos"+ error.getMessage(), Toast.LENGTH_LONG);
 
                 toast1.show();
             }

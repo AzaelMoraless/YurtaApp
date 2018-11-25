@@ -3,17 +3,16 @@
 
     <item
         android:id="@+id/navigation_lista_empleados"
-        android:icon="@drawable/ic_lista_empleados"
+        android:icon="@drawable/ic_lista"
         android:title="Empleados" />
 
     <item
         android:id="@+id/navigation_agregar_empleado"
-        android:icon="@drawable/ic_add_person"
+        android:icon="@drawable/ic_agregar"
         android:title="Agregar" />
 
     <item
         android:id="@+id/navigation_editar_empleado"
         android:icon="@drawable/ic_editar"
         android:title="Modificar" />
-
 </menu>

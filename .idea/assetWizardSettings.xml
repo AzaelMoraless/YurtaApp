@@ -34,8 +34,10 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\YurtaApp\app\src\main\res\drawable\agregar_obra.png" />
-                                      <entry key="outputName" value="ic_agregar" />
+                                      <entry key="imageAsset" value="C:\YurtaApp\app\src\main\res\drawable\icono_genero.png" />
+                                      <entry key="outputName" value="ic_sexo" />
+                                      <entry key="theme" value="CUSTOM" />
+                                      <entry key="themeColor" value="000000" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -81,6 +83,11 @@
                 </map>
               </option>
             </PersistentState>
+          </value>
+        </entry>
+        <entry key="vectorWizard">
+          <value>
+            <PersistentState />
           </value>
         </entry>
       </map>

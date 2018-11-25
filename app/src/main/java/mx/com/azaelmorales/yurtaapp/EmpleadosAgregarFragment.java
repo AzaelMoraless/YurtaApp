@@ -30,6 +30,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
+import me.anwarshahriar.calligrapher.Calligrapher;
 import mx.com.azaelmorales.yurtaapp.utilerias.Validar;
 
 
@@ -42,7 +43,6 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
     private boolean a,b,c,d,e,f,g;
     private AppCompatSpinner spinner_sexo,spinner_puesto;
     private Button btnCancelar,btnAceptar;
-
     List<String> listaGeneros,listaPuestos;
     ArrayAdapter<String> adapterSpinner,adapterSpinnerPuestos;
     private int dia,mes,anio;
@@ -105,6 +105,9 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
 
         //objeto RequestQueue
         rq = Volley.newRequestQueue(getActivity());
+
+
+
         return view;
     }
 

@@ -24,6 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import me.anwarshahriar.calligrapher.Calligrapher;
 import mx.com.azaelmorales.yurtaapp.utilerias.Validar;
 
 import static android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements  Response.Listene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
         setContentView(R.layout.activity_main);
         btnLogin = (Button) findViewById(R.id.btn_start);
@@ -64,10 +67,13 @@ public class MainActivity extends AppCompatActivity implements  Response.Listene
             }
         });
 
+        Calligrapher calligrapher = new Calligrapher(this);
+        calligrapher.setFont(this,"OpenSans-Regular.ttf",true);
+
     }
 
     public void clickStart(View v){
-        //iniciarSesion();
+       // iniciarSesion();
         Intent home_activity = new Intent(getApplicationContext(),HomeActivity.class);
         finish();
         startActivity(home_activity);
@@ -81,22 +87,28 @@ public class MainActivity extends AppCompatActivity implements  Response.Listene
     @Override
     public void onResponse(JSONObject response) {
 
-        Toast.makeText(this,"se encontro",Toast.LENGTH_LONG).show();
+        ///Toast.makeText(this,"se encontro",Toast.LENGTH_LONG).show();
         Empleado empleado = new Empleado();
         JSONArray jsonArray = response.optJSONArray("datos");
-        JSONObject jsonObject = null;
+        JSONObject jsonObject;
 
         try{
             jsonObject = jsonArray.getJSONObject(0);
 
-            empleado.setCorreo(jsonObject.optString("user"));
 
-            Intent home_activity = new Intent(getApplicationContext(),HomeActivity.class);
-            home_activity.putExtra(HomeActivity.correo,empleado.getCorreo());
+           empleado.setCorreo(jsonObject.optString("correo"));
+           empleado.setNombre(jsonObject.optString("nombre_e"));
+
+            Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+
+            intent.putExtra("CORREO",empleado.getCorreo());
+            intent.putExtra("NOMBRE",empleado.getNombre());
+            startActivity(intent);
             finish();
+        }catch (JSONException e){
 
-            startActivity(home_activity);
-        }catch (JSONException e){}
+            Toast.makeText(this,"Error: " + e.getMessage(),Toast.LENGTH_LONG).show();
+        }
     }
 
     private void iniciarSesion(){

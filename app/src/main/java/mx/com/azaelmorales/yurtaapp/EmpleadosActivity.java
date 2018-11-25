@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import me.anwarshahriar.calligrapher.Calligrapher;
+
 public class EmpleadosActivity extends AppCompatActivity {
 
 
@@ -58,10 +60,12 @@ public class EmpleadosActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new  Intent(getApplicationContext(),HomeActivity.class));
+               /// startActivity(new  Intent(getApplicationContext(),HomeActivity.class));
+                finish();
             }
         });
-
+        Calligrapher calligrapher = new Calligrapher(this);
+        calligrapher.setFont(this,"OpenSans-Regular.ttf",true);
     }
 
 }

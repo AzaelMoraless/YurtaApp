@@ -1,8 +1,6 @@
 package mx.com.azaelmorales.yurtaapp;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -13,14 +11,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import me.anwarshahriar.calligrapher.Calligrapher;
+
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private BottomNavigationView bottomNavigationView;
     private Toolbar toolbar;
     private TextView txt_correo_panel;
-    public static final String correo = "correos";
+    private TextView txt_nombre_panel;
+
+    private ImageView imgFondo;
+    private TextView textViewCorreo;
+    private String correo;
+    private String nombre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +35,7 @@ public class HomeActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -44,12 +52,21 @@ public class HomeActivity extends AppCompatActivity
         getSupportActionBar().setTitle("Inicio");*/
 
 
+        imgFondo = (ImageView)findViewById(R.id.img_logofomdo);
+        int alphaAmount = 128; // Some value 0-255 where 0 is fully transparent and 255 is fully opaque
+        imgFondo.setAlpha(alphaAmount);
+         //pasar valores al segundo activity
+            Intent intent = getIntent();
+            Bundle b = intent.getExtras();
+            if(b!=null) {
+                correo = b.getString("CORREO");
+                nombre = b.getString("NOMBRE");
 
-
+            }
 
     }
 
-    @Override
+   /* @Override
     public void onBackPressed() {
         int count = getFragmentManager().getBackStackEntryCount();
 
@@ -59,22 +76,22 @@ public class HomeActivity extends AppCompatActivity
         } else {
             getFragmentManager().popBackStack();//No se porqué puse lo mismo O.o
         }
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-
-
         getMenuInflater().inflate(R.menu.home, menu);
-
         txt_correo_panel= (TextView)findViewById(R.id.txt_panel_correo);
-        String correo_empleado = getIntent().getStringExtra("correos");
-        txt_correo_panel.setText(correo_empleado);
+        txt_nombre_panel = (TextView)findViewById(R.id.txt_panel_nombre);
+        txt_correo_panel.setText(correo);
+        txt_nombre_panel.setText(nombre);
+        Calligrapher calligrapher = new Calligrapher(this);
+        calligrapher.setFont(this,"OpenSans-Regular.ttf",true);
         return true;
     }
 
-    @Override
+ /*   @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -87,11 +104,12 @@ public class HomeActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         FragmentManager fragmentManager=getSupportFragmentManager();
@@ -110,10 +128,15 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_acerca ){
           Intent activity = new Intent(getApplicationContext(),AboutActivity.class);
           startActivity(activity);
+        }else if(id ==R.id.nav_salir){
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
+        Calligrapher calligrapher = new Calligrapher(this);
+        calligrapher.setFont(this,"OpenSans-Regular.ttf",true);
         return true;
     }
 }

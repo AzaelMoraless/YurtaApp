@@ -1,13 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
+    android:paddingTop="10dp"
     tools:context=".EmpleadosViewFragment">
 
+    <LinearLayout
+        android:id="@+id/area_busqueda"
+        android:layout_marginBottom="@dimen/line_height"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:orientation="horizontal">
+
+        <SearchView
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:queryHint="Buscar"
+            android:id="@+id/search_empleado"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 
     <ListView
+        android:layout_below="@+id/area_busqueda"
         android:id="@+id/listViewEmpleados"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-</FrameLayout>
+
+</RelativeLayout>

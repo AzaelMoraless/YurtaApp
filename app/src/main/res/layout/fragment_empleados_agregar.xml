@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:theme="@style/AppTheme"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:desing="http://schemas.android.com/apk/res-auto"
     tools:context=".EmpleadosAgregarFragment">
 
     <ScrollView
@@ -338,6 +337,7 @@
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/bottom_bar"
                 android:layout_width="match_parent"
@@ -370,6 +370,4 @@
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
-
-
 </android.support.design.widget.CoordinatorLayout >

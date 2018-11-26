@@ -35,7 +35,7 @@ public class EmpleadosActivity extends AppCompatActivity {
                     fragmentManager.beginTransaction().replace(R.id.fragment_content_empleados, new EmpleadosAgregarFragment()).addToBackStack(null).commit();
                     return true;
                 case R.id.navigation_editar_empleado:
-
+                    fragmentManager.beginTransaction().replace(R.id.fragment_content_empleados, new EmpleadosModificarFragment()).addToBackStack(null).commit();
                     return true;
             }
             return false;

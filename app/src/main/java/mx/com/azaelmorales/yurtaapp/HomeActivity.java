@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import me.anwarshahriar.calligrapher.Calligrapher;
+import mx.com.azaelmorales.yurtaapp.utilerias.Preferences;
 
 
 public class HomeActivity extends AppCompatActivity
@@ -56,14 +57,15 @@ public class HomeActivity extends AppCompatActivity
         int alphaAmount = 128; // Some value 0-255 where 0 is fully transparent and 255 is fully opaque
         imgFondo.setAlpha(alphaAmount);
          //pasar valores al segundo activity
-            Intent intent = getIntent();
+           /* Intent intent = getIntent();
             Bundle b = intent.getExtras();
             if(b!=null) {
                 correo = b.getString("CORREO");
                 nombre = b.getString("NOMBRE");
 
-            }
-
+            }*/
+            correo = Preferences.getPeferenceString(this,Preferences.PREFERENCE_EMPLEADO_CORREO);
+           nombre = Preferences.getPeferenceString(this,Preferences.PREFERENCE_EMPLEADO_NOMBRE);
     }
 
    /* @Override
@@ -128,8 +130,13 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_acerca ){
           Intent activity = new Intent(getApplicationContext(),AboutActivity.class);
           startActivity(activity);
-        }else if(id ==R.id.nav_salir){
+        }else if(id ==R.id.nav_cerrar_sesion){
 
+
+            Preferences.savePreferenceBoolean(HomeActivity.this,false,Preferences.PREFERENCE_ESTADO_SESION);
+            Intent intent = new Intent(HomeActivity.this,MainActivity.class);
+            startActivity(intent);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

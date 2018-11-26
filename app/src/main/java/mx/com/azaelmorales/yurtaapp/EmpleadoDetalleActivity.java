@@ -24,6 +24,7 @@ public class EmpleadoDetalleActivity extends AppCompatActivity {
         TextView textViewCorreo  = (TextView)findViewById(R.id.tVdDetEmCorreo);
         TextView textViewPuesto  = (TextView)findViewById(R.id.tVdDetEmPuesto);
         TextView textViewSexo  = (TextView)findViewById(R.id.tVdDetEmSexo);
+        TextView textViewEstado = (TextView)findViewById(R.id.tVdDetEmEstado);
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
         if(b!=null){
@@ -34,6 +35,7 @@ public class EmpleadoDetalleActivity extends AppCompatActivity {
             textViewCorreo.setText(b.getString("CORREO"));
             textViewPuesto.setText(b.getString("PUESTO"));
             textViewSexo.setText(b.getString("SEXO"));
+            textViewEstado.setText("Activo");
         }
 
 

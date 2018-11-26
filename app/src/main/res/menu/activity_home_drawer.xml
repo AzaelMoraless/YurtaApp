@@ -29,7 +29,7 @@
             android:icon="@drawable/icono_acerca"
             android:title="Acerca de" />
         <item
-            android:id="@+id/nav_salir"
+            android:id="@+id/nav_cerrar_sesion"
             android:icon="@drawable/icono_salir"
             android:title="Salir" />
     </group>

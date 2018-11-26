@@ -101,43 +101,46 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
         txt_empleado_date.setOnClickListener(this);
 
         implemetarTextWatcher();
-
-
-        //objeto RequestQueue
-        rq = Volley.newRequestQueue(getActivity());
-
-
-
         return view;
     }
 
     @Override
     public void onClick(View view) { //boton agregar epleado, cancelar y desplegar el calendario en el campo fecha
-        if(view==txt_empleado_date){
-            final Calendar calendar = Calendar.getInstance();
-            dia = calendar.get(Calendar.DAY_OF_MONTH);
-            mes = calendar.get(Calendar.MONTH);
-            anio = calendar.get(Calendar.YEAR);
-            DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view, int i, int i1, int i2) {
-                    fecha_nacimiento =  i +"-"+(i1+1)+"-"+i2;
-                    txt_empleado_date.setText(fecha_nacimiento);
+
+        try{
+
+            if(view==txt_empleado_date){
+                final Calendar calendar = Calendar.getInstance();
+                dia = calendar.get(Calendar.DAY_OF_MONTH);
+                mes = calendar.get(Calendar.MONTH);
+                anio = calendar.get(Calendar.YEAR);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int i, int i1, int i2) {
+                        fecha_nacimiento =  i +"-"+(i1+1)+"-"+i2;
+                        txt_empleado_date.setText(fecha_nacimiento);
+                    }
+                },anio,mes,dia);
+                datePickerDialog.show();
+            }else if(view==btnAceptar){
+                iniciarValores();
+                if(validaEntradas()){
+                    rq = Volley.newRequestQueue(getActivity());
+                    registrarEmpleado();
+                    limpiarCampos();
+                }else{
+                    Toast.makeText(getActivity(),"Algunos campos son incorrectos" ,Toast.LENGTH_LONG).show();
                 }
-            },anio,mes,dia);
-            datePickerDialog.show();
-        }else if(view==btnAceptar){
-            iniciarValores();
-            if(validaEntradas()){
-                registrarEmpleado();
-                limpiarCampos();
-            }else{
-                Toast.makeText(getActivity(),"Algunos campos son incorrectos" ,Toast.LENGTH_LONG).show();
+
+            }else if(view==btnCancelar){
+                getFragmentManager().beginTransaction().remove(this).commit();
             }
 
-        }else if(view==btnCancelar){
-            limpiarCampos();
+
+        }catch (Exception e){
+            Toast.makeText(getActivity(),"Error e date" + e.getMessage() ,Toast.LENGTH_LONG).show();
         }
+
     }
 
     @Override
@@ -151,7 +154,9 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
     }
 
     private void registrarEmpleado(){ //se ejecuta la solicitud al web service alojado en el servidor
-        String url ="http://10.0.0.7/login/registrar_empleado.php?rfc=" +rfc +
+        //http://dissymmetrical-diox.xyz/agregarEmpleado.php
+        // String url ="http://10.0.0.7/login/registrar_empleado.php?rfc=" +rfc +
+        String url ="http://dissymmetrical-diox.xyz/agregarEmpleado.php?rfc=" +rfc +
                 "&nombre="+nombre+"&f_nacimiento="+ fecha_nacimiento+
                 "&telefono="+telefono+"&correo="+correo+"&passw="+password +
                 "&puesto=" + spinner_puesto.getSelectedItem().toString()+
@@ -162,7 +167,7 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
     }
 
 
-    public void iniciarValores(){ //incialza los valores
+    public void iniciarValores(){ //incializa los valores
         rfc = txt_empleado_rfc.getText().toString();
         nombre = txt_empleado_nombre.getText().toString() + " " + txt_empleado_ap.getText().toString() + " " +txt_empleado_am.getText().toString();
         telefono = txt_empleado_tel.getText().toString();
@@ -250,7 +255,7 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                e = Validar.nombre(String.valueOf(s),tilTelefono);
+                e = Validar.telefono(String.valueOf(s),tilTelefono);
             }
             @Override
             public void afterTextChanged(Editable s) {

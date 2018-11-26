@@ -28,8 +28,9 @@ public class Validar {
         }
         return true;
     }
-
+// implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     public static boolean telefono(String telefono,TextInputLayout textInputLayout) {
+
         if (!Patterns.PHONE.matcher(telefono).matches()) {
             textInputLayout.setError("Teléfono inválido");
             return false;

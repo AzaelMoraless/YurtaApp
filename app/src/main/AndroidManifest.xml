@@ -44,7 +44,8 @@
             android:label="@string/title_activity_about"
             android:parentActivityName=".HomeActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".EmpleadoDetalleActivity"></activity>
+        <activity android:name=".EmpleadoDetalleActivity" />
+        <activity android:name=".RecuperarPasswordActivity"></activity>
     </application>
 
 </manifest>

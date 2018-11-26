@@ -76,6 +76,10 @@ public class MainActivity extends AppCompatActivity implements  Response.Listene
         textViewRecuperar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),RecuperarPasswordActivity.class);
+                //guarda los valores de nombre y correo
+
+                startActivity(intent);
 
             }
         });

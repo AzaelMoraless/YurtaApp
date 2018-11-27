@@ -11,13 +11,14 @@
         android:id="@+id/toolbar_panel_empleados"
        ></include>
 
-
     <FrameLayout
         android:id="@+id/fragment_content_empleados"
         android:layout_below="@+id/toolbar_panel_empleados"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/navigation_empleados">/>
+
+
     </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView

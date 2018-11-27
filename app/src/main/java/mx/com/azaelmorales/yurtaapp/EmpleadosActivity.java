@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -18,8 +19,7 @@ import android.widget.Toolbar;
 import me.anwarshahriar.calligrapher.Calligrapher;
 
 public class EmpleadosActivity extends AppCompatActivity {
-
-
+    private Fragment fragment;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -47,25 +47,24 @@ public class EmpleadosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empleados);
-
-
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation_empleados);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar_panel_empleados);
         setSupportActionBar(toolbar);
         toolbar.setTitle("Empleados");
-      //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-       // getSupportActionBar().setDisplayShowHomeEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /// startActivity(new  Intent(getApplicationContext(),HomeActivity.class));
                 finish();
             }
         });
         Calligrapher calligrapher = new Calligrapher(this);
         calligrapher.setFont(this,"OpenSans-Regular.ttf",true);
+
+
+        FragmentManager fragmentManager=getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fragment_content_empleados, new EmpleadosInicioFragment()).commit();
     }
 
 }

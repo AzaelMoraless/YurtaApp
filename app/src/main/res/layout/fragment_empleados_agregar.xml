@@ -338,36 +338,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/bottom_bar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="0dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/btn_add_empleado_cancelar"
-                    style="@style/button_style"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/colorAccent"
-                    android:text="CANCELAR"
-                    android:textColor="@android:color/white" />
-
-                <Button
-                    android:id="@+id/btn_add_empleado_aceptar"
-                    style="@style/button_style"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/colorAccent"
-                    android:text="ACEPTAR"
-                    android:textColor="@android:color/white" />
-            </LinearLayout>
         </RelativeLayout>
     </ScrollView>
 </android.support.design.widget.CoordinatorLayout >

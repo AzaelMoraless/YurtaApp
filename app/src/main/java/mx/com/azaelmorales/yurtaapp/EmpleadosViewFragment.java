@@ -1,13 +1,20 @@
 package mx.com.azaelmorales.yurtaapp;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -30,19 +37,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class EmpleadosViewFragment extends Fragment{
+public class EmpleadosViewFragment extends Fragment  {
     private ListView listView;
     private SearchView searchView;
     private ArrayList<Empleado> listaEmpleados;
     private  Adaptador adaptador;
+
+
+    private SearchView searchView1 = null;
+    private SearchView.OnQueryTextListener queryTextListener;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_empleados_view, container, false);
         listView = (ListView)view.findViewById(R.id.listViewEmpleados);
+        //    Toolbar toolbar =(Toolbar)view.findViewById(R.id.toolbar_panel);
+        ///((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
-            cargarDatos();
+
+        cargarDatos();
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -61,7 +76,7 @@ public class EmpleadosViewFragment extends Fragment{
                 }
             });
 
-        searchView = (SearchView) view.findViewById(R.id.search_empleado);
+      searchView = (SearchView) view.findViewById(R.id.search_empleado);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -74,12 +89,11 @@ public class EmpleadosViewFragment extends Fragment{
                 return false;
             }
         });
+       // setHasOptionsMenu(true);
         return view;
     }
 
     private void cargarDatos(){ //carga los datos de la base datos en un json
-        //http://localhost/login/mostrar_empleados.php
-        //String url ="http://10.0.0.7/login/consultarEmpleados.php";
         String url = "http://dissymmetrical-diox.xyz/mostrarEmpleados.php";
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -123,5 +137,28 @@ public class EmpleadosViewFragment extends Fragment{
         listView.setAdapter(adaptador);
     }
 
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.toolbar_busqueda, menu); // TU MENU
+
+
+        }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_buscar: // TU OPCION
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 }

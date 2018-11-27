@@ -34,8 +34,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\YurtaApp\app\src\main\res\drawable\icono_estado.png" />
-                                      <entry key="outputName" value="ic_estado" />
+                                      <entry key="imageAsset" value="C:\YurtaApp\app\src\main\res\drawable\icono_cancelar.png" />
+                                      <entry key="outputName" value="ic_cancelar" />
                                       <entry key="theme" value="CUSTOM" />
                                       <entry key="themeColor" value="000000" />
                                     </map>
@@ -96,6 +96,11 @@
                                 </PersistentState>
                               </value>
                             </entry>
+                          </map>
+                        </option>
+                        <option name="values">
+                          <map>
+                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>

@@ -8,6 +8,9 @@ import android.support.v7.widget.AppCompatSpinner;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -42,7 +45,7 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
     private String rfc,nombre,fecha_nacimiento,telefono,correo,password;
     private boolean a,b,c,d,e,f,g;
     private AppCompatSpinner spinner_sexo,spinner_puesto;
-    private Button btnCancelar,btnAceptar;
+    ///private Button btnCancelar,btnAceptar;
     List<String> listaGeneros,listaPuestos;
     ArrayAdapter<String> adapterSpinner,adapterSpinnerPuestos;
     private int dia,mes,anio;
@@ -93,11 +96,11 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
 
 
 
-        btnAceptar = (Button)view.findViewById(R.id.btn_add_empleado_aceptar);
+       /* btnAceptar = (Button)view.findViewById(R.id.btn_add_empleado_aceptar);
         btnCancelar =(Button)view.findViewById(R.id.btn_add_empleado_cancelar);
 
         btnAceptar.setOnClickListener(this);
-        btnCancelar.setOnClickListener(this);
+        btnCancelar.setOnClickListener(this);*/
         txt_empleado_date.setOnClickListener(this);
 
         implemetarTextWatcher();
@@ -122,7 +125,7 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
                     }
                 },anio,mes,dia);
                 datePickerDialog.show();
-            }else if(view==btnAceptar){
+            }/*else if(view==btnAceptar){
                 iniciarValores();
                 if(validaEntradas()){
                     rq = Volley.newRequestQueue(getActivity());
@@ -134,7 +137,7 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
 
             }else if(view==btnCancelar){
                 getFragmentManager().beginTransaction().remove(this).commit();
-            }
+            }*/
 
 
         }catch (Exception e){
@@ -160,12 +163,11 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
                 "&nombre="+nombre+"&f_nacimiento="+ fecha_nacimiento+
                 "&telefono="+telefono+"&correo="+correo+"&passw="+password +
                 "&puesto=" + spinner_puesto.getSelectedItem().toString()+
-                "&sexo="+ spinner_puesto.getSelectedItem().toString();
+                "&sexo="+ spinner_sexo.getSelectedItem().toString();
 
         jrq = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         rq.add(jrq);
     }
-
 
     public void iniciarValores(){ //incializa los valores
         rfc = txt_empleado_rfc.getText().toString();
@@ -296,5 +298,39 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
         if(a&&b&&c&&d&&e&&f&&g)
             return true;
         return false;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_modificar, menu); // TU MENU
+
+
+    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_aceptar: // TU OPCION
+                iniciarValores();
+                if(validaEntradas()){
+                    rq = Volley.newRequestQueue(getActivity());
+                    registrarEmpleado();
+                    limpiarCampos();
+                }else{
+                    Toast.makeText(getActivity(),"Algunos campos son incorrectos" ,Toast.LENGTH_LONG).show();
+                }
+                return true;
+            case R.id.nav_cancelar: // TU OPCION
+                getFragmentManager().beginTransaction().remove(this).commit();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

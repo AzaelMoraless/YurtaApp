@@ -25,7 +25,8 @@ public class ObrasActivity extends AppCompatActivity {
 
                     return true;
                 case R.id.navigation_agregar_obra:
-                   // fragmentManager.beginTransaction().replace(R.id.fragment_content_empleados, new EmpleadosAgregarFragment()).addToBackStack(null).commit();
+                   fragmentManager.beginTransaction().replace(R.id.fragment_content_empleados,
+                     new EmpleadosAgregarFragment()).addToBackStack(null).commit();
                     return true;
                 case R.id.navigation_modificar_obra:
 

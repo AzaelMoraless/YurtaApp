@@ -10,6 +10,15 @@ public class Empleado {
     private String nombre;
     private String correo;
     private String estado;
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getEstado() {
         return estado;
@@ -20,7 +29,7 @@ public class Empleado {
     }
 
     public Empleado(String rfc, String puesto, String sexo, String telefono, String fechaNacimiento,
-                    String nombre, String correo, String estado) {
+                    String nombre, String correo, String estado,String password) {
         this.rfc = rfc;
         this.puesto = puesto;
         this.sexo = sexo;
@@ -29,6 +38,7 @@ public class Empleado {
         this.nombre = nombre;
         this.correo = correo;
         this.estado = estado;
+        this.password =password;
 
     }
     public Empleado(String nombre,String rfc,String correo){

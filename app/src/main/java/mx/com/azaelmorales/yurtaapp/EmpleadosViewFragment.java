@@ -43,19 +43,11 @@ public class EmpleadosViewFragment extends Fragment  {
     private ArrayList<Empleado> listaEmpleados;
     private  Adaptador adaptador;
 
-
-    private SearchView searchView1 = null;
-    private SearchView.OnQueryTextListener queryTextListener;
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_empleados_view, container, false);
         listView = (ListView)view.findViewById(R.id.listViewEmpleados);
-        //    Toolbar toolbar =(Toolbar)view.findViewById(R.id.toolbar_panel);
-        ///((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-
 
         cargarDatos();
 
@@ -71,7 +63,7 @@ public class EmpleadosViewFragment extends Fragment  {
                     intent.putExtra("FECHAN",listaEmpleados.get(i).getFechaNacimiento());
                     intent.putExtra("NOMBRE",listaEmpleados.get(i).getNombre());
                     intent.putExtra("CORREO",listaEmpleados.get(i).getCorreo());
-                   /// intent.putExtra("ESTADO",listaEmpleados.get(i).getEstado());
+                    intent.putExtra("PASSWORD",listaEmpleados.get(i).getPassword());
                     startActivity(intent);
                 }
             });
@@ -130,7 +122,8 @@ public class EmpleadosViewFragment extends Fragment  {
                 empleado = new Empleado(jsonArray.getString(i),jsonArray.getString(i+1),
                         jsonArray.getString(i+2),jsonArray.getString(i+3),
                         jsonArray.getString(i+4),jsonArray.getString(i+5),
-                        jsonArray.getString(i+6),jsonArray.getString(i+8));
+                        jsonArray.getString(i+6),jsonArray.getString(i+8),
+                        jsonArray.getString(i+7));
                 listaEmpleados.add(empleado);
             }
         adaptador = new Adaptador(getContext(),listaEmpleados);
@@ -138,7 +131,7 @@ public class EmpleadosViewFragment extends Fragment  {
     }
 
 
-    @Override
+    /*@Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.toolbar_busqueda, menu); // TU MENU
@@ -159,6 +152,6 @@ public class EmpleadosViewFragment extends Fragment  {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
+    }*/
 
 }

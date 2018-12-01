@@ -46,7 +46,10 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".EmpleadoDetalleActivity" />
         <activity android:name=".RecuperarPasswordActivity" />
-        <activity android:name=".EmpleadosEditarActivity"></activity>
+        <activity
+            android:name=".EmpleadosEditarActivity"
+            android:parentActivityName=".EmpleadosActivity"></activity>
+        <activity android:name=".PedidosActivity"></activity>
     </application>
 
 </manifest>

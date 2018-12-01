@@ -16,6 +16,10 @@
             android:icon="@drawable/icono_almacen"
             android:title="Almacen" />
         <item
+            android:id="@+id/nav_pedidos"
+            android:icon="@drawable/icono_pedido"
+            android:title="Pedidos" />
+        <item
             android:id="@+id/nav_empleado"
             android:icon="@drawable/icono_empleado"
             android:title="Empleados" />

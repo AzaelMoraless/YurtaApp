@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/lista_mat"
+        android:icon="@drawable/ic_lista"
+        android:title="Materiales" />
+
+    <item
+        android:id="@+id/agregar_mat"
+        android:icon="@drawable/ic_agregar"
+        android:title="Agregar" />
+
+    <item
+        android:id="@+id/editar_mat"
+        android:icon="@drawable/ic_editar"
+        android:title="Modificar" />
+</menu>

@@ -68,19 +68,22 @@ public class EmpleadosViewFragment extends Fragment  {
                 }
             });
 
-      searchView = (SearchView) view.findViewById(R.id.search_empleado);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
+        if(listaEmpleados!=null){
+            searchView = (SearchView) view.findViewById(R.id.search_empleado);
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String s) {
+                    return false;
+                }
 
-            @Override
-            public boolean onQueryTextChange(String query) {
-                adaptador.getFilter().filter(query);
-                return false;
-            }
-        });
+                @Override
+                public boolean onQueryTextChange(String query) {
+                    adaptador.getFilter().filter(query);
+                    return false;
+                }
+            });
+        }
+
        // setHasOptionsMenu(true);
         return view;
     }

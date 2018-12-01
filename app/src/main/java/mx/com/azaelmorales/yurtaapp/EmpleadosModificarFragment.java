@@ -68,19 +68,21 @@ public class EmpleadosModificarFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        if(listaEmpleados!=null){
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String s) {
+                    return false;
+                }
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
+                @Override
+                public boolean onQueryTextChange(String query) {
+                    adaptador.getFilter().filter(query);
+                    return false;
+                }
+            });
+        }
 
-            @Override
-            public boolean onQueryTextChange(String query) {
-                adaptador.getFilter().filter(query);
-                return false;
-            }
-        });
 
 
         return view;

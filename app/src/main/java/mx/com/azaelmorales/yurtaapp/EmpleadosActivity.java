@@ -45,26 +45,31 @@ public class EmpleadosActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_empleados);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation_empleados);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        try{
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_empleados);
+            BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation_empleados);
+            navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar_panel_empleados);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle("Empleados");
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        Calligrapher calligrapher = new Calligrapher(this);
-        calligrapher.setFont(this,"OpenSans-Regular.ttf",true);
+            android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar_panel_empleados);
+            setSupportActionBar(toolbar);
+            toolbar.setTitle("Empleados");
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
 
 
-        FragmentManager fragmentManager=getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.fragment_content_empleados, new EmpleadosInicioFragment()).commit();
+
+            FragmentManager fragmentManager=getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.fragment_content_empleados, new EmpleadosInicioFragment()).commit();
+        }catch(Exception e){
+            Toast.makeText(this,"Error: " + e.getMessage(),Toast.LENGTH_LONG).show();
+
+        }
+
     }
 
 }

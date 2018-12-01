@@ -42,6 +42,8 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
     private EditText txt_empleado_rfc,txt_empleado_nombre,txt_empleado_ap,txt_empleado_am,txt_empleado_date,
             txt_empleado_tel,txt_empleado_correo,txt_empleado_password;
     private TextInputLayout tilNombre,tilRfc,tilAp,tilAm,tilCorreo,tilTelefono,tilDate;
+
+
     private String rfc,nombre,fecha_nacimiento,telefono,correo,password;
     private boolean a,b,c,d,e,f,g;
     private AppCompatSpinner spinner_sexo,spinner_puesto;
@@ -66,7 +68,6 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
         String[] puestos = {"Administrador","Jefe de obra"};
         Collections.addAll(listaGeneros, generos);
         Collections.addAll(listaPuestos,puestos);
-
         adapterSpinner = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, listaGeneros);
         adapterSpinnerPuestos = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item, listaPuestos);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -92,15 +93,6 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
         tilDate = (TextInputLayout)view.findViewById(R.id.til_add_empleado_date);
         tilTelefono = (TextInputLayout)view.findViewById(R.id.til_add_empleado_tel);
         tilCorreo = (TextInputLayout)view.findViewById(R.id.til_add_empleado_correo);
-
-
-
-
-       /* btnAceptar = (Button)view.findViewById(R.id.btn_add_empleado_aceptar);
-        btnCancelar =(Button)view.findViewById(R.id.btn_add_empleado_cancelar);
-
-        btnAceptar.setOnClickListener(this);
-        btnCancelar.setOnClickListener(this);*/
         txt_empleado_date.setOnClickListener(this);
 
         implemetarTextWatcher();
@@ -125,25 +117,10 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
                     }
                 },anio,mes,dia);
                 datePickerDialog.show();
-            }/*else if(view==btnAceptar){
-                iniciarValores();
-                if(validaEntradas()){
-                    rq = Volley.newRequestQueue(getActivity());
-                    registrarEmpleado();
-                    limpiarCampos();
-                }else{
-                    Toast.makeText(getActivity(),"Algunos campos son incorrectos" ,Toast.LENGTH_LONG).show();
-                }
-
-            }else if(view==btnCancelar){
-                getFragmentManager().beginTransaction().remove(this).commit();
-            }*/
-
-
+            }
         }catch (Exception e){
             Toast.makeText(getActivity(),"Error e date" + e.getMessage() ,Toast.LENGTH_LONG).show();
         }
-
     }
 
     @Override
@@ -168,7 +145,6 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
         jrq = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         rq.add(jrq);
     }
-
     public void iniciarValores(){ //incializa los valores
         rfc = txt_empleado_rfc.getText().toString();
         nombre = txt_empleado_nombre.getText().toString() + " " + txt_empleado_ap.getText().toString() + " " +txt_empleado_am.getText().toString();

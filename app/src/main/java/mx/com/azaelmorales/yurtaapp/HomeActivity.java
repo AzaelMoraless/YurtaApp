@@ -122,6 +122,11 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_almacen) {
           //  fragmentManager.beginTransaction().replace(R.id.contenedor, new AlmacenFragment()).addToBackStack(null).commit();
             //getSupportActionBar().setTitle("Almacen");
+            Intent intent = new Intent(getApplicationContext(),AlmacenActivity.class);
+            startActivity(intent);
+        }else if(id == R.id.nav_pedidos){
+            Intent intent = new Intent(getApplicationContext(),PedidosActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_empleado) {
             Intent empleados_activity = new Intent(getApplicationContext(),EmpleadosActivity.class);
             startActivity(empleados_activity);

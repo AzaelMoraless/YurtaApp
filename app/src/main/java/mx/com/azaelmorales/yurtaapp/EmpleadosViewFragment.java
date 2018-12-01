@@ -36,6 +36,8 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
+import mx.com.azaelmorales.yurtaapp.utilerias.Servidor;
+
 
 public class EmpleadosViewFragment extends Fragment  {
     private ListView listView;
@@ -68,28 +70,15 @@ public class EmpleadosViewFragment extends Fragment  {
                 }
             });
 
-        if(listaEmpleados!=null){
+       ///
             searchView = (SearchView) view.findViewById(R.id.search_empleado);
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String s) {
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String query) {
-                    adaptador.getFilter().filter(query);
-                    return false;
-                }
-            });
-        }
 
        // setHasOptionsMenu(true);
         return view;
     }
 
     private void cargarDatos(){ //carga los datos de la base datos en un json
-        String url = "http://dissymmetrical-diox.xyz/mostrarEmpleados.php";
+        String url = Servidor.URL+Servidor.MOSTRAR_EMPLEADOS;
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -98,6 +87,19 @@ public class EmpleadosViewFragment extends Fragment  {
                 try {
                     JSONArray jsonArray = new JSONArray(response);
                     cargarListView(jsonArray);
+
+                    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                        @Override
+                        public boolean onQueryTextSubmit(String s) {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onQueryTextChange(String query) {
+                            adaptador.getFilter().filter(query);
+                            return false;
+                        }
+                    });
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

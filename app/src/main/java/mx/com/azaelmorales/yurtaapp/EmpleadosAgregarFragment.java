@@ -37,7 +37,7 @@ import me.anwarshahriar.calligrapher.Calligrapher;
 import mx.com.azaelmorales.yurtaapp.utilerias.Validar;
 
 
-public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickListener,
+public class EmpleadosAgregarFragment extends Fragment implements
         Response.Listener<JSONObject>,Response.ErrorListener {
     private EditText txt_empleado_rfc,txt_empleado_nombre,txt_empleado_ap,txt_empleado_am,txt_empleado_date,
             txt_empleado_tel,txt_empleado_correo,txt_empleado_password;
@@ -81,7 +81,7 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
         txt_empleado_nombre = (EditText)view.findViewById(R.id.txt_add_empleado_nombre);
         txt_empleado_ap = (EditText)view.findViewById(R.id.txt_add_empleado_ap);
         txt_empleado_am = (EditText)view.findViewById(R.id.txt_add_empleado_am);
-        txt_empleado_date = (EditText) view.findViewById(R.id.txt_empleado_date);
+        //txt_empleado_date = (EditText) view.findViewById(R.id.txt_empleado_date);
         txt_empleado_tel = (EditText)view.findViewById(R.id.txt_add_empleado_tel);
         txt_empleado_correo = (EditText)view.findViewById(R.id.txt_add_empleado_correo);
         txt_empleado_password = (EditText)view.findViewById(R.id.txt_add_empleado_pass);
@@ -90,16 +90,16 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
         tilNombre = (TextInputLayout)view.findViewById(R.id.til_add_empleado_nombre);
         tilAp = (TextInputLayout)view.findViewById(R.id.til_add_empleado_ap);
         tilAm = (TextInputLayout)view.findViewById(R.id.til_add_empleado_am);
-        tilDate = (TextInputLayout)view.findViewById(R.id.til_add_empleado_date);
+        //tilDate = (TextInputLayout)view.findViewById(R.id.til_add_empleado_date);
         tilTelefono = (TextInputLayout)view.findViewById(R.id.til_add_empleado_tel);
         tilCorreo = (TextInputLayout)view.findViewById(R.id.til_add_empleado_correo);
-        txt_empleado_date.setOnClickListener(this);
+       /// txt_empleado_date.setOnClickListener(this);
 
         implemetarTextWatcher();
         return view;
     }
 
-    @Override
+  /*  @Override
     public void onClick(View view) { //boton agregar epleado, cancelar y desplegar el calendario en el campo fecha
 
         try{
@@ -121,7 +121,7 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
         }catch (Exception e){
             Toast.makeText(getActivity(),"Error e date" + e.getMessage() ,Toast.LENGTH_LONG).show();
         }
-    }
+    }*/
 
     @Override
     public void onErrorResponse(VolleyError error) { //en caso de ocurrir un error en l aoperacion
@@ -149,6 +149,7 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
         rfc = txt_empleado_rfc.getText().toString();
         nombre = txt_empleado_nombre.getText().toString() + " " + txt_empleado_ap.getText().toString() + " " +txt_empleado_am.getText().toString();
         telefono = txt_empleado_tel.getText().toString();
+        fecha_nacimiento = "2018-05-20";
         correo = txt_empleado_correo.getText().toString();
         password = txt_empleado_password.getText().toString();
     }
@@ -160,7 +161,7 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
         txt_empleado_ap.setText("");
         txt_empleado_am.setText("");
         txt_empleado_tel.setText("");
-        txt_empleado_date.setText("");
+
         txt_empleado_password.setText("");
         txt_empleado_correo.setText("");
         spinner_sexo.setSelection(0);
@@ -254,24 +255,12 @@ public class EmpleadosAgregarFragment extends Fragment implements  View.OnClickL
             }
         });
 
-        txt_empleado_date.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                g = Validar.fecha_nac(String.valueOf(s),tilDate);
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
 
-            }
-        });
 
     }
 
     public boolean validaEntradas(){
-        if(a&&b&&c&&d&&e&&f&&g)
+        if(a&&b&&c&&d&&e&&f)
             return true;
         return false;
     }

@@ -18,7 +18,9 @@
         <item name="android:textColorHint">#95969A</item>
         <item name="android:ems">10</item>
     </style>
-
+    <style name="inputLayout_style">
+        <item name="android:background">@drawable/input_layout_background</item>
+    </style>
     <style name="button_style">
         <item name="android:background">@drawable/button_background</item>
         <item name="android:textColor">#ffffff</item>

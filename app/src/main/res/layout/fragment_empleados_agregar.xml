@@ -4,10 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/AppTheme"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".EmpleadosAgregarFragment">
 
     <ScrollView
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -15,17 +17,21 @@
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:paddingBottom="15dp"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:paddingTop="@dimen/fragment_horizontal_margin"
+            android:background="#F5F5F5"
+
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             >
 
 
             <LinearLayout
+                android:background="@color/colorAccent"
+
                 android:id="@+id/title"
                 android:layout_marginBottom="@dimen/line_height"
                 android:layout_width="match_parent"
@@ -35,11 +41,12 @@
 
 
                 <android.support.v7.widget.AppCompatTextView
+                    android:padding="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Datos del empleado"
-                    android:textAlignment="center"
+                    android:textColor="@color/color_white"
                     android:textSize="17dp" />
 
 
@@ -47,6 +54,9 @@
             </LinearLayout>
 
             <LinearLayout
+                android:background="@color/color_white"
+                android:padding="10dp"
+                style="@style/inputLayout_style"
                 android:id="@+id/area_rfc"
                 android:layout_marginBottom="@dimen/line_height"
                 android:layout_width="match_parent"
@@ -81,6 +91,9 @@
             </LinearLayout>
 
             <LinearLayout
+
+                android:background="@color/color_white"
+                android:padding="10dp"
                 android:id="@+id/area_nombre"
                 android:layout_marginBottom="@dimen/line_height"
                 android:layout_width="match_parent"
@@ -109,6 +122,7 @@
 
             <LinearLayout
                 android:id="@+id/area_a_paterno"
+                android:background="@color/color_white"
                 android:layout_marginBottom="@dimen/line_height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -132,6 +146,7 @@
 
             <LinearLayout
                 android:id="@+id/area_a_materno"
+                android:background="@color/color_white"
                 android:layout_marginBottom="@dimen/line_height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -155,43 +170,16 @@
 
 
 
-            <LinearLayout
-                android:id="@+id/area_f_nacimiento"
-                android:layout_marginBottom="@dimen/line_height"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/area_a_materno"
-                android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_fecha" />
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/til_add_empleado_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp">
-                    <EditText
-                        android:id="@+id/txt_empleado_date"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="fecha de nacimiento"
-                        android:ems="10"
-                        android:inputType="text" />
-                </android.support.design.widget.TextInputLayout>
-            </LinearLayout>
 
 
             <LinearLayout
+                android:background="@color/color_white"
                 android:id="@+id/area_telefono"
                 android:layout_marginBottom="@dimen/line_height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/area_f_nacimiento"
+                android:layout_below="@+id/area_a_materno"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -218,6 +206,7 @@
 
             <LinearLayout
                 android:id="@+id/area_correo"
+                android:background="@color/color_white"
                 android:layout_marginBottom="@dimen/line_height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -247,6 +236,7 @@
 
             <LinearLayout
                 android:id="@+id/area_contraseña"
+                android:background="@color/color_white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/area_correo"
@@ -280,6 +270,7 @@
 
             <LinearLayout
                 android:id="@+id/area_puesto"
+
                 android:layout_marginBottom="@dimen/fragment_horizontal_margin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

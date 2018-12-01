@@ -10,4 +10,9 @@
     <color name="colorBack">#f4f4f4</color>
     <color name="color_white">#ffffff</color>
     <color name="color_black">#050608</color>
+    <color name="colorBackground">#F5F5F5</color>
+    <color name="ppurple">#7c4dff</color>
+    <color name="yellow">#ffb300</color>
+    <color name="blue">#00bfa5</color>
+    <color name="fondo">#fcfcfc</color>
 </resources>

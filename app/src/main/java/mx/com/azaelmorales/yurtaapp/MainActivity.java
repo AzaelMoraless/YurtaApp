@@ -1,16 +1,23 @@
 package mx.com.azaelmorales.yurtaapp;
 
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.StrictMode;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.Request;
@@ -19,12 +26,27 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessageAware;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 import me.anwarshahriar.calligrapher.Calligrapher;
+import mx.com.azaelmorales.yurtaapp.utilerias.GeneratePassword;
 import mx.com.azaelmorales.yurtaapp.utilerias.Preferences;
+import mx.com.azaelmorales.yurtaapp.utilerias.Servidor;
 import mx.com.azaelmorales.yurtaapp.utilerias.Validar;
 
 import static android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
@@ -34,11 +56,14 @@ public class MainActivity extends AppCompatActivity implements  Response.Listene
     TextInputEditText txt_usuario,txt_contraseña;
     TextInputLayout  textInputLayout;
     TextView textViewRecuperar;
+    private String correoYurtaApp="yurtaapp@gmail.com";
+    private String passwordYurtaApp = "yurtaPrueba";
     RequestQueue rq;
     JsonRequest jrq;
     RadioButton radioButton;
     private boolean isCheckedRB;
-
+    String correoRecuperacion;
+    Session session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,13 +98,62 @@ public class MainActivity extends AppCompatActivity implements  Response.Listene
             }
         });
         //opcion recuperar contraseña
+
+
         textViewRecuperar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),RecuperarPasswordActivity.class);
-                //guarda los valores de nombre y correo
 
-                startActivity(intent);
+
+                final EditText taskEditText = new EditText(MainActivity.this);
+                AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("Recuperar contraseña")
+                        .setMessage("Ingrese su correo")
+                        .setView(taskEditText)
+                        .setPositiveButton("Recuperar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                String correo = taskEditText.getText().toString().trim();
+                                if(Validar.correo(correo)){
+                                   buscarCorreo(correo);
+
+
+                                }else{
+                                    Toast.makeText(MainActivity.this,"Correo invalido" ,Toast.LENGTH_LONG).show();
+
+                                }
+
+                            }
+                        })
+                        .setNegativeButton("Cancelar", null)
+                        .create();
+                dialog.show();
+
+
+
+               /* AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+                builder1.setMessage("Write your message here.");
+                builder1.setCancelable(true);
+
+                builder1.setPositiveButton(
+                        "Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                builder1.setNegativeButton(
+                        "No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();*/
 
             }
         });
@@ -150,5 +224,69 @@ public class MainActivity extends AppCompatActivity implements  Response.Listene
         rq.add(jrq);
     }
 
+    public void buscarCorreo(final String correo2){
+        String urlBuscar = "http://dissymmetrical-diox.xyz/buscarCorreo.php?correo="+correo2;
+
+        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, urlBuscar, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                    if(response.equals("[]"))
+                        Toast.makeText(MainActivity.this,"El correo no esta registrado" ,Toast.LENGTH_LONG).show();
+                    else{
+                        Toast.makeText(MainActivity.this,"Revisa tu correo" ,Toast.LENGTH_LONG).show();
+                        enviarCorreo(correo2);
+                    }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast toast1 =
+                        Toast.makeText(MainActivity.this,
+                                "Error al cargar los datos"+ error.getMessage(), Toast.LENGTH_LONG);
+
+                toast1.show();
+            }
+        });
+        requestQueue.add(stringRequest);
+    }
+
+    public void enviarCorreo(String correoDestino){
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        Properties properties = new Properties();
+        properties.put("mail.smtp.host","smtp.googlemail.com");
+        properties.put("mail.smtp.socketFactory.port","465");
+        properties.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
+        properties.put("mail.smtp.auth","true");
+        properties.put("mail.smtp.port","465");
+
+        try{
+            session = Session.getDefaultInstance(properties, new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(correoYurtaApp,passwordYurtaApp);
+                }
+            });
+
+            if(session!=null){
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(correoYurtaApp));
+                message.setSubject("YurtaApp codigo de recuperacion de contraseña");      //correo que se le envia
+                message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(correoDestino));
+                String codigo = GeneratePassword.getPassword(
+                        GeneratePassword.MINUSCULAS+
+                                GeneratePassword.MAYUSCULAS+
+                                GeneratePassword.ESPECIALES,8);
+                message.setContent(codigo,"text/html; charset=utf8");
+                Transport.send(message);
+
+            }
+
+        }catch (Exception e){}
+
+
+    }
 
 }

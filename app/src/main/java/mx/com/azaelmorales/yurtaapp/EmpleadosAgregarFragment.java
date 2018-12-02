@@ -46,8 +46,8 @@ public class EmpleadosAgregarFragment extends Fragment implements
 
     private String rfc,nombre,fecha_nacimiento,telefono,correo,password;
     private boolean a,b,c,d,e,f,g;
+
     private AppCompatSpinner spinner_sexo,spinner_puesto;
-    ///private Button btnCancelar,btnAceptar;
     List<String> listaGeneros,listaPuestos;
     ArrayAdapter<String> adapterSpinner,adapterSpinnerPuestos;
     private int dia,mes,anio;
@@ -149,7 +149,7 @@ public class EmpleadosAgregarFragment extends Fragment implements
         rfc = txt_empleado_rfc.getText().toString();
         nombre = txt_empleado_nombre.getText().toString() + " " + txt_empleado_ap.getText().toString() + " " +txt_empleado_am.getText().toString();
         telefono = txt_empleado_tel.getText().toString();
-        fecha_nacimiento = "2018-05-20";
+        fecha_nacimiento = fechaNacimiento(rfc);
         correo = txt_empleado_correo.getText().toString();
         password = txt_empleado_password.getText().toString();
     }
@@ -161,15 +161,52 @@ public class EmpleadosAgregarFragment extends Fragment implements
         txt_empleado_ap.setText("");
         txt_empleado_am.setText("");
         txt_empleado_tel.setText("");
-
         txt_empleado_password.setText("");
         txt_empleado_correo.setText("");
         spinner_sexo.setSelection(0);
         spinner_puesto.setSelection(0);
     }
 
+    public String fechaNacimiento(String rfc){  //obtener la fecha de nacimeinto del empleado con su rfc
+        String fecha ="";
+        String anio="",mes,dia;
+        int j=1;
+        for(int i=0; i<rfc.length(); i++){
+            if(Character.isDigit(rfc.charAt(i)) && j<7){
+                fecha+=rfc.charAt(i);
+                if(j==2 || j==4)
+                    fecha+="-";
+                j++;
+            }
+        }
+        String[] parts = fecha.split("-");
+        anio = parts[0];
+        mes = parts[1];
+        dia=parts[2];
+        int n = Integer.parseInt(anio);
+        if(n<=99 && n>0)
+            anio="19" + n;
+        else
+            anio="2000";
+        fecha= anio+"-"+mes+"-"+dia;
+        return fecha;
+    }
 
+    public boolean nombresRFC(){
+        String rfclPaterno = ""+rfc.charAt(0) + rfc.charAt(1);
+        String rfclMaterno =""+ rfc.charAt(2);
+        String rfclNombre = ""+ rfc.charAt(3);
 
+        String lPaterno = ""+txt_empleado_ap.getText().toString().trim().charAt(0) + txt_empleado_ap.getText().toString().trim()
+                .charAt(1);
+        String lMaterno = ""+ txt_empleado_am.getText().toString().trim().charAt(0);
+        String lNombre = ""+ txt_empleado_nombre.getText().toString().trim().charAt(0);
+
+        if((rfclPaterno.equalsIgnoreCase(lPaterno)) &&(rfclMaterno.equalsIgnoreCase(lMaterno))
+                    && rfclNombre.equalsIgnoreCase(lNombre))
+            return true;
+        return false;
+    }
 
     public void implemetarTextWatcher(){ //implementa un escuchador para la validacion de los datos en las cajas de texto
         txt_empleado_rfc.addTextChangedListener(new TextWatcher() {
@@ -254,9 +291,6 @@ public class EmpleadosAgregarFragment extends Fragment implements
 
             }
         });
-
-
-
     }
 
     public boolean validaEntradas(){
@@ -268,9 +302,7 @@ public class EmpleadosAgregarFragment extends Fragment implements
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_modificar, menu); // TU MENU
-
-
+        inflater.inflate(R.menu.menu_modificar, menu);
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -281,9 +313,13 @@ public class EmpleadosAgregarFragment extends Fragment implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.nav_aceptar: // TU OPCION
+            case R.id.nav_aceptar:
                 iniciarValores();
                 if(validaEntradas()){
+                    if(nombresRFC()==false){
+                        Toast.makeText(getActivity(),"RFC no coincide con el nombre" ,Toast.LENGTH_LONG).show();
+                        return false;
+                    }
                     rq = Volley.newRequestQueue(getActivity());
                     registrarEmpleado();
                     limpiarCampos();
@@ -291,7 +327,7 @@ public class EmpleadosAgregarFragment extends Fragment implements
                     Toast.makeText(getActivity(),"Algunos campos son incorrectos" ,Toast.LENGTH_LONG).show();
                 }
                 return true;
-            case R.id.nav_cancelar: // TU OPCION
+            case R.id.nav_cancelar:
                 getFragmentManager().beginTransaction().remove(this).commit();
                 return true;
             default:

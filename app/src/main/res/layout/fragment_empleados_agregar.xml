@@ -4,12 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/AppTheme"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".EmpleadosAgregarFragment">
 
     <ScrollView
-
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -23,15 +21,11 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:paddingTop="@dimen/fragment_horizontal_margin"
-            android:background="#F5F5F5"
-
+            android:background="@color/colorBackground"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             >
-
-
             <LinearLayout
-                android:background="@color/colorAccent"
-
+                android:background="@drawable/shape_subtitulo"
                 android:id="@+id/title"
                 android:layout_marginBottom="@dimen/line_height"
                 android:layout_width="match_parent"
@@ -41,6 +35,7 @@
 
 
                 <android.support.v7.widget.AppCompatTextView
+                    android:layout_marginLeft="10dp"
                     android:padding="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -54,7 +49,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:background="@color/color_white"
+                android:background="@drawable/border_radius"
                 android:padding="10dp"
                 style="@style/inputLayout_style"
                 android:id="@+id/area_rfc"
@@ -89,83 +84,92 @@
                         android:singleLine="true" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
-
             <LinearLayout
-
-                android:background="@color/color_white"
-                android:padding="10dp"
-                android:id="@+id/area_nombre"
-                android:layout_marginBottom="@dimen/line_height"
+                android:id="@+id/contenedor_nombre"
+                android:background="@drawable/border_radius"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/area_rfc"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_empleado" />
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/til_add_empleado_nombre"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp">
-                    <EditText
-                        android:id="@+id/txt_add_empleado_nombre"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="nombre"
-                        android:ems="10"
-                        android:inputType="text" />
-                </android.support.design.widget.TextInputLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/area_a_paterno"
-                android:background="@color/color_white"
+                android:orientation="vertical"
                 android:layout_marginBottom="@dimen/line_height"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/area_nombre"
-                android:orientation="horizontal">
+                android:layout_below="@id/area_rfc">
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/til_add_empleado_ap"
+                <LinearLayout
+
+
+                    android:padding="10dp"
+                    android:id="@+id/area_nombre"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="56dp">
-                    <EditText
-                        android:id="@+id/txt_add_empleado_ap"
+                    android:layout_below="@+id/area_rfc"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_empleado" />
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/til_add_empleado_nombre"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="apellido paterno"
-                        android:ems="10"
-                        android:inputType="text" />
-                </android.support.design.widget.TextInputLayout>
-            </LinearLayout>
+                        android:layout_marginLeft="32dp">
+                        <EditText
+                            android:id="@+id/txt_add_empleado_nombre"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="nombre"
+                            android:ems="10"
+                            android:inputType="text" />
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/area_a_materno"
-                android:background="@color/color_white"
-                android:layout_marginBottom="@dimen/line_height"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/area_a_paterno"
-                android:orientation="horizontal">
+                <LinearLayout
+                    android:id="@+id/area_a_paterno"
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/til_add_empleado_am"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="56dp">
-                    <EditText
-                        android:id="@+id/txt_add_empleado_am"
+                    android:layout_below="@+id/area_nombre"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/til_add_empleado_ap"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="apellido materno"
-                        android:ems="10"
-                        android:inputType="text" />
-                </android.support.design.widget.TextInputLayout>
+                        android:layout_marginLeft="56dp">
+                        <EditText
+                            android:id="@+id/txt_add_empleado_ap"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="apellido paterno"
+                            android:ems="10"
+                            android:inputType="text" />
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/area_a_materno"
+                    android:background="@color/color_white"
+                    android:layout_marginBottom="@dimen/line_height"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/area_a_paterno"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/til_add_empleado_am"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="56dp">
+                        <EditText
+                            android:id="@+id/txt_add_empleado_am"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="apellido materno"
+                            android:ems="10"
+                            android:inputType="text" />
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
             </LinearLayout>
 
 
@@ -173,13 +177,16 @@
 
 
 
+
+
+
             <LinearLayout
-                android:background="@color/color_white"
+                android:background="@drawable/border_radius"
                 android:id="@+id/area_telefono"
                 android:layout_marginBottom="@dimen/line_height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/area_a_materno"
+                android:layout_below="@+id/contenedor_nombre"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -206,7 +213,7 @@
 
             <LinearLayout
                 android:id="@+id/area_correo"
-                android:background="@color/color_white"
+                android:background="@drawable/border_radius"
                 android:layout_marginBottom="@dimen/line_height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -236,7 +243,7 @@
 
             <LinearLayout
                 android:id="@+id/area_contraseña"
-                android:background="@color/color_white"
+                android:background="@drawable/border_radius"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/area_correo"
@@ -262,7 +269,7 @@
                         android:id="@+id/txt_add_empleado_pass"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:ems="10"
+
                         android:hint="contraseña"
                         android:inputType="textPassword" />
                 </android.support.design.widget.TextInputLayout>
@@ -270,10 +277,10 @@
 
             <LinearLayout
                 android:id="@+id/area_puesto"
-
+                android:background="@drawable/border_radius"
                 android:layout_marginBottom="@dimen/fragment_horizontal_margin"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_below="@+id/area_contraseña"
                 android:orientation="horizontal">
 
@@ -285,13 +292,14 @@
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/ic_puesto2" />
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:layout_marginLeft="35dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Puesto"/>
 
                 <android.support.v7.widget.AppCompatSpinner
-
+                    android:layout_gravity="center_vertical"
                     android:id="@+id/spn_add_empleado_puesto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -300,6 +308,7 @@
             </LinearLayout>
 
             <LinearLayout
+               android:background="@drawable/border_radius"
                 android:layout_marginBottom="100dp"
                 android:id="@+id/area_sexo"
                 android:layout_width="match_parent"
@@ -313,12 +322,14 @@
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/ic_sexo" />
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:layout_marginLeft="35dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sexo"/>
 
                 <android.support.v7.widget.AppCompatSpinner
+                    android:layout_gravity="center_vertical"
                     android:layout_marginLeft="15dp"
                     android:id="@+id/spn_add_empleado_sexo"
                     android:layout_width="wrap_content"

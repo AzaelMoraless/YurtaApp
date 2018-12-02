@@ -40,9 +40,9 @@ import java.util.List;
 
 import mx.com.azaelmorales.yurtaapp.utilerias.Validar;
 
-public class EmpleadosEditarActivity extends AppCompatActivity implements  View.OnClickListener,
+public class EmpleadosEditarActivity extends AppCompatActivity implements
         Response.Listener<JSONObject>,Response.ErrorListener {
-    private EditText editTextRFC,editTextNombre,editTextFechaN
+    private EditText editTextRFC,editTextNombre
                         ,editTextTelefono,editTextCorreo,editTextPassword;
     private AppCompatSpinner spinnerSexo,spinnerPuesto;
     private TextInputLayout tilNombre,tilRfc,tilCorreo,tilTelefono,tilDate;
@@ -72,7 +72,7 @@ public class EmpleadosEditarActivity extends AppCompatActivity implements  View.
 
         tilRfc = (TextInputLayout)findViewById(R.id.til_add_empleado_rfc);
         tilNombre = (TextInputLayout)findViewById(R.id.til_add_empleado_nombre);
-        tilDate = (TextInputLayout)findViewById(R.id.til_add_empleado_date);
+       // tilDate = (TextInputLayout)findViewById(R.id.til_add_empleado_date);
         tilTelefono = (TextInputLayout)findViewById(R.id.til_add_empleado_tel);
         tilCorreo = (TextInputLayout)findViewById(R.id.til_add_empleado_correo);
 
@@ -80,7 +80,7 @@ public class EmpleadosEditarActivity extends AppCompatActivity implements  View.
         editTextRFC.setKeyListener(null);
         editTextNombre = (EditText)findViewById(R.id.etEmpleadoMoNombre);
 
-        editTextFechaN = (EditText)findViewById(R.id.etEmpleadoMoFecha);
+
         editTextTelefono = (EditText)findViewById(R.id.etEmpleadoMoTel);
         editTextCorreo = (EditText)findViewById(R.id.etEmpleadoMoCorreo);
         editTextPassword = (EditText)findViewById(R.id.etEmpleadoMoPass);
@@ -100,14 +100,14 @@ public class EmpleadosEditarActivity extends AppCompatActivity implements  View.
         spinnerSexo.setAdapter(adapterSpinner);
         spinnerPuesto.setAdapter(adapterSpinnerPuestos);
 
-        editTextFechaN.setOnClickListener(this);
+
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
         if(b!=null){
             editTextPassword.setText(b.getString("PASSWORD"));
             editTextRFC.setText(b.getString("RFC"));
             editTextNombre.setText(b.getString("NOMBRE"));
-            editTextFechaN.setText(b.getString("FECHAN"));
+
             editTextTelefono.setText( b.getString("TELEFONO"));
             editTextCorreo.setText(b.getString("CORREO"));
 
@@ -158,7 +158,7 @@ public class EmpleadosEditarActivity extends AppCompatActivity implements  View.
                 return super.onOptionsItemSelected(item);
         }
     }
-    @Override
+   /* @Override
     public void onClick(View view) { //boton agregar epleado, cancelar y desplegar el calendario en el campo fecha
         try{
             if(view==editTextFechaN){
@@ -179,7 +179,7 @@ public class EmpleadosEditarActivity extends AppCompatActivity implements  View.
             Toast.makeText(this,"Error e date" + e.getMessage() ,Toast.LENGTH_LONG).show();
         }
 
-    }
+    }*/
 
     public void implemetarTextWatcher(){ //implementa un escuchador para la validacion de los datos en las cajas de texto
         editTextRFC.addTextChangedListener(new TextWatcher() {
@@ -237,24 +237,12 @@ public class EmpleadosEditarActivity extends AppCompatActivity implements  View.
             }
         });
 
-        editTextFechaN.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                g = Validar.fecha_nac(String.valueOf(s),tilDate);
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
 
-            }
-        });
 
     }
 
     public boolean validaEntradas(){
-        if(a&&b&&e&&f&&g)
+        if(a&&b&&e&&f)
             return true;
         return false;
     }
@@ -292,7 +280,7 @@ public class EmpleadosEditarActivity extends AppCompatActivity implements  View.
         editTextRFC.setText("");
         editTextNombre.setText("");
         editTextTelefono.setText("");
-        editTextFechaN.setText("");
+        fecha_nacimiento="";
         editTextPassword.setText("");
         editTextPassword.setText("");
         spinnerSexo.setSelection(0);

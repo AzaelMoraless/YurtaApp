@@ -24,4 +24,5 @@
     <string name="title_activity_obras">ObrasActivity</string>
     <string name="title_activity_almacen">AlmacenActivity</string>
     <string name="title_activity_about">AboutActivity</string>
+    <string name="title_activity_material_editar">MaterialEditarActivity</string>
 </resources>

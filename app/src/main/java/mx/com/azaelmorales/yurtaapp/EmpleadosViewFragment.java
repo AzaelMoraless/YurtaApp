@@ -78,7 +78,9 @@ public class EmpleadosViewFragment extends Fragment  {
     }
 
     private void cargarDatos(){ //carga los datos de la base datos en un json
+
         String url = Servidor.URL+Servidor.MOSTRAR_EMPLEADOS;
+
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -120,7 +122,7 @@ public class EmpleadosViewFragment extends Fragment  {
     private void cargarListView(JSONArray jsonArray) throws JSONException {
         //pasa el json devuelto por el query a una matriz de String
         int longitud = jsonArray.length();
-        int columnas = 9;
+        int columnas = 10;
         listaEmpleados = new ArrayList<Empleado>();
         Empleado empleado;
             for (int i=0; i<longitud; i+=columnas) {

@@ -48,8 +48,13 @@
         <activity android:name=".RecuperarPasswordActivity" />
         <activity
             android:name=".EmpleadosEditarActivity"
-            android:parentActivityName=".EmpleadosActivity"></activity>
-        <activity android:name=".PedidosActivity"></activity>
+            android:parentActivityName=".EmpleadosActivity" />
+        <activity android:name=".PedidosActivity" />
+        <activity android:name=".MaterialDetalleActivity" />
+        <activity
+            android:name=".MaterialEditarActivity"
+            android:label="@string/title_activity_material_editar"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

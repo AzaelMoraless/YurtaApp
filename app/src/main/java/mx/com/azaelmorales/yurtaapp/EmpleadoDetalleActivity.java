@@ -58,33 +58,27 @@ public class EmpleadoDetalleActivity extends AppCompatActivity {
 
 
 
-      /*  buttonEditar = (ImageView)findViewById(R.id.button_editar);
+     buttonEditar = (ImageView)findViewById(R.id.button_editar);
         buttonEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                if(empleado!=null){
                     Intent intent2 = new Intent(getApplicationContext(),EmpleadosEditarActivity.class);
                     //almacena de nuevo en el bundle los valores para mostrarlos en el activity editar empleado
-                    String[] datos = empleado.getNombre().split(" ");
-                    String nombre,apellidoP,apellidoM;
-                    nombre = datos[0];
-                    apellidoP = datos[1];
-                    apellidoM = datos[2];
+
                     intent2.putExtra("RFC",empleado.getRfc());
                     intent2.putExtra("PUESTO",empleado.getPuesto());
                     intent2.putExtra("SEXO",empleado.getSexo());
                     intent2.putExtra("TELEFONO",empleado.getTelefono());
                     intent2.putExtra("FECHAN",empleado.getFechaNacimiento());
-                    intent2.putExtra("NOMBRE",nombre);
-                    intent2.putExtra("APELLIDOP",apellidoP);
-                    intent2.putExtra("APELLIDOM",apellidoM);
+                    intent2.putExtra("NOMBRE",empleado.getNombre());
                     intent2.putExtra("CORREO",empleado.getCorreo());
                     intent2.putExtra("PASSWORD",empleado.getPassword());
                     startActivity(intent2);
                 }
 
             }
-        });*/
+        });
 
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar_panel_empleados);
         setSupportActionBar(toolbar);

@@ -21,8 +21,7 @@ public class AlmacenActivity extends AppCompatActivity {
             FragmentManager fragmentManager=getSupportFragmentManager();
             switch (item.getItemId()) {
                 case R.id.lista_mat:
-                    //fragmentManager.beginTransaction().replace(R.id.fragment_content_material,new FragmentListaMat()).addToBackStack(null).commit();
-                   /// fragmentManager.beginTransaction().replace(R.id.fragment_content_material, new EmpleadosViewFragment()).addToBackStack(null).commit();
+                   fragmentManager.beginTransaction().replace(R.id.fragment_content_material, new MaterialViewFragment()).addToBackStack(null).commit();
 
                     return  true;
                 case R.id.agregar_mat:
@@ -30,7 +29,7 @@ public class AlmacenActivity extends AppCompatActivity {
                     return  true;
 
                 case R.id.editar_mat:
-                    fragmentManager.beginTransaction().replace(R.id.fragment_content_material,new MaterialAgregarFragment()).addToBackStack(null).commit();
+                    fragmentManager.beginTransaction().replace(R.id.fragment_content_material,new MaterialEditarFragment()).addToBackStack(null).commit();
                     return  true;
             }
             return false;

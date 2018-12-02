@@ -7,15 +7,19 @@
     android:layout_height="match_parent"
     tools:context=".ObrasActivity">
 
+
     <include layout="@layout/toolbar_panel"
-        android:id="@+id/toolbar_panel_obras"
+        android:id="@+id/toolbar_obras"
         ></include>
+
     <FrameLayout
-        android:id="@+id/fragment_content_empleados"
-        android:layout_below="@+id/toolbar_panel_empleados"
+        android:id="@+id/fragment_content_obras"
+        android:layout_below="@+id/toolbar_obras"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/navigation_empleados">/>
+        android:layout_above="@id/navigation_obras">/>
+
+
     </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView

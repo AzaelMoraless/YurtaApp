@@ -119,7 +119,7 @@ public class EmpleadosModificarFragment extends Fragment {
     private void cargarListView(JSONArray jsonArray) throws JSONException {
         //pasa el json devuelto por el query a una matriz de String
         int longitud = jsonArray.length();
-        int columnas = 9;
+        int columnas = 10;
         listaEmpleados = new ArrayList<Empleado>();
         Empleado empleado;
         for (int i=0; i<longitud; i+=columnas) {

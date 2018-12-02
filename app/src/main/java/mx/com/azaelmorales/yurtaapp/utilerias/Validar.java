@@ -8,7 +8,8 @@ import java.util.regex.Pattern;
 public class Validar {
 
     public  static boolean rfc(String rfc,TextInputLayout textInputLayout){
-        Pattern patron = Pattern.compile("([A-Z,Ñ,&]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\\d]{3})$");
+        //Pattern patron = Pattern.compile("([A-Z,Ñ,&]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\\d]{3})$");
+        Pattern patron = Pattern.compile("([A-Z,Ñ,&]{3,4}([1-9][0-9]|(0[0]))(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\\d]{3})$");
         if(!patron.matcher(rfc).matches() || rfc.length()>13){
             textInputLayout.setError("RFC inválido");
             return false;
@@ -31,7 +32,7 @@ public class Validar {
 // implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     public static boolean telefono(String telefono,TextInputLayout textInputLayout) {
 
-        if (!Patterns.PHONE.matcher(telefono).matches()) {
+        if (!Patterns.PHONE.matcher(telefono).matches() || telefono.length()>12) {
             textInputLayout.setError("Teléfono inválido");
             return false;
         } else {
@@ -47,6 +48,12 @@ public class Validar {
             return false;
         } else {
             textInputLayout.setError(null);
+        }
+        return true;
+    }
+    public static  boolean correo(String correo) {
+        if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
+            return false;
         }
         return true;
     }

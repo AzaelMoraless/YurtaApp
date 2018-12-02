@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".EmpleadoDetalleActivity">
     <include layout="@layout/toolbar_panel"
         android:id="@+id/toolbar_panel_empleados"
         ></include>
-
 
 
     <FrameLayout
@@ -16,7 +16,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/navigation_empleados"
-        android:layout_below="@+id/toolbar_panel_empleados">/>
+        android:layout_below="@+id/toolbar_panel_empleados"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="0dp">/>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -26,426 +28,496 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/tVdDetEmPuesto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="Puesto"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline15"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/guideline3"
-                    app:layout_constraintTop_toTopOf="@+id/guideline14"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <TextView
-                    android:id="@+id/tVdDetEmSexo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="Sexo"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline21"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/guideline3"
-                    app:layout_constraintTop_toTopOf="@+id/guideline15"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <TextView
-                    android:id="@+id/tVdDetEmEstado"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="Estado"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline16"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/guideline3"
-                    app:layout_constraintTop_toTopOf="@+id/guideline21"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <TextView
-                    android:id="@+id/tVdDetEmTel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="Telefono"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/guideline3"
-                    app:layout_constraintTop_toTopOf="@+id/guideline11"
-                    app:layout_constraintVertical_bias="0.555" />
-
-                <TextView
-                    android:id="@+id/tVdDetEmCorreo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="Correo"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline14"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/guideline3"
-                    app:layout_constraintTop_toTopOf="@+id/guideline2" />
-
-                <TextView
-                    android:id="@+id/tVDetEmRFC"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="RFC"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline4"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/guideline6"
-                    app:layout_constraintTop_toTopOf="@+id/guideline5"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <TextView
-                    android:id="@+id/tVdDetEmFecha"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="Fecha de nacimiento"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline11"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/guideline3"
-                    app:layout_constraintTop_toTopOf="@+id/guideline9"
-                    app:layout_constraintVertical_bias="0.312" />
-
-                <TextView
-                    android:id="@+id/tVDetEmNombre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="Nombre"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline9"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/guideline18"
-                    app:layout_constraintTop_toTopOf="@+id/guideline7"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_begin="66dp" />
-
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_begin="35dp" />
-
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_begin="277dp" />
-
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_begin="111dp" />
-
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_begin="154dp" />
-
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_begin="190dp" />
-
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_begin="242dp" />
-
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_begin="313dp" />
-
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_begin="354dp" />
-
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline21"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_begin="399dp" />
 
                 <android.support.constraint.Guideline
                     android:id="@+id/guideline16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintGuide_begin="445dp" />
+                    app:layout_constraintGuide_begin="516dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></LinearLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                </android.support.constraint.ConstraintLayout>
+
 
                 <android.support.constraint.Guideline
-                    android:id="@+id/guideline3"
+                    android:id="@+id/guideline21"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_begin="83dp" />
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="193dp" />
 
                 <android.support.constraint.Guideline
-                    android:id="@+id/guideline18"
+                    android:id="@+id/guideline22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_begin="24dp" />
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="470dp" />
 
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_begin="51dp" />
-
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_begin="308dp" />
-
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_begin="106dp" />
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="35dp"
-                    android:layout_height="31dp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline11"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                    app:layout_constraintHorizontal_bias="0.333"
-                    app:layout_constraintStart_toStartOf="@+id/guideline18"
-                    app:layout_constraintTop_toTopOf="@+id/guideline9"
-                    app:layout_constraintVertical_bias="0.523"
-                    app:srcCompat="@drawable/ic_fecha" />
-
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="343dp"
+                    android:layout_height="276dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline2"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                    app:layout_constraintHorizontal_bias="0.263"
-                    app:layout_constraintStart_toStartOf="@+id/guideline18"
-                    app:layout_constraintTop_toTopOf="@+id/guideline11"
-                    app:layout_constraintVertical_bias="0.2"
-                    app:srcCompat="@drawable/ic_tel" />
-
-                <ImageView
-                    android:id="@+id/imageView7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline14"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                    app:layout_constraintHorizontal_bias="0.263"
-                    app:layout_constraintStart_toStartOf="@+id/guideline18"
-                    app:layout_constraintTop_toTopOf="@+id/guideline2"
-                    app:srcCompat="@drawable/ic_correo" />
-
-                <ImageView
-                    android:id="@+id/imageView8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline15"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                    app:layout_constraintHorizontal_bias="0.263"
-                    app:layout_constraintStart_toStartOf="@+id/guideline18"
-                    app:layout_constraintTop_toTopOf="@+id/guideline14"
-                    app:layout_constraintVertical_bias="1.0"
-                    app:srcCompat="@drawable/ic_puesto2" />
-
-                <ImageView
-                    android:id="@+id/imageView10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline21"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                    app:layout_constraintHorizontal_bias="0.263"
-                    app:layout_constraintStart_toStartOf="@+id/guideline18"
-                    app:layout_constraintTop_toTopOf="@+id/guideline15"
-                    app:layout_constraintVertical_bias="0.8"
-                    app:srcCompat="@drawable/ic_sexo" />
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline16"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                    app:layout_constraintHorizontal_bias="0.263"
-                    app:layout_constraintStart_toStartOf="@+id/guideline18"
-                    app:layout_constraintTop_toTopOf="@+id/guideline21"
-                    app:layout_constraintVertical_bias="0.666"
-                    app:srcCompat="@drawable/ic_estado" />
-
-                <ImageView
-                    android:id="@+id/imageView11"
-                    android:layout_width="69dp"
-                    android:layout_height="81dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline7"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline6"
-                    app:layout_constraintHorizontal_bias="0.805"
+                    android:background="@drawable/border_radius"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline22"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/guideline19"
-                    app:layout_constraintVertical_bias="0.272"
-                    app:srcCompat="@drawable/icono_empleado" />
+                    app:layout_constraintTop_toTopOf="@+id/guideline21"
+                    app:layout_constraintVertical_bias="0.0">
 
-                <TextView
-                    android:id="@+id/textView4"
+                    <android.support.constraint.Guideline
+                        android:id="@+id/guideline28"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_begin="6dp" />
+
+                    <android.support.constraint.Guideline
+                        android:id="@+id/guideline29"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_begin="46dp" />
+
+                    <android.support.constraint.Guideline
+                        android:id="@+id/guideline30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_begin="52dp" />
+
+                    <android.support.constraint.Guideline
+                        android:id="@+id/guideline24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_begin="40dp" />
+
+                    <android.support.constraint.Guideline
+                        android:id="@+id/guideline25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_begin="80dp" />
+
+                    <android.support.constraint.Guideline
+                        android:id="@+id/guideline26"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_begin="120dp" />
+
+                    <android.support.constraint.Guideline
+                        android:id="@+id/guideline27"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_begin="160dp" />
+
+                    <android.support.constraint.Guideline
+                        android:id="@+id/guideline31"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_begin="200dp" />
+
+                    <android.support.constraint.Guideline
+                        android:id="@+id/guideline32"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_begin="240dp" />
+
+                    <TextView
+                        android:id="@+id/tVdDetEmFecha"
+                        android:layout_width="287dp"
+                        android:layout_height="33dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Fecha de nacimiento"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline24"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/guideline29"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.75" />
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="40dp"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline24"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline29"
+                        app:layout_constraintStart_toStartOf="@+id/guideline28"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/icono_fecha2" />
+
+                    <ImageView
+                        android:id="@+id/imageView9"
+                        android:layout_width="40dp"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline24"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline29"
+                        app:layout_constraintStart_toStartOf="@+id/guideline28"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/icono_fecha2" />
+
+                    <TextView
+                        android:id="@+id/tVdDetEmTel"
+                        android:layout_width="261dp"
+                        android:layout_height="31dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Telefono"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline25"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/guideline29"
+                        app:layout_constraintTop_toTopOf="@+id/guideline24"
+                        app:layout_constraintVertical_bias="0.428" />
+
+                    <ImageView
+                        android:id="@+id/imageView13"
+                        android:layout_width="36dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline25"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline29"
+                        app:layout_constraintStart_toStartOf="@+id/guideline28"
+                        app:layout_constraintTop_toTopOf="@+id/guideline24"
+                        app:srcCompat="@drawable/icono_telefono2" />
+
+                    <TextView
+                        android:id="@+id/tVdDetEmCorreo"
+                        android:layout_width="259dp"
+                        android:layout_height="33dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Correo"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline26"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/guideline29"
+                        app:layout_constraintTop_toTopOf="@+id/guideline25" />
+
+                    <ImageView
+                        android:id="@+id/imageView14"
+                        android:layout_width="39dp"
+                        android:layout_height="31dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline26"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline29"
+                        app:layout_constraintStart_toStartOf="@+id/guideline28"
+                        app:layout_constraintTop_toTopOf="@+id/guideline25"
+                        app:srcCompat="@drawable/icono_correo" />
+
+                    <TextView
+                        android:id="@+id/tVdDetEmPuesto"
+                        android:layout_width="259dp"
+                        android:layout_height="33dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Puesto"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline27"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.466"
+                        app:layout_constraintStart_toStartOf="@+id/guideline29"
+                        app:layout_constraintTop_toBottomOf="@+id/tVdDetEmCorreo"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <ImageView
+                        android:id="@+id/imageView15"
+                        android:layout_width="40dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline27"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline29"
+                        app:layout_constraintStart_toStartOf="@+id/guideline28"
+                        app:layout_constraintTop_toTopOf="@+id/guideline26"
+                        app:srcCompat="@drawable/icono_puesto" />
+
+                    <TextView
+                        android:id="@+id/tVdDetEmSexo"
+                        android:layout_width="258dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Genero"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline31"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/guideline29"
+                        app:layout_constraintTop_toTopOf="@+id/guideline27" />
+
+                    <ImageView
+                        android:id="@+id/imageView16"
+                        android:layout_width="35dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline31"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline29"
+                        app:layout_constraintStart_toStartOf="@+id/guideline28"
+                        app:layout_constraintTop_toTopOf="@+id/guideline27"
+                        app:srcCompat="@drawable/icono_genero" />
+
+                    <TextView
+                        android:id="@+id/tVdDetEmEstado"
+                        android:layout_width="257dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Activo"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline32"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/guideline29"
+                        app:layout_constraintTop_toTopOf="@+id/guideline31" />
+
+                    <ImageView
+                        android:id="@+id/imageView17"
+                        android:layout_width="29dp"
+                        android:layout_height="26dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline32"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline29"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="@+id/guideline28"
+                        app:layout_constraintTop_toTopOf="@+id/guideline31"
+                        app:layout_constraintVertical_bias="1.0"
+                        app:srcCompat="@drawable/icono_estado" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.Guideline
+                    android:id="@+id/guideline33"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="Información del empleado"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline4"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/guideline6"
-                    app:layout_constraintTop_toTopOf="@+id/guideline19"
-                    app:layout_constraintVertical_bias="0.0" />
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="20dp" />
 
-                <ImageView
-                    android:id="@+id/button_editar"
-                    android:layout_width="33dp"
-                    android:layout_height="29dp"
+                <android.support.constraint.Guideline
+                    android:id="@+id/guideline34"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="359dp" />
+
+                <android.support.constraint.Guideline
+                    android:id="@+id/guideline35"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="30dp" />
+
+                <android.support.constraint.Guideline
+                    android:id="@+id/guideline36"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="181dp" />
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="346dp"
+                    android:layout_height="151dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline4"
+                    android:background="@drawable/border_radius"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline36"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.703"
-                    app:layout_constraintStart_toStartOf="@+id/guideline17"
-                    app:layout_constraintTop_toTopOf="@+id/guideline19"
-                    app:layout_constraintVertical_bias="0.0"
-                    app:srcCompat="@drawable/icono_editar" />
+                    app:layout_constraintHorizontal_bias="0.363"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/guideline35"
+                    app:layout_constraintVertical_bias="0.0">
+
+                    <android.support.constraint.Guideline
+                        android:id="@+id/guideline37"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_begin="27dp" />
+
+                    <android.support.constraint.Guideline
+                        android:id="@+id/guideline42"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_begin="49dp" />
+
+                    <android.support.constraint.Guideline
+                        android:id="@+id/guideline40"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_begin="75dp" />
+
+                    <android.support.constraint.Guideline
+                        android:id="@+id/guideline41"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_begin="96dp" />
+
+                    <android.support.constraint.Guideline
+                        android:id="@+id/guideline39"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_begin="107dp" />
+
+                    <android.support.constraint.Guideline
+                        android:id="@+id/guideline38"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_begin="94dp" />
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/circlebackground"
+                        android:padding="5dp"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline39"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline38"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/guideline37"
+                        app:srcCompat="@drawable/icono_usuario2" />
+
+                    <TextView
+                        android:id="@+id/tVDetEmRFC"
+                        android:layout_width="223dp"
+                        android:layout_height="26dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:text="RFC"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline40"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/guideline38"
+                        app:layout_constraintTop_toTopOf="@+id/guideline42"
+                        app:layout_constraintVertical_bias="1.0" />
+
+                    <TextView
+                        android:id="@+id/tVDetEmNombre"
+                        android:layout_width="222dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:text="TextView"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline41"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/guideline38"
+                        app:layout_constraintTop_toTopOf="@+id/guideline40"
+                        app:layout_constraintVertical_bias="1.0" />
+
+                    <ImageView
+                        android:id="@+id/button_editar"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/circlebackground"
+                        android:padding="5dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.972"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:srcCompat="@drawable/icono_editar_b" />
+                </android.support.constraint.ConstraintLayout>
+
 
             </android.support.constraint.ConstraintLayout>
         </ScrollView>
-</FrameLayout>
+    </FrameLayout>
 </RelativeLayout>

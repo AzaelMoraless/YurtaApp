@@ -18,9 +18,11 @@
         <item name="android:textColorHint">#95969A</item>
         <item name="android:ems">10</item>
     </style>
+
     <style name="inputLayout_style">
         <item name="android:background">@drawable/input_layout_background</item>
     </style>
+
     <style name="button_style">
         <item name="android:background">@drawable/button_background</item>
         <item name="android:textColor">#ffffff</item>
@@ -41,7 +43,7 @@
         <item name="android:textSize">16dp</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <!-- navigation icon color -->
         <item name="colorControlNormal">@color/color_black</item>
 

@@ -25,11 +25,13 @@
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
             android:paddingTop="@dimen/fragment_horizontal_margin"
+            android:background="@color/colorBackground"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             >
 
 
             <LinearLayout
+                android:background="@drawable/shape_subtitulo"
                 android:id="@+id/title"
                 android:layout_marginBottom="@dimen/line_height"
                 android:layout_width="match_parent"
@@ -38,12 +40,15 @@
                 android:orientation="horizontal">
 
 
+
                 <android.support.v7.widget.AppCompatTextView
+                    android:layout_marginLeft="10dp"
+                    android:padding="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Datos del empleado"
-                    android:textAlignment="center"
+                    android:textColor="@color/color_white"
                     android:textSize="17dp" />
 
 
@@ -51,6 +56,8 @@
             </LinearLayout>
 
             <LinearLayout
+                android:background="@drawable/border_radius"
+                android:padding="10dp"
                 android:id="@id/area_rfc"
                 android:layout_marginBottom="@dimen/line_height"
                 android:layout_width="match_parent"
@@ -85,6 +92,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:background="@drawable/border_radius"
                 android:id="@+id/area_nombre"
                 android:layout_marginBottom="@dimen/line_height"
                 android:layout_width="match_parent"
@@ -114,7 +122,9 @@
 
 
             <LinearLayout
-                android:id="@+id/area_f_nacimiento"
+
+                android:background="@drawable/border_radius"
+                android:id="@+id/area_telefono"
                 android:layout_marginBottom="@dimen/line_height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -122,37 +132,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_fecha" />
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/til_add_empleado_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp">
-                    <EditText
-                        android:id="@+id/etEmpleadoMoFecha"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="fecha de nacimiento"
-                        android:ems="10"
-                        android:inputType="text" />
-                </android.support.design.widget.TextInputLayout>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/area_telefono"
-                android:layout_marginBottom="@dimen/line_height"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/area_f_nacimiento"
-                android:orientation="horizontal">
-
-                <ImageView
+                    android:background="@drawable/border_radius"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -175,6 +155,7 @@
 
 
             <LinearLayout
+                android:background="@drawable/border_radius"
                 android:id="@+id/area_correo"
                 android:layout_marginBottom="@dimen/line_height"
                 android:layout_width="match_parent"
@@ -204,6 +185,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:background="@drawable/border_radius"
                 android:id="@+id/area_contraseña"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -237,10 +219,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:background="@drawable/border_radius"
                 android:id="@+id/area_puesto"
                 android:layout_marginBottom="@dimen/fragment_horizontal_margin"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_below="@+id/area_contraseña"
                 android:orientation="horizontal">
 
@@ -267,10 +250,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_height="50dp"
                 android:layout_marginBottom="100dp"
                 android:id="@+id/area_sexo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:background="@drawable/border_radius"
                 android:layout_below="@+id/area_puesto"
                 android:orientation="horizontal">
 

@@ -29,13 +29,16 @@ public class EmpleadosActivity extends AppCompatActivity {
             FragmentManager fragmentManager=getSupportFragmentManager();
             switch (item.getItemId()) {
                 case R.id.navigation_lista_empleados:
-                    fragmentManager.beginTransaction().replace(R.id.fragment_content_empleados, new EmpleadosViewFragment()).addToBackStack(null).commit();
+                    fragmentManager.beginTransaction().replace(R.id.fragment_content_empleados,
+                            new EmpleadosViewFragment()).addToBackStack(null).commit();
                     return true;
                 case R.id.navigation_agregar_empleado:
-                    fragmentManager.beginTransaction().replace(R.id.fragment_content_empleados, new EmpleadosAgregarFragment()).addToBackStack(null).commit();
+                    fragmentManager.beginTransaction().replace(R.id.fragment_content_empleados,
+                            new EmpleadosAgregarFragment()).addToBackStack(null).commit();
                     return true;
                 case R.id.navigation_editar_empleado:
-                    fragmentManager.beginTransaction().replace(R.id.fragment_content_empleados, new EmpleadosModificarFragment()).addToBackStack(null).commit();
+                    fragmentManager.beginTransaction().replace(R.id.fragment_content_empleados,
+                            new EmpleadosModificarFragment()).addToBackStack(null).commit();
                     return true;
             }
             return false;

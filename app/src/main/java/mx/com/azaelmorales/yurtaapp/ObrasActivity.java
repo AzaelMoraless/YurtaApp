@@ -25,8 +25,8 @@ public class ObrasActivity extends AppCompatActivity {
 
                     return true;
                 case R.id.navigation_agregar_obra:
-                   fragmentManager.beginTransaction().replace(R.id.fragment_content_empleados,
-                     new EmpleadosAgregarFragment()).addToBackStack(null).commit();
+                    fragmentManager.beginTransaction().replace(R.id.fragment_content_obras,
+                     new ObraAgregarFragment()).addToBackStack(null).commit();
                     return true;
                 case R.id.navigation_modificar_obra:
 
@@ -43,7 +43,7 @@ public class ObrasActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation_obras);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar_panel_obras);
+        android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar_obras);
         setSupportActionBar(toolbar);
         toolbar.setTitle("Obras");
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

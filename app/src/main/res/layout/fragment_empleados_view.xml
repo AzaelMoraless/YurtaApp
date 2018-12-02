@@ -3,11 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fondo"
+    android:background="@color/colorBackground"
     android:paddingTop="10dp"
     tools:context=".EmpleadosViewFragment">
 
     <LinearLayout
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:background="@color/color_white"
         android:id="@+id/area_busqueda"
         android:layout_marginBottom="@dimen/line_height"
@@ -17,8 +19,7 @@
         android:orientation="horizontal">
 
         <SearchView
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
+
             android:queryHint="Buscar"
             android:id="@+id/search_empleado"
             android:layout_width="match_parent"
@@ -27,7 +28,6 @@
     </LinearLayout>
 
     <ListView
-
         android:padding="15dp"
         android:paddingTop="20dp"
         android:layout_below="@+id/area_busqueda"
@@ -35,6 +35,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@android:color/transparent"
-        android:dividerHeight="10.0sp"/>
+        android:dividerHeight="5.0sp"/>
 
 </RelativeLayout>

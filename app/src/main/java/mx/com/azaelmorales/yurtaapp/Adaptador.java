@@ -22,8 +22,6 @@ public class Adaptador extends BaseAdapter implements Filterable{
     CustomFilter filter;
     ArrayList<Empleado> filterList;
 
-
-
     public Adaptador(Context context,ArrayList<Empleado> empleados){
         this.context = context;
         this.empleados = empleados;

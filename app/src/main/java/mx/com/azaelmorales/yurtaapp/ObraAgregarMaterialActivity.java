@@ -29,6 +29,10 @@ public class ObraAgregarMaterialActivity extends AppCompatActivity {
     private ArrayList<Material> listaMaterial;
     private  AdapterMaterial adaptador;
     private TextView textViewID,textViewLugar;
+    private String tipoObra;
+    private ArrayList<Pedido> arrayListPedidos;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,8 @@ public class ObraAgregarMaterialActivity extends AppCompatActivity {
             }
         });
 
+        arrayListPedidos = new ArrayList<Pedido>();
+
 
         textViewID = (TextView)findViewById(R.id.textViewIdObra);
         textViewLugar =(TextView)findViewById(R.id.textViewLugarObra);
@@ -56,11 +62,12 @@ public class ObraAgregarMaterialActivity extends AppCompatActivity {
         if(b!=null){
             textViewID.setText("ID: " + b.getString("ID"));
             textViewLugar.setText("Lugar: "+b.getString("LUGAR"));
+            tipoObra = b.getString("TIPO");
         }
     }
 
 
-    private void cargarDatos(){ //carga los datos de la base datos en un json
+    private void cargarDatos(){
         String url = "http://dissymmetrical-diox.xyz/mostrarMaterial.php";
         RequestQueue requestQueue = Volley.newRequestQueue(ObraAgregarMaterialActivity.this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {

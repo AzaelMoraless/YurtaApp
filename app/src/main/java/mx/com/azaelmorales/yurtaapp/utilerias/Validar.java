@@ -9,7 +9,7 @@ public class Validar {
 
     public  static boolean rfc(String rfc,TextInputLayout textInputLayout){
         //Pattern patron = Pattern.compile("([A-Z,Ñ,&]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\\d]{3})$");
-        Pattern patron = Pattern.compile("([A-Z,Ñ,&]{3,4}([1-9][0-9]|(0[0]))(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\\d]{3})$");
+        Pattern patron = Pattern.compile("([A-Z,Ñ,&]{3,4}([4-9][0-9]|(0[0]))(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\\d]{3})$");
         if(!patron.matcher(rfc).matches() || rfc.length()>13){
             textInputLayout.setError("RFC inválido");
             return false;

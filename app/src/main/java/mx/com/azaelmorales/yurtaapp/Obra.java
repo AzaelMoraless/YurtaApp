@@ -16,7 +16,9 @@ public class Obra {
         this.fecha = fecha;
         this.tipo = tipo;
     }
-
+    public Obra(String id){
+        this.id =id;
+    }
     public Obra(String id,String nombre,String lugar){
         this.id = id;
         this.nombre = nombre;

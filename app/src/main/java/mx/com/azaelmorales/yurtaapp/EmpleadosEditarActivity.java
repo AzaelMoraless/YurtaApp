@@ -128,7 +128,7 @@ public class EmpleadosEditarActivity extends AppCompatActivity {
                 spinnerSexo.setSelection(1);
         }
 
-       /// implemetarTextWatcher();
+        implemetarTextWatcher();
 
 
     }

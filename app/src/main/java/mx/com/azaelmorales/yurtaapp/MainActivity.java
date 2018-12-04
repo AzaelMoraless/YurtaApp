@@ -192,6 +192,8 @@ public class MainActivity extends AppCompatActivity implements  Response.Listene
 
         Preferences.savePreferenceBoolean(MainActivity.this,radioButton.isChecked(),
                 Preferences.PREFERENCE_ESTADO_SESION);
+
+
         ///Toast.makeText(this,"se encontro",Toast.LENGTH_LONG).show();
         Empleado empleado = new Empleado();
         JSONArray jsonArray = response.optJSONArray("datos");

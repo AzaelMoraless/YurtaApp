@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatSpinner;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,13 +19,29 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Calendar;
 
-public class ObraAgregarFragment extends Fragment implements  View.OnClickListener {
+import mx.com.azaelmorales.yurtaapp.utilerias.Validar;
+
+public class ObraAgregarFragment extends Fragment implements  View.OnClickListener,
+        Response.Listener<JSONObject>,Response.ErrorListener {
     private EditText editTextFolio,editTextNombre,editTextDependencia,editTextLugar,
                         editTextFechaInicio;
 
@@ -35,6 +53,7 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
     private int dia,mes,anio;
     private String fehca;
     private Button buttonAgregarMaterial;
+    private boolean a,flagb,c,d;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,7 +85,8 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
         buttonAgregarMaterial.setOnClickListener(this);
         editTextFechaInicio.setOnClickListener(this);
 
-
+        iniciarValor();
+        editTextFolio.setKeyListener(null);
         return view;
     }
     @Override
@@ -114,7 +134,109 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
             Intent intent =new Intent(view.getContext(),ObraAgregarMaterialActivity.class);
             intent.putExtra("ID",editTextFolio.getText().toString().trim());
             intent.putExtra("LUGAR",editTextLugar.getText().toString().trim());
+            intent.putExtra("TIPO",spinnerTipo.getSelectedItem().toString());
             startActivity(intent);
         }
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Toast.makeText(getActivity(),"Error" ,Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+        Obra obra;
+        JSONArray jsonArray = response.optJSONArray("datos");
+        JSONObject jsonObject;
+
+        try{
+            jsonObject = jsonArray.getJSONObject(0);
+            obra = new Obra(jsonObject.optString("id_obra"));
+            int id = Integer.parseInt(obra.getId()) + 1;
+            editTextFolio.setText(""+id);
+        }catch (JSONException e){
+            Toast.makeText(getActivity(),"Error: " + e.getMessage(),Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void iniciarValor(){
+        String url ="http://dissymmetrical-diox.xyz/idObra.php";
+        RequestQueue rq;
+        JsonRequest jrq;
+        rq = Volley.newRequestQueue(getActivity());
+        jrq = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
+        rq.add(jrq);
+    }
+
+
+    public void implemetarTextWatcher(){
+        editTextNombre.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                a = Validar.nombre(String.valueOf(s),textInputLayoutNombre);
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        editTextDependencia.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                flagb = Validar.nombre(String.valueOf(s),textInputLayoutDependencia);
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        editTextLugar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                c = Validar.nombre(String.valueOf(s),textInputLayoutLugar);
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+            editTextFechaInicio.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                d = Validar.fecha_nac(String.valueOf(s),textInputLayoutFecha);
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+    }
+
+    public boolean validarEntradas(){
+        if(a&&flagb&&c&&d)
+            return true;
+        else
+            return false;
     }
 }

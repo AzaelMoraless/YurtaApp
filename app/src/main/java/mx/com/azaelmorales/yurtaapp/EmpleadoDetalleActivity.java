@@ -21,7 +21,7 @@ public class EmpleadoDetalleActivity extends AppCompatActivity {
         TextView textViewNombre = (TextView)findViewById(R.id.tVDetEmNombre);
         TextView textViewFN  = (TextView)findViewById(R.id.tVdDetEmFecha);
         TextView textViewTel  = (TextView)findViewById(R.id.tVdDetEmTel);
-        TextView textViewCorreo  = (TextView)findViewById(R.id.tVdDetEmCorreo);
+        TextView textViewCorreo  = (TextView)findViewById(R.id.tVEditFechaObra);
         TextView textViewPuesto  = (TextView)findViewById(R.id.tVdDetEmPuesto);
         TextView textViewSexo  = (TextView)findViewById(R.id.tVdDetEmSexo);
         TextView textViewEstado = (TextView)findViewById(R.id.tVdDetEmEstado);
@@ -58,7 +58,7 @@ public class EmpleadoDetalleActivity extends AppCompatActivity {
 
 
 
-     buttonEditar = (ImageView)findViewById(R.id.button_editar);
+        buttonEditar = (ImageView)findViewById(R.id.button_editar);
         buttonEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

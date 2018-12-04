@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ObraEditarActivity">
+
+    <include layout="@layout/toolbar_panel"
+        android:id="@+id/toolbar_edit_obra"
+        ></include>
+
+
+    <ScrollView
+        android:layout_below="@id/toolbar_edit_obra"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="@dimen/fragment_horizontal_margin"
+            android:background="@color/colorBackground"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            >
+            <LinearLayout
+                android:background="@drawable/shape_subtitulo"
+                android:id="@+id/title"
+                android:layout_marginBottom="@dimen/line_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_marginLeft="10dp"
+                    android:padding="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Datos de la obra"
+                    android:textColor="@color/color_white"
+                    android:textSize="17dp" />
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/border_radius"
+                android:padding="10dp"
+                style="@style/inputLayout_style"
+                android:id="@+id/area_rfc"
+                android:layout_marginBottom="@dimen/line_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_folio" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_folio_obra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp">
+
+                    <EditText
+                        android:id="@+id/et_folio_obra"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:fontFamily="@font/open_sans"
+                        android:hint="ID"
+                        android:inputType="text"
+                        android:singleLine="true" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:background="@drawable/border_radius"
+                android:layout_marginBottom="@dimen/line_height"
+                android:padding="10dp"
+                android:id="@+id/area_nombre"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/area_rfc"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_obra" />
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_nombre_obra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp">
+                    <EditText
+                        android:id="@+id/et_nombre_obra"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="nombre"
+                        android:ems="10"
+                        android:inputType="text" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:background="@drawable/border_radius"
+                android:id="@+id/area_telefono"
+                android:layout_marginBottom="@dimen/line_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/area_nombre"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_dependencia"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_dependencia_obra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp">
+                    <EditText
+                        android:id="@+id/et_dependencia_obra"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="dependencia"
+                        android:ems="10"
+                        android:inputType="text" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/area_correo"
+                android:background="@drawable/border_radius"
+                android:layout_marginBottom="@dimen/line_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/area_telefono"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_lugar"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_lugar_obra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp">
+                    <EditText
+                        android:id="@+id/et_lugar_obra"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="lugar"
+                        android:ems="10"
+                        android:inputType="text" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/area_contraseña"
+                android:background="@drawable/border_radius"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/area_correo"
+                android:layout_marginTop="9dp"
+                android:layout_marginBottom="@dimen/fragment_horizontal_margin"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_fecha" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_fecha_obra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    app:errorEnabled="true"
+                    app:passwordToggleEnabled="true">
+
+                    <EditText
+                        android:id="@+id/et_fecha_obra"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="fecha de inicio"
+                        android:inputType="text" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/area_puesto"
+                android:background="@drawable/border_radius"
+                android:layout_marginBottom="@dimen/fragment_horizontal_margin"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/area_contraseña"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_tipo" />
+
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="35dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="tipo"/>
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/spn_tipo_obra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    />
+            </LinearLayout>
+
+
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

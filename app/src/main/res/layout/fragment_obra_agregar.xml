@@ -140,7 +140,7 @@
                     android:layout_height="wrap_content"
                     android:hint="dependencia"
                     android:ems="10"
-                    android:inputType="phone" />
+                    android:inputType="text" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 

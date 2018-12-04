@@ -40,12 +40,12 @@ import mx.com.azaelmorales.yurtaapp.utilerias.Validar;
 public class EmpleadosAgregarFragment extends Fragment implements
         Response.Listener<JSONObject>,Response.ErrorListener {
     private EditText txt_empleado_rfc,txt_empleado_nombre,txt_empleado_ap,txt_empleado_am,txt_empleado_date,
-            txt_empleado_tel,txt_empleado_correo,txt_empleado_password;
-    private TextInputLayout tilNombre,tilRfc,tilAp,tilAm,tilCorreo,tilTelefono,tilDate;
+            txt_empleado_tel,txt_empleado_correo,txt_empleado_password,txt_empleado_password2;
+    private TextInputLayout tilNombre,tilRfc,tilAp,tilAm,tilCorreo,tilTelefono,tilDate,tilPass1,tilPass2;
 
 
     private String rfc,nombre,fecha_nacimiento,telefono,correo,password;
-    private boolean a,b,c,d,e,f,g;
+    private boolean a,b,c,d,e,f,g,h;
 
     private AppCompatSpinner spinner_sexo,spinner_puesto;
     List<String> listaGeneros,listaPuestos;
@@ -84,8 +84,8 @@ public class EmpleadosAgregarFragment extends Fragment implements
         //txt_empleado_date = (EditText) view.findViewById(R.id.txt_empleado_date);
         txt_empleado_tel = (EditText)view.findViewById(R.id.txt_add_empleado_tel);
         txt_empleado_correo = (EditText)view.findViewById(R.id.txt_add_empleado_correo);
-        txt_empleado_password = (EditText)view.findViewById(R.id.txt_add_empleado_pass);
-
+        txt_empleado_password = (EditText)view.findViewById(R.id.et_password1_recuperar);
+        txt_empleado_password2 =(EditText)view.findViewById(R.id.et_password2_recuperar);
         tilRfc = (TextInputLayout)view.findViewById(R.id.til_add_empleado_rfc);
         tilNombre = (TextInputLayout)view.findViewById(R.id.til_add_empleado_nombre);
         tilAp = (TextInputLayout)view.findViewById(R.id.til_add_empleado_ap);
@@ -93,6 +93,9 @@ public class EmpleadosAgregarFragment extends Fragment implements
         //tilDate = (TextInputLayout)view.findViewById(R.id.til_add_empleado_date);
         tilTelefono = (TextInputLayout)view.findViewById(R.id.til_add_empleado_tel);
         tilCorreo = (TextInputLayout)view.findViewById(R.id.til_add_empleado_correo);
+        tilPass1 =(TextInputLayout)view.findViewById(R.id.til_password1);
+        tilPass2 = (TextInputLayout)view.findViewById(R.id.til_password2);
+
        /// txt_empleado_date.setOnClickListener(this);
 
         implemetarTextWatcher();
@@ -291,10 +294,41 @@ public class EmpleadosAgregarFragment extends Fragment implements
 
             }
         });
+
+
+
+        txt_empleado_password.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                g = Validar.password(String.valueOf(s),tilPass1);
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        txt_empleado_password2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                h = Validar.passwords(txt_empleado_password.getText().toString().trim(),
+                        String.valueOf(s),tilPass2);
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     public boolean validaEntradas(){
-        if(a&&b&&c&&d&&e&&f)
+        if(a&&b&&c&&d&&e&&f&&g&&h)
             return true;
         return false;
     }

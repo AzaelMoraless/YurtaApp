@@ -2,6 +2,7 @@ package mx.com.azaelmorales.yurtaapp;
 
 import android.app.DatePickerDialog;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
@@ -32,7 +34,7 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
     ArrayAdapter<String> adapterSpinnerTipos;
     private int dia,mes,anio;
     private String fehca;
-
+    private Button buttonAgregarMaterial;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,6 +60,10 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
         spinnerTipo.setAdapter(adapterSpinnerTipos);
         spinnerTipo.setSelection(0);
 
+        buttonAgregarMaterial = (Button)view.findViewById(R.id.buttom_agregar_material);
+
+
+        buttonAgregarMaterial.setOnClickListener(this);
         editTextFechaInicio.setOnClickListener(this);
 
 
@@ -103,6 +109,12 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
                 }
             },anio,mes,dia);
             datePickerDialog.show();
+        }
+        if(view==buttonAgregarMaterial){
+            Intent intent =new Intent(view.getContext(),ObraAgregarMaterialActivity.class);
+            intent.putExtra("ID",editTextFolio.getText().toString().trim());
+            intent.putExtra("LUGAR",editTextLugar.getText().toString().trim());
+            startActivity(intent);
         }
     }
 }

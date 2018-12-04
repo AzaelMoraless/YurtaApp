@@ -2,27 +2,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AlmacenActivity">
+    tools:context=".PedidosActivity">
+
     <include layout="@layout/toolbar_panel"
-        android:id="@+id/toolbar_panel_material"
+        android:id="@+id/toolbar_mod_pedidos"
         ></include>
     <FrameLayout
-        android:id="@+id/fragment_content_material"
-        android:layout_below="@+id/toolbar_panel_material"
+        android:id="@+id/fragment_content_pedidos"
+        android:layout_below="@+id/toolbar_mod_pedidos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/navigation_mat">/>
+        android:layout_above="@id/navigation_empleados">/>
     </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation_mat"
+        android:id="@+id/navigation_pedidos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
-        app:menu="@menu/navigation_mater" />
-
+        app:menu="@menu/navigation_pedidos" />
 </RelativeLayout>

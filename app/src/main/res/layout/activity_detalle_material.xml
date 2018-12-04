@@ -285,7 +285,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/guideline14"
-                app:layout_constraintEnd_toStartOf="@+id/tVdDetEmCorreo"
+                app:layout_constraintEnd_toStartOf="@+id/tVEditFechaObra"
                 app:layout_constraintHorizontal_bias="0.185"
                 app:layout_constraintStart_toStartOf="@+id/guideline18"
                 app:layout_constraintTop_toTopOf="@+id/guideline2"

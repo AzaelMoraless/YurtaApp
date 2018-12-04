@@ -11,9 +11,6 @@ import android.view.View;
 import android.widget.TextView;
 
 public class ObrasActivity extends AppCompatActivity {
-
-
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -22,14 +19,16 @@ public class ObrasActivity extends AppCompatActivity {
             FragmentManager fragmentManager=getSupportFragmentManager();
             switch (item.getItemId()) {
                 case R.id.navigation_lista_obras:
-
+                    fragmentManager.beginTransaction().replace(R.id.fragment_content_obras,
+                            new ObrasViewFragment()).addToBackStack(null).commit();
                     return true;
                 case R.id.navigation_agregar_obra:
-                    fragmentManager.beginTransaction().replace(R.id.fragment_content_obras,
+                     fragmentManager.beginTransaction().replace(R.id.fragment_content_obras,
                      new ObraAgregarFragment()).addToBackStack(null).commit();
                     return true;
                 case R.id.navigation_modificar_obra:
-
+                    fragmentManager.beginTransaction().replace(R.id.fragment_content_obras,
+                            new ObraModificarFragment()).addToBackStack(null).commit();
                     return true;
             }
             return false;
@@ -49,7 +48,6 @@ public class ObrasActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(getApplicationContext(),HomeActivity.class));
                 finish();
             }
         });

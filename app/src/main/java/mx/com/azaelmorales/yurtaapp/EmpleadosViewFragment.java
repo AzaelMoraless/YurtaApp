@@ -45,6 +45,7 @@ public class EmpleadosViewFragment extends Fragment  {
     private ArrayList<Empleado> listaEmpleados;
     private  Adaptador adaptador;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -70,10 +71,10 @@ public class EmpleadosViewFragment extends Fragment  {
                 }
             });
 
-       ///
+
             searchView = (SearchView) view.findViewById(R.id.search_empleado);
 
-       // setHasOptionsMenu(true);
+
         return view;
     }
 
@@ -109,11 +110,7 @@ public class EmpleadosViewFragment extends Fragment  {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast toast1 =
-                        Toast.makeText(getContext(),
-                                "Error al cargar los datos"+ error.getMessage(), Toast.LENGTH_LONG);
-
-                toast1.show();
+                Toast.makeText(getActivity(),"Erro al cargar los datos" ,Toast.LENGTH_LONG).show();
             }
         });
         requestQueue.add(stringRequest);

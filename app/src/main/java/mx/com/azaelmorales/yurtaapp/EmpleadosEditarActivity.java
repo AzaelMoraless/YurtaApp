@@ -12,6 +12,7 @@ import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,10 +28,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -39,9 +42,9 @@ import java.util.Collections;
 import java.util.List;
 
 import mx.com.azaelmorales.yurtaapp.utilerias.Validar;
-
-public class EmpleadosEditarActivity extends AppCompatActivity implements
-        Response.Listener<JSONObject>,Response.ErrorListener {
+//implements
+//        Response.Listener<JSONObject>,Response.ErrorListener
+public class EmpleadosEditarActivity extends AppCompatActivity {
     private EditText editTextRFC,editTextNombre
                         ,editTextTelefono,editTextCorreo,editTextPassword;
     private AppCompatSpinner spinnerSexo,spinnerPuesto;
@@ -51,14 +54,15 @@ public class EmpleadosEditarActivity extends AppCompatActivity implements
     private int dia,mes,anio;
     private String rfc,nombre,fecha_nacimiento,telefono,correo,password;
     private boolean a,b,c,d,e,f,g;
+    private  boolean flagb,flagc,flagd;
     RequestQueue rq;
     JsonRequest jrq;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_empleados_editar);
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_mod_empleado);
         setSupportActionBar(toolbar);
         toolbar.setTitle("Editar empleado");
@@ -124,7 +128,7 @@ public class EmpleadosEditarActivity extends AppCompatActivity implements
                 spinnerSexo.setSelection(1);
         }
 
-        implemetarTextWatcher();
+       /// implemetarTextWatcher();
 
 
     }
@@ -141,10 +145,12 @@ public class EmpleadosEditarActivity extends AppCompatActivity implements
         switch (item.getItemId()) {
             case R.id.nav_aceptar:
                 iniciarValores();
-                if(true){//validaEntradas()
-                    rq = Volley.newRequestQueue(this);
-                    actualizarEmpleado();//hace un update a la base de datos
+                seModifico();
+                if(validaEntradas()){
+                    //rq = Volley.newRequestQueue(this);
+                    //actualizarEmpleado();//hace un update a la base de datos
                     //limpiarCampos();
+                    updateEmpleado();
                     Toast.makeText(this,"Registro actualizado",Toast.LENGTH_LONG).show();
                     finish();
                 }else{
@@ -158,31 +164,10 @@ public class EmpleadosEditarActivity extends AppCompatActivity implements
                 return super.onOptionsItemSelected(item);
         }
     }
-   /* @Override
-    public void onClick(View view) { //boton agregar epleado, cancelar y desplegar el calendario en el campo fecha
-        try{
-            if(view==editTextFechaN){
-                final Calendar calendar = Calendar.getInstance();
-                dia = calendar.get(Calendar.DAY_OF_MONTH);
-                mes = calendar.get(Calendar.MONTH);
-                anio = calendar.get(Calendar.YEAR);
-                DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int i, int i1, int i2) {
-                        fecha_nacimiento =  i +"-"+(i1+1)+"-"+i2;
-                        editTextFechaN.setText(fecha_nacimiento);
-                    }
-                },anio,mes,dia);
-                datePickerDialog.show();
-            }
-        }catch (Exception e){
-            Toast.makeText(this,"Error e date" + e.getMessage() ,Toast.LENGTH_LONG).show();
-        }
 
-    }*/
 
     public void implemetarTextWatcher(){ //implementa un escuchador para la validacion de los datos en las cajas de texto
-        editTextRFC.addTextChangedListener(new TextWatcher() {
+    /*    editTextRFC.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -195,13 +180,14 @@ public class EmpleadosEditarActivity extends AppCompatActivity implements
 
             }
         });
-
+*/
         editTextNombre.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                flagb =true;
                 b = Validar.nombre(String.valueOf(s),tilNombre);
             }
             @Override
@@ -216,7 +202,8 @@ public class EmpleadosEditarActivity extends AppCompatActivity implements
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                e = Validar.telefono(String.valueOf(s),tilTelefono);
+                flagc=true;
+                c = Validar.telefono(String.valueOf(s),tilTelefono);
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -229,44 +216,49 @@ public class EmpleadosEditarActivity extends AppCompatActivity implements
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                f = Validar.correo(String.valueOf(s),tilCorreo);
+                flagd=true;
+                d = Validar.correo(String.valueOf(s),tilCorreo);
             }
             @Override
             public void afterTextChanged(Editable s) {
 
             }
         });
-
-
-
     }
 
     public boolean validaEntradas(){
-        if(a&&b&&e&&f)
+        if(b&&c&&d)
             return true;
         return false;
     }
 
-    @Override
+    public void seModifico(){
+        if(!flagb)
+             b=true;
+        if(!flagc)
+            c=true;
+        if(!flagd)
+            d=true;
+    }
+   /* @Override
     public void onErrorResponse(VolleyError error) {
-        Toast.makeText(this,"Error al actualizar" ,Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Error al actualizar" +error ,Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onResponse(JSONObject response) {
         Toast.makeText(this,"Registro actualizado",Toast.LENGTH_LONG).show();
     }
-
-    private void actualizarEmpleado(){
-        //http://dissymmetrical-diox.xyz/modificarEmpleado.php?rfc=MORA800825569&nombre=Esteban Azael Morales Vega&f_nacimiento=1997-01-25&telefono=951256848&correo=azaelmorales029@homtail.com&passw=2329&puesto=jefe&sexo=Masculino
-        String url ="http://dissymmetrical-diox.xyz/modificarEmpleado.php?rfc=" +rfc +
+*/
+  /*  private void actualizarEmpleado(){
+       String url ="http://dissymmetrical-diox.xyz/modificarEmpleado.php?rfc=" +rfc +
                 "&nombre="+nombre+"&f_nacimiento="+ fecha_nacimiento+
                 "&telefono="+telefono+"&correo="+correo+"&passw="+password +
                 "&puesto=" + spinnerPuesto.getSelectedItem().toString()+
                 "&sexo="+ spinnerSexo.getSelectedItem().toString();
         jrq = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         rq.add(jrq);
-    }
+    }*/
     public void iniciarValores(){ //incializa los valores
         rfc = editTextRFC.getText().toString();
         nombre = editTextNombre.getText().toString();
@@ -275,17 +267,39 @@ public class EmpleadosEditarActivity extends AppCompatActivity implements
         password = editTextPassword.getText().toString();
     }
 
+    public void updateEmpleado(){
+        RequestQueue queue = Volley.newRequestQueue(this);
 
-    public void limpiarCampos(){//setea los campos
-        editTextRFC.setText("");
-        editTextNombre.setText("");
-        editTextTelefono.setText("");
-        fecha_nacimiento="";
-        editTextPassword.setText("");
-        editTextPassword.setText("");
-        spinnerSexo.setSelection(0);
-        spinnerPuesto.setSelection(0);
+        final String url  ="http://dissymmetrical-diox.xyz/modificarEmpleado.php?rfc=" +rfc +
+                "&nombre="+nombre+"&f_nacimiento="+ fecha_nacimiento+
+                "&telefono="+telefono+"&correo="+correo+"&passw="+password +
+                "&puesto=" + spinnerPuesto.getSelectedItem().toString()+
+                "&sexo="+ spinnerSexo.getSelectedItem().toString();
+
+        // prepare the Request
+        JsonArrayRequest getRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>()
+                {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        // display response
+                        Log.d("Response", response.toString());
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("Error.Response", error.toString());
+                    }
+                }
+        );
+
+        // add it to the RequestQueue
+        queue.add(getRequest);
+
     }
+
 
 }
 

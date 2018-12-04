@@ -117,11 +117,8 @@ public class MainActivity extends AppCompatActivity implements  Response.Listene
                                 String correo = taskEditText.getText().toString().trim();
                                 if(Validar.correo(correo)){
                                    buscarCorreo(correo);
-
-
                                 }else{
                                     Toast.makeText(MainActivity.this,"Correo invalido" ,Toast.LENGTH_LONG).show();
-
                                 }
 
                             }
@@ -236,6 +233,11 @@ public class MainActivity extends AppCompatActivity implements  Response.Listene
                     else{
                         Toast.makeText(MainActivity.this,"Revisa tu correo" ,Toast.LENGTH_LONG).show();
                         enviarCorreo(correo2);
+                        Intent intent = new Intent(getApplicationContext(),RecuperarPasswordActivity.class);
+                        intent.putExtra("CORREO",correo2);
+                        startActivity(intent);
+
+
                     }
 
             }
@@ -281,12 +283,35 @@ public class MainActivity extends AppCompatActivity implements  Response.Listene
                                 GeneratePassword.ESPECIALES,8);
                 message.setContent(codigo,"text/html; charset=utf8");
                 Transport.send(message);
+                setPassword(correoDestino,codigo); //modifica el codigo de recuperacion del usuario en la base daatos
 
             }
 
         }catch (Exception e){}
 
 
+    }
+
+
+    public void setPassword(String correo,String codigo){
+        String urlBuscar = "http://dissymmetrical-diox.xyz/cambiarCodigoRecuperacion.php?correo="+correo+"&codigo="+codigo;
+        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, urlBuscar, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast toast1 =
+                        Toast.makeText(MainActivity.this,
+                                "Error al cargar los datos"+ error.getMessage(), Toast.LENGTH_LONG);
+
+                toast1.show();
+            }
+        });
+        requestQueue.add(stringRequest);
     }
 
 }

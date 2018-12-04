@@ -67,4 +67,35 @@ public class Validar {
         }
         return true;
     }
+
+    public static  boolean passwords(String password1,String password2,TextInputLayout textInputLayout) {
+        if (!password1.equals(password2)){
+            textInputLayout.setError("Las contraseñas no coinciden");
+            return false;
+        } else {
+            textInputLayout.setError(null);
+        }
+        return true;
+    }
+
+    public static boolean password(String password,TextInputLayout textInputLayout){
+        Pattern patron = Pattern.compile("^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,16}$");
+        if (!patron.matcher(password).matches() ) {
+            textInputLayout.setError("Minimo 8 caracteres, al menos un dígito,una minúscula y una mayúscula");
+            return false;
+        } else {
+            textInputLayout.setError(null);
+        }
+        return true;
+    }
+
+    public boolean cantidad(String c,TextInputLayout textInputLayout){
+        try{
+            int cantidad = Integer.parseInt(c);
+            if(cantidad<0)
+                return false;
+            return true;
+        }catch(Exception e){}
+        return false;
+    }
 }

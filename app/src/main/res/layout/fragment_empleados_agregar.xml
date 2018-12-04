@@ -241,39 +241,91 @@
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
+
+
             <LinearLayout
-                android:id="@+id/area_contraseña"
-                android:background="@drawable/border_radius"
+                android:orientation="vertical"
+                android:id="@+id/area_passwords"
+                android:layout_below="@id/area_correo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/area_correo"
-                android:layout_marginTop="9dp"
-                android:layout_marginBottom="@dimen/fragment_horizontal_margin"
-                android:orientation="horizontal">
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/border_radius"
+                app:layout_constraintBottom_toTopOf="@+id/button_cambiar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_password" />
 
-                <android.support.design.widget.TextInputLayout
-
+                <LinearLayout
+                    android:id="@+id/linearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp"
-                    app:errorEnabled="true"
-                    app:passwordToggleEnabled="true">
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/border_radius"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.32">
 
-                    <EditText
-                        android:id="@+id/txt_add_empleado_pass"
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/til_password1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
 
-                        android:hint="contraseña"
-                        android:inputType="textPassword" />
-                </android.support.design.widget.TextInputLayout>
+                        app:errorEnabled="true"
+                        app:passwordToggleEnabled="true">
+
+                        <EditText
+                            android:id="@+id/et_password1_recuperar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="contraseña"
+                            android:inputType="textPassword" />
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+
+
+                    android:id="@+id/linearLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="40dp"
+                    android:background="@drawable/border_radius"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/area_contraseña">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/til_password2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        app:errorEnabled="true"
+                        app:passwordToggleEnabled="true">
+
+                        <EditText
+                            android:id="@+id/et_password2_recuperar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="confirmar contraseña"
+                            android:inputType="textPassword" />
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
             </LinearLayout>
+
 
             <LinearLayout
                 android:id="@+id/area_puesto"
@@ -281,7 +333,7 @@
                 android:layout_marginBottom="@dimen/fragment_horizontal_margin"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_below="@+id/area_contraseña"
+                android:layout_below="@+id/area_passwords"
                 android:orientation="horizontal">
 
 
@@ -336,8 +388,6 @@
                     android:layout_height="wrap_content"
 
                     />
-
-
             </LinearLayout>
 
 

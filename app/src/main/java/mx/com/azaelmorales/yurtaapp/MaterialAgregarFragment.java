@@ -163,7 +163,7 @@ public class MaterialAgregarFragment extends Fragment implements  View.OnClickLi
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //a = Validar.rfc(String.valueOf(s),tilnombre);
+                a = Validar.nombre(String.valueOf(s),tilnombre);
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -177,7 +177,7 @@ public class MaterialAgregarFragment extends Fragment implements  View.OnClickLi
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //b = Validar.nombre(String.valueOf(s),tilcantidad);
+                b = Validar.nombre(String.valueOf(s),tilcantidad);
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -191,7 +191,7 @@ public class MaterialAgregarFragment extends Fragment implements  View.OnClickLi
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //c = Validar.nombre(String.valueOf(s),tilprecio);
+                c = Validar.nombre(String.valueOf(s),tilprecio);
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -205,7 +205,7 @@ public class MaterialAgregarFragment extends Fragment implements  View.OnClickLi
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //d = Validar.nombre(String.valueOf(s),tilmarca);
+                d = Validar.nombre(String.valueOf(s),tilmarca);
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -217,8 +217,8 @@ public class MaterialAgregarFragment extends Fragment implements  View.OnClickLi
     }
 
     public boolean validaEntradas(){
-       // if(a&&b&&c&&d&&e&&f&&g)
+       if(a&&b&&c&&d)
             return true;
-       // return false;
+       return false;
     }
 }

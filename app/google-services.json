@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "783164147113",
+    "firebase_url": "https://yurtaapp-903c4.firebaseio.com",
+    "project_id": "yurtaapp-903c4",
+    "storage_bucket": "yurtaapp-903c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783164147113:android:876427349bbebe08",
+        "android_client_info": {
+          "package_name": "mx.com.azaelmorales.yurtaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "783164147113-kdrhu3g7pts6q2bjcj1srcj04boi5s11.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mx.com.azaelmorales.yurtaapp",
+            "certificate_hash": "e5402640f9fa00e8707682781beadfafc01a0e2c"
+          }
+        },
+        {
+          "client_id": "783164147113-30ddp4gt1emm16evapr9n96bai6vvi5r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxBSxG2FkJBN-Q95Bw0Ap_oetNQhnxst8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "783164147113-30ddp4gt1emm16evapr9n96bai6vvi5r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

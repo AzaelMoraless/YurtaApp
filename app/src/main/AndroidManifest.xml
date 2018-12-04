@@ -54,7 +54,10 @@
         <activity
             android:name=".MaterialEditarActivity"
             android:label="@string/title_activity_material_editar"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ObraAgregarMaterialActivity" />
+        <activity android:name=".ObraDetalleActivity" />
+        <activity android:name=".ObraEditarActivity"></activity>
     </application>
 
 </manifest>

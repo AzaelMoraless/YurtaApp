@@ -44,8 +44,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="imageAsset" value="C:\YurtaApp\app\src\main\res\drawable\icono_materiales.png" />
-                                      <entry key="outputName" value="ic_up" />
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="imageAsset" value="C:\YurtaApp\app\src\main\res\drawable\icono_save.png" />
+                                      <entry key="outputName" value="ic_save" />
                                       <entry key="theme" value="CUSTOM" />
                                       <entry key="themeColor" value="000000" />
                                     </map>

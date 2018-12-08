@@ -2,12 +2,14 @@ package mx.com.azaelmorales.yurtaapp;
 
 public class Pedido {
     private String folioPedido;
-    private String responsable;
+    private String fecha;
+    private String idObra;
     private String estado;
 
-    public Pedido(String folioPedido, String responsable, String estado) {
+    public Pedido(String folioPedido, String fecha, String idObra, String estado) {
         this.folioPedido = folioPedido;
-        this.responsable = responsable;
+        this.fecha = fecha;
+        this.idObra = idObra;
         this.estado = estado;
     }
 
@@ -19,12 +21,20 @@ public class Pedido {
         this.folioPedido = folioPedido;
     }
 
-    public String getResponsable() {
-        return responsable;
+    public String getFecha() {
+        return fecha;
     }
 
-    public void setResponsable(String responsable) {
-        this.responsable = responsable;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getIdObra() {
+        return idObra;
+    }
+
+    public void setIdObra(String idObra) {
+        this.idObra = idObra;
     }
 
     public String getEstado() {

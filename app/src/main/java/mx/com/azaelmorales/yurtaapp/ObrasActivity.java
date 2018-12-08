@@ -1,5 +1,6 @@
 package mx.com.azaelmorales.yurtaapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +12,8 @@ import android.view.View;
 import android.widget.TextView;
 
 public class ObrasActivity extends AppCompatActivity {
+
+    private static Context context;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -51,6 +54,14 @@ public class ObrasActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+        ///super.onCreate();
+        ObrasActivity.context = getApplicationContext();
+    }
+
+    public static Context getAppContext() {
+        return ObrasActivity.context;
     }
 
 }

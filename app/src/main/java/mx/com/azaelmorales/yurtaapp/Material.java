@@ -1,20 +1,36 @@
 package mx.com.azaelmorales.yurtaapp;
 
-public class Material {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Material implements Parcelable {
     private String codigo;
     private String nombre;
     private String tipo;
     private String marca;
     private String estado;
     private String existecias;
+    private String cantidadSolicitada;
 
-    public Material(String codigo, String nombre, String tipo, String marca, String estado, String existecias) {
+    public String getCantidadSolicitada() {
+        return cantidadSolicitada;
+    }
+
+    public void setCantidadSolicitada(String cantidadSolicitada) {
+        this.cantidadSolicitada = cantidadSolicitada;
+    }
+
+    public Material(String codigo, String nombre, String tipo, String marca, String estado, String existecias, String
+            cantidadSolicitada) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.tipo = tipo;
         this.marca = marca;
         this.estado = estado;
         this.existecias = existecias;
+        this.cantidadSolicitada = cantidadSolicitada;
+
+
     }
 
     public Material(String nombre,String marca,String existencias){
@@ -69,4 +85,43 @@ public class Material {
     public void setExistecias(String existecias) {
         this.existecias = existecias;
     }
+
+    protected Material(Parcel in) {
+        codigo = in.readString();
+        nombre = in.readString();
+        tipo = in.readString();
+        marca = in.readString();
+        estado = in.readString();
+        existecias = in.readString();
+        cantidadSolicitada = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(codigo);
+        dest.writeString(nombre);
+        dest.writeString(tipo);
+        dest.writeString(marca);
+        dest.writeString(estado);
+        dest.writeString(existecias);
+        dest.writeString(cantidadSolicitada);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Material> CREATOR = new Parcelable.Creator<Material>() {
+        @Override
+        public Material createFromParcel(Parcel in) {
+            return new Material(in);
+        }
+
+        @Override
+        public Material[] newArray(int size) {
+            return new Material[size];
+        }
+    };
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:icon="@drawable/ic_cancelar"
+        android:title="cancelar"
+        android:id="@+id/nav_cancelar"
+        app:showAsAction="always"
+        />
+    <item
+        android:icon="@drawable/ic_aceptar"
+        android:title="guardar"
+        android:id="@+id/nav_aceptar"
+        app:showAsAction="always"
+        />
+    <item
+        android:icon="@drawable/ic_lista"
+        android:title="guardar"
+        android:id="@+id/nav_ver_lista"
+        app:showAsAction="always"
+        />
+</menu>

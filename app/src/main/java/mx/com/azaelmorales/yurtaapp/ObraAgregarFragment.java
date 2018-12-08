@@ -2,6 +2,7 @@ package mx.com.azaelmorales.yurtaapp;
 
 import android.app.DatePickerDialog;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -13,12 +14,16 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -40,6 +45,8 @@ import java.util.Calendar;
 
 import mx.com.azaelmorales.yurtaapp.utilerias.Validar;
 
+import static android.app.Activity.RESULT_OK;
+
 public class ObraAgregarFragment extends Fragment implements  View.OnClickListener,
         Response.Listener<JSONObject>,Response.ErrorListener {
     private EditText editTextFolio,editTextNombre,editTextDependencia,editTextLugar,
@@ -54,11 +61,15 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
     private String fehca;
     private Button buttonAgregarMaterial;
     private boolean a,flagb,c,d;
+    static ArrayList<Material> arrayListMateriales;
+    static  ListView listViewMaterialesPedidos;
+    TextView textViewTitle;
+    ScrollView scrollView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_obra_agregar, container, false);
-
+        listViewMaterialesPedidos = (ListView)view.findViewById(R.id.listViewMaterialesPedidos);
         editTextFolio = (EditText)view.findViewById(R.id.et_folio_obra);
         editTextNombre =(EditText)view.findViewById(R.id.et_nombre_obra);
         editTextDependencia =(EditText)view.findViewById(R.id.et_dependencia_obra);
@@ -81,12 +92,33 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
 
         buttonAgregarMaterial = (Button)view.findViewById(R.id.buttom_agregar_material);
 
-
         buttonAgregarMaterial.setOnClickListener(this);
         editTextFechaInicio.setOnClickListener(this);
 
         iniciarValor();
         editTextFolio.setKeyListener(null);
+        arrayListMateriales = new ArrayList<Material>();
+
+        scrollView = (ScrollView)view.findViewById(R.id.scroll);
+
+        scrollView.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+                v.findViewById(R.id.listViewMaterialesPedidos).getParent()
+                        .requestDisallowInterceptTouchEvent(false);
+                return false;
+            }
+        });
+
+        listViewMaterialesPedidos.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+
+        textViewTitle =(TextView)view.findViewById(R.id.titleObra);
         return view;
     }
     @Override
@@ -137,6 +169,7 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
             intent.putExtra("TIPO",spinnerTipo.getSelectedItem().toString());
             startActivity(intent);
         }
+
     }
 
     @Override
@@ -239,4 +272,6 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
         else
             return false;
     }
+
+
 }

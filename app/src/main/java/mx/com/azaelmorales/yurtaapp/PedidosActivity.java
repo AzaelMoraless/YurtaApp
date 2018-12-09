@@ -42,11 +42,12 @@ public class PedidosActivity extends AppCompatActivity {
                             new PedidosViewFragment()).addToBackStack(null).commit();
                     return true;
                 case R.id.navigation_pedidos_conf:
-                   /* fragmentManager.beginTransaction().replace(R.id.fragment_content_empleados,
-                            new EmpleadosAgregarFragment()).addToBackStack(null).commit();*/
+                   fragmentManager.beginTransaction().replace(R.id.fragment_content_pedidos,
+                            new PedidosConfirmadosFragment()).addToBackStack(null).commit();
                     return true;
                 case R.id.navigation_pedidos_sinConf:
-
+                    fragmentManager.beginTransaction().replace(R.id.fragment_content_pedidos,
+                            new PedidosEsperaFragment()).addToBackStack(null).commit();
                     return true;
             }
             return false;

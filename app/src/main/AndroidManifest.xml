@@ -58,7 +58,8 @@
         <activity android:name=".ObraAgregarMaterialActivity" />
         <activity android:name=".ObraDetalleActivity" />
         <activity android:name=".ObraEditarActivity" />
-        <activity android:name=".MaterialDetalleAddActivity"></activity>
+        <activity android:name=".MaterialDetalleAddActivity" />
+        <activity android:name=".DetallePedidoActivity"></activity>
     </application>
 
 </manifest>

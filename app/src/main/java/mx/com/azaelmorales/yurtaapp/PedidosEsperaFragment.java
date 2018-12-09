@@ -1,12 +1,14 @@
 package mx.com.azaelmorales.yurtaapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -24,27 +26,45 @@ import org.json.JSONException;
 import java.util.ArrayList;
 
 
-public class PedidosConfirmadosFragment extends Fragment {
+public class PedidosEsperaFragment extends Fragment {
     private ListView listView;
     private SearchView searchView;
     private ArrayList<Pedido> listaPedidos;
     private  AdapterPedido adaptador;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_pedidos_confirmados, container, false);
-        listView = (ListView)view.findViewById(R.id.listViewPedidosConf);
-        searchView =(SearchView)view.findViewById(R.id.search_pedido_conf);
+        View view = inflater.inflate(R.layout.fragment_pedidos_espera, container, false);
+
+
+
+
+
+        listView = (ListView)view.findViewById(R.id.listViewPedidosEspe);
+        searchView =(SearchView)view.findViewById(R.id.search_pedido_espera);
         cargarDatos();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity(),DetallePedidoActivity.class);
+                intent.putExtra("FOLIO",listaPedidos.get(i).getFolioPedido());
+                intent.putExtra("FECHA",listaPedidos.get(i).getFecha());
+                intent.putExtra("ESTADO",listaPedidos.get(i).getEstado());
+                startActivity(intent);
+            }
+        });
+
+
+
+
         return view;
     }
 
-
-
     private void cargarDatos(){ //carga los datos de la base datos en un json
-
-        String url = "http://dissymmetrical-diox.xyz/mostrarPedidosConfirmados.php";
-
+        String url = "http://dissymmetrical-diox.xyz/mostrarPedidosEspera.php";
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override

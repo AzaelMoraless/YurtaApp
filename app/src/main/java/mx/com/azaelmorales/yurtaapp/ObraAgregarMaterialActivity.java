@@ -211,6 +211,9 @@ public class ObraAgregarMaterialActivity extends AppCompatActivity implements Vi
 
         }else if(view==buttonAdd){
             cantidad++;
+            if(cantidad>Integer.parseInt(material.getExistecias())){
+                cantidad = Integer.parseInt(material.getExistecias());
+            }
             editTextCantidad.setText(""+cantidad);
         }else if(view ==buttonAgregarMaterial){
 

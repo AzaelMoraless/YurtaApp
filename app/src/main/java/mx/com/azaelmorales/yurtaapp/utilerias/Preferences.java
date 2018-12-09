@@ -8,7 +8,7 @@ public class Preferences {
     public static final String PREFERENCE_ESTADO_SESION = "estado.button.sesion";
     public static final String PREFERENCE_EMPLEADO_NOMBRE = "empleado.nombre";
     public static final String PREFERENCE_EMPLEADO_CORREO = "empleado.correo";
-
+    public static final String PREFERENCE_EMPLEADO_RFC = "empleado.rfc";
     public static void savePreferenceBoolean(Context context,boolean b,String key){
         SharedPreferences sharedPreferences = context.getSharedPreferences(STRING_PREFERENCES,context.MODE_PRIVATE);
         sharedPreferences.edit().putBoolean(key,b).apply();

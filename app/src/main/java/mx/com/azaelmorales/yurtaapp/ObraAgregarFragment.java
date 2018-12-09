@@ -23,6 +23,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ScrollView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -43,6 +45,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Calendar;
 
+import mx.com.azaelmorales.yurtaapp.utilerias.Preferences;
+import mx.com.azaelmorales.yurtaapp.utilerias.Servidor;
 import mx.com.azaelmorales.yurtaapp.utilerias.Validar;
 
 import static android.app.Activity.RESULT_OK;
@@ -58,13 +62,17 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
     List<String> listaTipos;
     ArrayAdapter<String> adapterSpinnerTipos;
     private int dia,mes,anio;
-    private String fehca;
+    private String fecha,nombre,idObra,dependencia,lugar,tipo;
     private Button buttonAgregarMaterial;
     private boolean a,flagb,c,d;
     static ArrayList<Material> arrayListMateriales;
     static  ListView listViewMaterialesPedidos;
     TextView textViewTitle;
     ScrollView scrollView;
+    int estado;
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -97,7 +105,7 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
 
         iniciarValor();
         editTextFolio.setKeyListener(null);
-        arrayListMateriales = new ArrayList<Material>();
+        ///arrayListMateriales = new ArrayList<Material>();
 
         scrollView = (ScrollView)view.findViewById(R.id.scroll);
 
@@ -117,7 +125,7 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
                 return false;
             }
         });
-
+        implemetarTextWatcher();
         textViewTitle =(TextView)view.findViewById(R.id.titleObra);
         return view;
     }
@@ -136,7 +144,17 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_aceptar:
-
+                //guardar los datos en la tabla obra pedido y detalle pedido
+                if(arrayListMateriales!=null) {
+                    if(validarEntradas()){
+                        agregarObra();
+                        getFragmentManager().beginTransaction().remove(this).commit();
+                    }
+                    else
+                        Toast.makeText(getActivity(),"Datos incorrectos" ,Toast.LENGTH_LONG).show();
+                }
+                else
+                        Toast.makeText(getActivity(),"Agregue material a la obra" ,Toast.LENGTH_LONG).show();
                 return true;
             case R.id.nav_cancelar:
                 getFragmentManager().beginTransaction().remove(this).commit();
@@ -156,8 +174,8 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
             DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int i, int i1, int i2) {
-                    fehca =  i +"-"+(i1+1)+"-"+i2;
-                    editTextFechaInicio.setText(fehca);
+                    fecha =  i +"-"+(i1+1)+"-"+i2;
+                    editTextFechaInicio.setText(fecha);
                 }
             },anio,mes,dia);
             datePickerDialog.show();
@@ -169,7 +187,6 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
             intent.putExtra("TIPO",spinnerTipo.getSelectedItem().toString());
             startActivity(intent);
         }
-
     }
 
     @Override
@@ -182,12 +199,12 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
         Obra obra;
         JSONArray jsonArray = response.optJSONArray("datos");
         JSONObject jsonObject;
-
         try{
             jsonObject = jsonArray.getJSONObject(0);
             obra = new Obra(jsonObject.optString("id_obra"));
-            int id = Integer.parseInt(obra.getId()) + 1;
-            editTextFolio.setText(""+id);
+            int idO = Integer.parseInt(obra.getId()) + 1;
+            idObra = idO+"";
+            editTextFolio.setText(""+idO);
         }catch (JSONException e){
             Toast.makeText(getActivity(),"Error: " + e.getMessage(),Toast.LENGTH_LONG).show();
         }
@@ -201,6 +218,83 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
         jrq = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         rq.add(jrq);
     }
+
+    public void inicializarValores(){
+        nombre = editTextNombre.getText().toString().trim();
+        dependencia = editTextDependencia.getText().toString().trim();
+        lugar = editTextLugar.getText().toString().trim();
+        tipo = spinnerTipo.getSelectedItem().toString();
+        estado =0;
+    }
+
+    public void agregarObra(){ //registrar la obra en la base de datos
+        inicializarValores();
+        String rfc = Preferences.getPeferenceString(getActivity(),Preferences.PREFERENCE_EMPLEADO_RFC);
+        String url = "http://dissymmetrical-diox.xyz/agregarObra.php?nombre="+nombre+"&dependencia="+dependencia+
+                "&lugar="+lugar+"&fecha="+fecha+"&tipo="+tipo+"&encargado="+rfc;
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getActivity(),"Registro insertado :)" ,Toast.LENGTH_LONG).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(),"Erro al insertar" ,Toast.LENGTH_LONG).show();
+            }
+        });
+        requestQueue.add(stringRequest);
+        agregarPedido();
+    }
+
+    public void agregarPedido(){//registrar el pedido de la obra en la base de datos
+        iniciarValor();
+        String urlPedido = "http://dissymmetrical-diox.xyz/registrarPedido.php?fecha1="+fecha+"&fecha2=&estado=0&id_o="+idObra;
+        RequestQueue requestQueuePedido = Volley.newRequestQueue(getContext());
+        StringRequest stringRequestPedido = new StringRequest(Request.Method.GET, urlPedido, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                String codigo,cantidad;
+                for(int i=0; i<arrayListMateriales.size(); i++){
+                        codigo = arrayListMateriales.get(i).getCodigo();
+                        cantidad = arrayListMateriales.get(i).getCantidadSolicitada();
+                    agregarDetallePedido(response,codigo,cantidad);
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(),"Error al registrar el pedido" ,Toast.LENGTH_LONG).show();
+            }
+        });
+        requestQueuePedido.add(stringRequestPedido);
+    }
+
+    public void agregarDetallePedido(String folio,String codigo,String cantidad){ //registr el detalle del pedido
+        String url = "http://dissymmetrical-diox.xyz/registrarDetPedido.php?folio="+folio+"&codigo="+codigo
+                                +"&cantidad="+cantidad;
+        RequestQueue requestQueue= Volley.newRequestQueue(getContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(),"Error al registrar el pedido" ,Toast.LENGTH_LONG).show();
+            }
+        });
+        requestQueue.add(stringRequest);
+
+    }
+
+
+
+
 
 
     public void implemetarTextWatcher(){

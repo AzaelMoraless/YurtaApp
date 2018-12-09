@@ -1,14 +1,12 @@
 package mx.com.azaelmorales.yurtaapp;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -26,39 +24,20 @@ import org.json.JSONException;
 import java.util.ArrayList;
 
 
-public class ObraModificarFragment extends Fragment {
+public class PedidosConfirmadosFragment extends Fragment {
+    private ListView listView;
     private SearchView searchView;
-    private ListView listViewObras;
-    private ArrayList<Obra> listaObras;
-    private  AdaptadorObras adaptador;
+    private ArrayList<Pedido> listaPedidos;
 
+
+    private  AdapterPedido adaptador;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_obra_modificar, container, false);
-        searchView = (SearchView)view.findViewById(R.id.search_obra);
-        listViewObras = (ListView) view.findViewById(R.id.listViewObrasModificar);
-
+        View view = inflater.inflate(R.layout.fragment_pedidos_confirmados, container, false);
+        listView = (ListView)view.findViewById(R.id.listViewPedidosConf);
+        searchView =(SearchView)view.findViewById(R.id.search_pedido_conf);
         cargarDatos();
-
-        //caragar editar obra
-        listViewObras.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent =new Intent(view.getContext(),ObraEditarActivity.class);
-                intent.putExtra("ID",listaObras.get(i).getId());
-                intent.putExtra("NOMBRE",listaObras.get(i).getNombre());
-                intent.putExtra("DEPENDENCIA",listaObras.get(i).getDependencia());
-                intent.putExtra("LUGAR",listaObras.get(i).getLugar());
-                intent.putExtra("FECHAINI",listaObras.get(i).getFecha());
-                intent.putExtra("TIPO",listaObras.get(i).getTipo());
-                startActivity(intent);
-            }
-        });
-
-
-
         return view;
     }
 
@@ -66,7 +45,7 @@ public class ObraModificarFragment extends Fragment {
 
     private void cargarDatos(){ //carga los datos de la base datos en un json
 
-        String url = "http://dissymmetrical-diox.xyz/mostrarObras.php";
+        String url = "http://dissymmetrical-diox.xyz/mostrarPedidosConfirmados.php";
 
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -96,30 +75,32 @@ public class ObraModificarFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast toast1 =
-                        Toast.makeText(getContext(),
-                                "Error al cargar los datos"+ error.getMessage(), Toast.LENGTH_LONG);
-
-                toast1.show();
+                Toast.makeText(getActivity(),"Error al cargar los datos" ,Toast.LENGTH_LONG).show();
             }
         });
         requestQueue.add(stringRequest);
     }
 
-
     private void cargarListView(JSONArray jsonArray) throws JSONException {
+        //pasa el json devuelto por el query a una matriz de String
         int longitud = jsonArray.length();
-        int columnas = 7; //filas de la tablaa obra
-        listaObras = new ArrayList<Obra>();
-        Obra obra;
+        int columnas = 5;
+        listaPedidos = new ArrayList<Pedido>();
+        Pedido pedido;
         for (int i=0; i<longitud; i+=columnas) {
-            obra = new Obra(jsonArray.getString(i),jsonArray.getString(i+1),
+
+            pedido = new Pedido(jsonArray.getString(i),jsonArray.getString(i+1),
                     jsonArray.getString(i+2),jsonArray.getString(i+3),
-                    jsonArray.getString(i+4),jsonArray.getString(i+5));
-            listaObras.add(obra);
+                    jsonArray.getString(i+4));
+
+            if(pedido.getEstado().equals("0"))
+                pedido.setEstado("Sin confirmar");
+            else if(pedido.getEstado().equals("1"))
+                pedido.setEstado("Confirmado");
+            listaPedidos.add(pedido);
         }
-        adaptador = new AdaptadorObras(getContext(),listaObras);
-        listViewObras.setAdapter(adaptador);
+        adaptador = new AdapterPedido(getContext(),listaPedidos);
+        listView.setAdapter(adaptador);
     }
 
 }

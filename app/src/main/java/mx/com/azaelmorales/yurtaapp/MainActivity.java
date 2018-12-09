@@ -203,12 +203,15 @@ public class MainActivity extends AppCompatActivity implements  Response.Listene
             jsonObject = jsonArray.getJSONObject(0);
             empleado.setCorreo(jsonObject.optString("correo"));
             empleado.setNombre(jsonObject.optString("nombre_e"));
+            empleado.setRfc(jsonObject.optString("rfc"));
             Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
             //guarda los valores de nombre y correo
             Preferences.savePreferenceString(MainActivity.this,
                     empleado.getNombre(),Preferences.PREFERENCE_EMPLEADO_NOMBRE);
             Preferences.savePreferenceString(MainActivity.this,
                     empleado.getCorreo(),Preferences.PREFERENCE_EMPLEADO_CORREO);
+            Preferences.savePreferenceString(MainActivity.this,
+                    empleado.getRfc(),Preferences.PREFERENCE_EMPLEADO_RFC);
             startActivity(intent);
             finish();
         }catch (JSONException e){

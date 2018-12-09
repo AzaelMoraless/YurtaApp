@@ -112,33 +112,9 @@ public class ObraAgregarMaterialActivity extends AppCompatActivity implements Vi
                 editTextCantidad.setText(""+cantidad);
             }
         });
+   }
 
-
-
-        /*listViewMaterial.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-                                    long arg3) {
-                // TODO Auto-generated method stub
-                Intent resultData = new Intent();
-                resultData.putExtra("Test", "Lo he aprendido en www.devtroce.com");
-                setResult(ObrasActivity.RESULT_OK, resultData);
-                finish();
-
-
-
-                finish();
-            }
-
-        });*/
-    }
-
-
-
-
-
-    private void cargarDatos(){
+   private void cargarDatos(){
         String url = "http://dissymmetrical-diox.xyz/mostrarMaterial.php";
         RequestQueue requestQueue = Volley.newRequestQueue(ObraAgregarMaterialActivity.this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -203,30 +179,9 @@ public class ObraAgregarMaterialActivity extends AppCompatActivity implements Vi
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.nav_aceptar:
-                //guardara todo en la lista
-               /// ObraAgregarFragment.arrayListMateriales = listaMaterialesPedido;
-               /// ObraAgregarFragment.arrayListMateriales = listaMaterialesPedido;
-
-
-
-                //Bundle parmetros = new Bundle();
-                //parmetros.putString("datos", datos);
-                //Intent i = new Intent(this, MainActivity.class);
-                //i.putExtras(parmetros);
-                //startActivity(i);
-
-               /* Intent returnIntent = new Intent();
-               ///intent.putExtra("student", new Student("1","Mike","6"));
-                for(int i=0; i<listaMaterialesPedido.size();i++)
-                returnIntent.putExtra("mat"+i,listaMaterialesPedido.get(i));
-
-                setResult(ObrasActivity.RESULT_OK,returnIntent);
-                finish();*/
-
-
-
-                AdapterMaterial adaptador;
-                adaptador = new AdapterMaterial(ObrasActivity.getAppContext(), listaMaterialesPedido);
+                ObraAgregarFragment.arrayListMateriales = listaMaterialesPedido;
+                AdapterMaterialSolicitado adaptador;
+                adaptador = new AdapterMaterialSolicitado(ObrasActivity.getAppContext(), listaMaterialesPedido);
                 ObraAgregarFragment.listViewMaterialesPedidos.setAdapter(adaptador);
                 finish();
                 return true;

@@ -65,7 +65,7 @@ public class HomeActivity extends AppCompatActivity
 
             }*/
             correo = Preferences.getPeferenceString(this,Preferences.PREFERENCE_EMPLEADO_CORREO);
-           nombre = Preferences.getPeferenceString(this,Preferences.PREFERENCE_EMPLEADO_NOMBRE);
+            nombre = Preferences.getPeferenceString(this,Preferences.PREFERENCE_EMPLEADO_NOMBRE);
     }
 
    /* @Override

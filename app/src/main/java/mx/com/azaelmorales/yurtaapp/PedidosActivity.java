@@ -38,13 +38,14 @@ public class PedidosActivity extends AppCompatActivity {
             FragmentManager fragmentManager=getSupportFragmentManager();
             switch (item.getItemId()) {
                 case R.id.navigation_lista_pedidos:
-
+                    fragmentManager.beginTransaction().replace(R.id.fragment_content_pedidos,
+                            new PedidosViewFragment()).addToBackStack(null).commit();
                     return true;
-                case R.id.navigation_agregar_pedido:
+                case R.id.navigation_pedidos_conf:
                    /* fragmentManager.beginTransaction().replace(R.id.fragment_content_empleados,
                             new EmpleadosAgregarFragment()).addToBackStack(null).commit();*/
                     return true;
-                case R.id.navigation_modificar_pedido:
+                case R.id.navigation_pedidos_sinConf:
 
                     return true;
             }

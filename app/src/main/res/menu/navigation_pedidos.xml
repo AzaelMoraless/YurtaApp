@@ -6,13 +6,13 @@
         android:title="Pedidos" />
 
     <item
-        android:id="@+id/navigation_agregar_pedido"
-        android:icon="@drawable/ic_agregar"
-        android:title="Agregar" />
+        android:id="@+id/navigation_pedidos_conf"
+        android:icon="@drawable/ic_aceptar"
+        android:title="Confirmados" />
 
     <item
-        android:id="@+id/navigation_modificar_pedido"
-        android:icon="@drawable/ic_editar"
-        android:title="Modificar" />
+        android:id="@+id/navigation_pedidos_sinConf"
+        android:icon="@drawable/ic_cancelar"
+        android:title="Sin confirmar" />
 
 </menu>

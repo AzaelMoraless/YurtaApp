@@ -128,7 +128,7 @@ public class MaterialAgregarFragment extends Fragment implements  View.OnClickLi
     }
 
     private void registrarEmpleado(){ //se ejecuta la solicitud al web service alojado en el servidor
-        String url ="http://dissymmetrical-diox.xyz/registrom.php?nombre=" +nomb +
+        String url ="000/registrom.php?nombre=" +nomb +
                 "&tipo="+spinner_tipo.getSelectedItem().toString()+"&cantidad="+cantidad+
                 "&marca="+marca+"&precio="+precio+"&estado_m=1";
 

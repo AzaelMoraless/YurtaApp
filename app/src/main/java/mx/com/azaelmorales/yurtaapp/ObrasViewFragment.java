@@ -110,7 +110,7 @@ public class ObrasViewFragment extends Fragment {
 
     private void cargarListView(JSONArray jsonArray) throws JSONException {
         int longitud = jsonArray.length();
-        int columnas = 6; //filas de la tablaa obra
+        int columnas = 7; //filas de la tablaa obra
         listaObras = new ArrayList<Obra>();
         Obra obra;
         for (int i=0; i<longitud; i+=columnas) {

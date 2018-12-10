@@ -2,11 +2,13 @@ package mx.com.azaelmorales.yurtaapp;
 
 import android.app.DatePickerDialog;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.AppCompatSpinner;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -228,7 +230,7 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
     }
 
     public void agregarObra(){ //registrar la obra en la base de datos
-        inicializarValores();
+       /// inicializarValores();
         String rfc = Preferences.getPeferenceString(getActivity(),Preferences.PREFERENCE_EMPLEADO_RFC);
         String url = "http://dissymmetrical-diox.xyz/agregarObra.php?nombre="+nombre+"&dependencia="+dependencia+
                 "&lugar="+lugar+"&fecha="+fecha+"&tipo="+tipo+"&encargado="+rfc;
@@ -237,6 +239,8 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                agregarPedido(response);
+                enviarNotificacion();
                 Toast.makeText(getActivity(),"Registro insertado :)" ,Toast.LENGTH_LONG).show();
             }
         }, new Response.ErrorListener() {
@@ -246,12 +250,13 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
             }
         });
         requestQueue.add(stringRequest);
-        agregarPedido();
+
+
     }
 
-    public void agregarPedido(){//registrar el pedido de la obra en la base de datos
-        iniciarValor();
-        String urlPedido = "http://dissymmetrical-diox.xyz/registrarPedido.php?fecha1="+fecha+"&fecha2=&estado=0&id_o="+idObra;
+    public void agregarPedido(String id){//registrar el pedido de la obra en la base de datos
+        ////iniciarValor();
+        String urlPedido = "http://dissymmetrical-diox.xyz/registrarPedido.php?fecha1="+fecha+"&fecha2=&estado=0&id_o="+id;
         RequestQueue requestQueuePedido = Volley.newRequestQueue(getContext());
         StringRequest stringRequestPedido = new StringRequest(Request.Method.GET, urlPedido, new Response.Listener<String>() {
             @Override
@@ -369,5 +374,22 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
             return false;
     }
 
+    public void enviarNotificacion(){
+        NotificationCompat.Builder nBuilder;
+        NotificationManager nNotiMgr =(NotificationManager)getActivity().getSystemService(getActivity().NOTIFICATION_SERVICE);;
 
+        int icono = R.mipmap.ic_launcher;
+        ////Intent intent= new Intent(PedidosActivity.this, ResulAtivity.class);
+        ///PendingIntent resulPedint = PendingIntent.getActivity(MainActivity.this,0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        nBuilder= new NotificationCompat.Builder(getActivity())
+                ///.setContentIntent(resulPedint)
+                .setSmallIcon(icono)
+                .setContentTitle("YutaApp")
+                .setContentText("Tienes un nuevo pedido")
+                .setVibrate(new long[]{100,250,100,500})
+                .setAutoCancel(true);
+
+        nNotiMgr.notify(1,nBuilder.build());
+    }
 }

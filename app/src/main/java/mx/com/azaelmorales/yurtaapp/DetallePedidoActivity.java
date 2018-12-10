@@ -1,6 +1,9 @@
 package mx.com.azaelmorales.yurtaapp;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -131,6 +134,9 @@ public class DetallePedidoActivity extends AppCompatActivity {
 
                     agregarDetallenInventario(response,codigo,cantidad);
                     actualizarAlmacen(codigo,existencias+"");
+
+                    if(existencias<=3)
+                        enviarNotificacion(listMaterial.get(i).getNombre(),existencias+"");
                 }
                 Toast.makeText(DetallePedidoActivity.this,"Pedido confirmado :)" ,Toast.LENGTH_LONG).show();
                 confirmarPedido();
@@ -199,5 +205,25 @@ public class DetallePedidoActivity extends AppCompatActivity {
             }
         });
         requestQueue.add(stringRequest);
+    }
+
+
+    public void enviarNotificacion(String material,String cantidad){
+        NotificationCompat.Builder nBuilder;
+        NotificationManager nNotiMgr =(NotificationManager)getApplicationContext().getSystemService(NOTIFICATION_SERVICE);
+
+        int icono = R.mipmap.ic_launcher;
+        ///Intent intent= new Intent(MainActivity.this, ResulAtivity.class);
+        ///PendingIntent resulPedint = PendingIntent.getActivity(MainActivity.this,0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        nBuilder= new NotificationCompat.Builder(getApplicationContext())
+                ///.setContentIntent(resulPedint)
+                .setSmallIcon(icono)
+                .setContentTitle("YutaApp")
+                .setContentText("Quedan: " + cantidad + " de " + material)
+                .setVibrate(new long[]{100,250,100,500})
+                .setAutoCancel(true);
+
+        nNotiMgr.notify(1,nBuilder.build());
     }
 }

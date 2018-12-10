@@ -73,4 +73,9 @@
             android:text="@string/text_subrayado"
             />
     </LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressMain"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true" />
 </RelativeLayout>

@@ -3,13 +3,16 @@ package mx.com.azaelmorales.yurtaapp;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -31,7 +34,8 @@ public class ObraModificarFragment extends Fragment {
     private ListView listViewObras;
     private ArrayList<Obra> listaObras;
     private  AdaptadorObras adaptador;
-
+    private ProgressBar progressBar;
+    private boolean flag=true;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,8 +43,12 @@ public class ObraModificarFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_obra_modificar, container, false);
         searchView = (SearchView)view.findViewById(R.id.search_obra);
         listViewObras = (ListView) view.findViewById(R.id.listViewObrasModificar);
+        progressBar = (ProgressBar)view.findViewById(R.id.progress_mod_empleados);
+        progressBar.setProgress(0);
 
         cargarDatos();
+        new Asynctask_load().execute();
+
 
         //caragar editar obra
         listViewObras.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -120,6 +128,36 @@ public class ObraModificarFragment extends Fragment {
         }
         adaptador = new AdaptadorObras(getContext(),listaObras);
         listViewObras.setAdapter(adaptador);
+        flag = false;
     }
 
+
+    public class Asynctask_load extends AsyncTask<Void,Integer,Void> {
+        int progreso;
+        @Override
+        protected void onPreExecute(){
+            /// Toast.makeText(getActivity(),"Cargando",Toast.LENGTH_LONG).show();
+            progreso =0;
+            progressBar.setVisibility(View.VISIBLE);
+        }
+        @Override
+        protected Void doInBackground(Void... params) {
+            while(flag){
+                progreso++;
+                publishProgress(progreso);
+                SystemClock.sleep(20);
+            }
+            return null;
+        }
+        @Override
+        protected void onProgressUpdate(Integer... values){
+            progressBar.setProgress(values[0]);
+        }
+        @Override
+        protected void onPostExecute(Void result){
+            ///Toast.makeText(getActivity(),"onPostExeecute",Toast.LENGTH_LONG).show();
+            progressBar.setVisibility(View.INVISIBLE);
+
+        }
+    }
 }

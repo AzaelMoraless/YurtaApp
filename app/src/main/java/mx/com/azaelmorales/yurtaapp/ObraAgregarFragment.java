@@ -257,10 +257,12 @@ public class ObraAgregarFragment extends Fragment implements  View.OnClickListen
             @Override
             public void onResponse(String response) {
                 String codigo,cantidad;
+
                 for(int i=0; i<arrayListMateriales.size(); i++){
                         codigo = arrayListMateriales.get(i).getCodigo();
                         cantidad = arrayListMateriales.get(i).getCantidadSolicitada();
-                    agregarDetallePedido(response,codigo,cantidad);
+
+                        agregarDetallePedido(response,codigo,cantidad);
 
                 }
             }

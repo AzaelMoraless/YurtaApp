@@ -35,9 +35,9 @@ public class AdapterMaterialSolicitado extends BaseAdapter implements Filterable
         TextView textViewRfc = vista.findViewById(R.id.textViewExistencias);
 
 
-        textViewNombre.setText("Nombre:"+ materiales.get(i).getNombre());
-        textViewRfc.setText("Marca:"+ materiales.get(i).getMarca());
-        textViewCorreo.setText("Existencias:"+ materiales.get(i).getCantidadSolicitada());
+        textViewNombre.setText("Codigo: "+ materiales.get(i).getCodigo());
+        textViewRfc.setText("Nombre: "+ materiales.get(i).getNombre());
+        textViewCorreo.setText("Cantidad: "+ materiales.get(i).getCantidadSolicitada());
         return vista;
     }
 

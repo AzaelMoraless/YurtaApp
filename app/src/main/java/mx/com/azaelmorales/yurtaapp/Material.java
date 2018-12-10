@@ -38,6 +38,13 @@ public class Material implements Parcelable {
         this.marca = marca;
         this.existecias = existencias;
     }
+    public Material(String codigo,String nombre,String existencias,String cantidadSolicitada,String marca){
+        this.nombre = nombre;
+        this.codigo = codigo;
+        this.existecias = existencias;
+        this.cantidadSolicitada = cantidadSolicitada;
+        this.marca = marca;
+    }
     public String getCodigo() {
         return codigo;
     }

@@ -26,8 +26,10 @@ public class DetallePedidoActivity extends AppCompatActivity {
     private TextView textViewFolio,textViewFecha,textViewEstado;
     private ListView listView;
     private Button button;
-    private ArrayList<Material> arrayListMaterial;
-    private  AdapterMaterialSolicitado adapter;
+    private ArrayList<Material> listMaterial;
+    private  AdapterMaterialSolicitado adaptador;
+    private String folio,idObra;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,40 +47,33 @@ public class DetallePedidoActivity extends AppCompatActivity {
         textViewFolio = (TextView)findViewById(R.id.textViewFolioP);
         textViewFecha =(TextView)findViewById(R.id.textViewFechaP);
         textViewEstado =(TextView)findViewById(R.id.textViewEstadoP);
-        listView =(ListView)findViewById(R.id.listViewPedidosEspe);
+        listView =(ListView)findViewById(R.id.listViewMaterialSol);
         button = (Button)findViewById(R.id.buttonConfirmarPedido);
 
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
         if(b!=null){
-            textViewFolio.setText("Folio: "+b.getString("FOLIO"));
+            folio =b.getString("FOLIO");
+            textViewFolio.setText("Folio: "+folio);
             textViewFecha.setText("Fecha: "+b.getString("FECHA"));
             textViewEstado.setText("Estado: "+b.getString("ESTADO"));
+            idObra= b.getString("ID_OBRA");
+            cargarDatos();
         }
 
-        cargarDatos();
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //al confirmar pedido actualiza los materiales existentes
-                int existencias,cantidad;
-                for(int i=0; i<arrayListMaterial.size(); i++){
-                    existencias = Integer.parseInt(arrayListMaterial.get(i).getExistecias());
-                    cantidad = Integer.parseInt(arrayListMaterial.get(i).getCantidadSolicitada());
-                    existencias = existencias -cantidad;
-                    //actualiza el almacen para los materiales solcitados
-                    actualizarAlmacen(arrayListMaterial.get(i).getCodigo(),existencias+"");
-                }
+               agregarInventario();
             }
         });
 
     }
 
-    private void cargarDatos(){ //carga los datos de la base datos en un json
-        //mostrar los datos devueltos por la funcion
-            //materiales
-        String url = "http://dissymmetrical-diox.xyz/mostrarPedidos.php";
+    private void cargarDatos(){
+        String url = "http://dissymmetrical-diox.xyz/materialesPedidos.php?folio="+folio;
 
         RequestQueue requestQueue = Volley.newRequestQueue(DetallePedidoActivity.this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -88,7 +83,6 @@ public class DetallePedidoActivity extends AppCompatActivity {
                 try {
                     JSONArray jsonArray = new JSONArray(response);
                     cargarListView(jsonArray);
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -103,28 +97,76 @@ public class DetallePedidoActivity extends AppCompatActivity {
     }
 
     private void cargarListView(JSONArray jsonArray) throws JSONException {
-        //pasa el json devuelto por el query a una matriz de String
         int longitud = jsonArray.length();
-        int columnas = 3;
-        arrayListMaterial = new ArrayList<Material>();
+        int columnas = 4;
+        listMaterial = new ArrayList<Material>();
         Material material;
         for (int i=0; i<longitud; i+=columnas) {
-
             material = new Material(jsonArray.getString(i),jsonArray.getString(i+1),
-                    jsonArray.getString(i+2));
-
+                   "","",
+                    "", jsonArray.getString(i+2),jsonArray.getString(i+3));
+            listMaterial.add(material);
         }
-        adapter = new AdapterMaterialSolicitado(DetallePedidoActivity.this,arrayListMaterial);
-        listView.setAdapter(adapter);
+        adaptador = new AdapterMaterialSolicitado(DetallePedidoActivity.this,listMaterial);
+        listView.setAdapter(adaptador);
     }
 
 
 
 
-    
+    public void agregarInventario(){//registrar el inventario del pedido en la base de datos
+        ////iniciarValor();
+        String urlPedido = "http://dissymmetrical-diox.xyz/agregarInventario.php?id_obra="+idObra;
+        RequestQueue requestQueuePedido = Volley.newRequestQueue(DetallePedidoActivity.this);
+        StringRequest stringRequestPedido = new StringRequest(Request.Method.GET, urlPedido, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                String codigo,cantidad;
+                int existencias;
+                for(int i=0; i<listMaterial.size(); i++){
+                    existencias = Integer.parseInt(listMaterial.get(i).getExistecias());
+                    codigo = listMaterial.get(i).getCodigo();
+                    cantidad = listMaterial.get(i).getCantidadSolicitada();
+                    existencias = existencias-(Integer.parseInt(cantidad));
+
+                    agregarDetallenInventario(response,codigo,cantidad);
+                    actualizarAlmacen(codigo,existencias+"");
+                }
+                Toast.makeText(DetallePedidoActivity.this,"Pedido confirmado :)" ,Toast.LENGTH_LONG).show();
+                confirmarPedido();
+                finish();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(DetallePedidoActivity.this,"Error al registrar el inventario" ,Toast.LENGTH_LONG).show();
+            }
+        });
+        requestQueuePedido.add(stringRequestPedido);
+    }
+
+    public void agregarDetallenInventario(String idInventario,String codigo,String cantidad){
+        String url = "http://dissymmetrical-diox.xyz/agregarDetalleInven.php?id="+idInventario+
+                "&codigo="+codigo+"&cantidad="+cantidad+"&folio="+folio;
+
+        RequestQueue requestQueue= Volley.newRequestQueue(DetallePedidoActivity.this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(DetallePedidoActivity.this,"Error al registrar el detalle_inven" ,Toast.LENGTH_LONG).show();
+            }
+        });
+        requestQueue.add(stringRequest);
+    }
+
+
     public void actualizarAlmacen(String codigo,String existencias){//confirma el pedido y actualiza el almacen
         String url = "http://dissymmetrical-diox.xyz/actualizarMaterialExistencias.php?codigo="+codigo+
-                    "&existencias="+existencias;
+                "&existencias="+existencias;
         RequestQueue requestQueue = Volley.newRequestQueue(DetallePedidoActivity.this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -140,4 +182,22 @@ public class DetallePedidoActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+
+    public void confirmarPedido(){
+        //http://dissymmetrical-diox.xyz/actualizarPedido.php?folio=2&fecha=2018-12-09&estado=1
+        String url = "http://dissymmetrical-diox.xyz/actualizarPedido.php?folio="+folio+"&estado=1";
+        RequestQueue requestQueue = Volley.newRequestQueue(DetallePedidoActivity.this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(DetallePedidoActivity.this,"Error al actualizar" ,Toast.LENGTH_LONG).show();
+            }
+        });
+        requestQueue.add(stringRequest);
+    }
 }

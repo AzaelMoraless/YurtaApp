@@ -53,6 +53,7 @@ public class PedidosEsperaFragment extends Fragment {
                 intent.putExtra("FOLIO",listaPedidos.get(i).getFolioPedido());
                 intent.putExtra("FECHA",listaPedidos.get(i).getFecha());
                 intent.putExtra("ESTADO",listaPedidos.get(i).getEstado());
+                intent.putExtra("ID_OBRA",listaPedidos.get(i).getIdObra());
                 startActivity(intent);
             }
         });

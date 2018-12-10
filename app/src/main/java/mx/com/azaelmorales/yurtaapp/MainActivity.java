@@ -4,7 +4,9 @@ package mx.com.azaelmorales.yurtaapp;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.StrictMode;
+import android.os.SystemClock;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
@@ -16,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -64,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements  Response.Listene
     private boolean isCheckedRB;
     String correoRecuperacion;
     Session session;
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +81,11 @@ public class MainActivity extends AppCompatActivity implements  Response.Listene
         }
 
 
+        progressBar = (ProgressBar)findViewById(R.id.progressMain);
+        progressBar.setVisibility(View.INVISIBLE);
+        progressBar.setProgress(0);
+
+
         btnLogin = (Button) findViewById(R.id.btn_start);
         txt_usuario = (TextInputEditText) findViewById(R.id.text_input_user);
         txt_contraseña = (TextInputEditText) findViewById(R.id.text_input_password);
@@ -86,6 +95,9 @@ public class MainActivity extends AppCompatActivity implements  Response.Listene
         rq = Volley.newRequestQueue(this);
         setRequestedOrientation(SCREEN_ORIENTATION_PORTRAIT);
         isCheckedRB= radioButton.isChecked();
+
+
+
 
         //radio button mantener sesion
         radioButton.setOnClickListener(new View.OnClickListener() {
@@ -192,14 +204,15 @@ public class MainActivity extends AppCompatActivity implements  Response.Listene
 
         Preferences.savePreferenceBoolean(MainActivity.this,radioButton.isChecked(),
                 Preferences.PREFERENCE_ESTADO_SESION);
-
-
+        new Asynctask_load().execute();
+        progressBar.setVisibility(View.VISIBLE);
         ///Toast.makeText(this,"se encontro",Toast.LENGTH_LONG).show();
         Empleado empleado = new Empleado();
         JSONArray jsonArray = response.optJSONArray("datos");
         JSONObject jsonObject;
 
         try{
+
             jsonObject = jsonArray.getJSONObject(0);
             empleado.setCorreo(jsonObject.optString("correo"));
             empleado.setNombre(jsonObject.optString("nombre_e"));
@@ -220,6 +233,7 @@ public class MainActivity extends AppCompatActivity implements  Response.Listene
     }
 
     private void iniciarSesion(){
+
         String url ="http://dissymmetrical-diox.xyz/sesion.php?user=" + txt_usuario.getText().toString()+
                     "&password=" + txt_contraseña.getText().toString();
         jrq = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
@@ -319,4 +333,34 @@ public class MainActivity extends AppCompatActivity implements  Response.Listene
         requestQueue.add(stringRequest);
     }
 
+
+
+    public class Asynctask_load extends AsyncTask<Void,Integer,Void> {
+        int progreso;
+        @Override
+        protected void onPreExecute(){
+            /// Toast.makeText(getActivity(),"Cargando",Toast.LENGTH_LONG).show();
+            progreso =0;
+            progressBar.setVisibility(View.VISIBLE);
+        }
+        @Override
+        protected Void doInBackground(Void... params) {
+            while(progreso<50){
+                progreso++;
+                publishProgress(progreso);
+                SystemClock.sleep(20);
+            }
+            return null;
+        }
+        @Override
+        protected void onProgressUpdate(Integer... values){
+            progressBar.setProgress(values[0]);
+        }
+        @Override
+        protected void onPostExecute(Void result){
+            ///Toast.makeText(getActivity(),"onPostExeecute",Toast.LENGTH_LONG).show();
+            progressBar.setVisibility(View.INVISIBLE);
+
+        }
+    }
 }
